@@ -1,0 +1,11 @@
+# Built assets dir
+front/assets/js/*
+front/assets/css/*
+
+# Allow for commiting a directory but not its contents
+!**/.keepme
+
+node_modules
+# Don't need to see yarn's problems in my repo
+yarn-error.log
+
