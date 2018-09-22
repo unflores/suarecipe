@@ -6,7 +6,7 @@ const APP_DIR   = path.resolve(__dirname, 'front/app');
 const config = {
   entry: APP_DIR + '/index.tsx',
   output: {
-    path: path.resolve(__dirname, 'front/assets/js'),
+    path: path.resolve(__dirname, 'front/assets/js/'),
     filename: 'bundle.js'
   },
   devtool: 'source-map',
@@ -19,15 +19,7 @@ const config = {
       { test: /\.css$/, loader: 'style-loader'},
       {
         test: /\.tsx?$/,
-        loader: 'awesome-typescript-loader',
-        query: {
-          presets: [
-            'es2015',
-            'react',
-            'stage-2'
-          ]
-        }
-
+        loader: 'ts-loader'
       },
       { enforce: "pre", test: /\.js$/, loader: 'source-map-loader' },
       {
