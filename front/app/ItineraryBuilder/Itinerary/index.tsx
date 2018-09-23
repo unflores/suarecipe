@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 class Itinerary extends React.Component<{}, {}> {
-  render() {
+  public render() {
     return <div>Itinerary goes here</div>
   }
 }

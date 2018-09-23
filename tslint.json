@@ -1,0 +1,8 @@
+// tslint.json
+{
+  "extends": ["tslint:recommended", "tslint-react"],
+  "rules": {
+    "semicolon": [true, "never"],
+    "quotemark": [false]
+  }
+}

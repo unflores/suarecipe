@@ -1,12 +1,13 @@
 import * as React from 'react'
 
-interface Props {
+interface IProps {
   days: number
 }
 
-const Dropdown: React.StatelessComponent<Props> = (props) => {
-  let options = []
-  for (let index:number= 1; index <= 10; index++) {
+const Dropdown: React.StatelessComponent<IProps> = (props) => {
+  const options = []
+
+  for (let index: number = 1; index <= 10; index++) {
     options.push(<option key={index} value="{index}">{index}</option>)
   }
 
@@ -14,7 +15,7 @@ const Dropdown: React.StatelessComponent<Props> = (props) => {
 }
 
 class DayChooser extends React.Component<{}, {}> {
-  render() {
+  public render() {
     return (
       <div>
         <h1>Give me <Dropdown days={3}/> days in Paris</h1>

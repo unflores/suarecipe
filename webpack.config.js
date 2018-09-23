@@ -21,7 +21,9 @@ const config = {
         test: /\.tsx?$/,
         loader: 'ts-loader'
       },
+
       { enforce: "pre", test: /\.js$/, loader: 'source-map-loader' },
+      { enforce: "pre", test: /\.tsx?$/, loader: 'tslint-loader' },
       {
         test: /\.css$/,
         loader: 'css-loader',
