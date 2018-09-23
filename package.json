@@ -6,6 +6,8 @@
   "scripts": {
     "start": "nodemon --inspect ./index.js --exec babel-node --presets es2015,stage-2",
     "watch": "./node_modules/.bin/webpack -d --watch",
+    "tsfix": "./node_modules/.bin/tslint --project ./tsconfig.json -c ./tslint.json --fix",
+    "test": "jest --config jest.config.js --watch",
     "console": "node"
   },
   "author": "me@austinflores.com",
@@ -38,6 +40,15 @@
     "webpack": "^4.0.0-alpha.3"
   },
   "devDependencies": {
+    "@types/enzyme": "^3.1.14",
+    "@types/enzyme-adapter-react-16": "^1.0.3",
+    "@types/jest": "^23.3.2",
+    "@types/react-redux": "^6.0.9",
+    "enzyme": "^3.6.0",
+    "enzyme-adapter-react-16": "^1.5.0",
+    "enzyme-to-json": "^3.3.4",
+    "jest": "^23.6.0",
+    "ts-jest": "^23.10.1",
     "tslint": "^5.11.0",
     "tslint-loader": "^3.6.0",
     "tslint-react": "^3.6.0",

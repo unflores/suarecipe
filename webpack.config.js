@@ -12,7 +12,7 @@ const config = {
   devtool: 'source-map',
   resolve: {
     alias: { frontapp: path.resolve(__dirname, 'front/app') },
-    extensions: ['.js', '.jsx', 'xts', '.tsx']
+    extensions: ['.js', '.jsx', '.ts', '.tsx']
   },
   module: {
     rules: [
