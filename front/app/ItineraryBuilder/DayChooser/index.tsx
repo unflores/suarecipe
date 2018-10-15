@@ -1,7 +1,6 @@
 import * as React from 'react'
 
 interface IDropdownProps {
-  days: number
   chooseDays(event: any): void
 }
 
@@ -9,8 +8,8 @@ interface IDayChooserProps {
   handleChosenDays(chosen: number): void
 }
 
-const Dropdown: React.StatelessComponent<IDropdownProps> = ({ days, chooseDays }) => {
-  const options = []
+const Dropdown: React.StatelessComponent<IDropdownProps> = ({ chooseDays }) => {
+  const options = [<option key='default' disabled={true} value='' />]
 
   for (let index: number = 1; index <= 10; index++) {
     options.push(
@@ -21,7 +20,7 @@ const Dropdown: React.StatelessComponent<IDropdownProps> = ({ days, chooseDays }
 
   return (
     <select
-      defaultValue={days.toString()}
+      value={''}
       onChange={chooseDays}
     >
       {options}
@@ -34,7 +33,7 @@ class DayChooser extends React.Component<IDayChooserProps, {}> {
   public render() {
     return (
       <div>
-        <h1>Give me <Dropdown chooseDays={this.chooseDays} days={3}/> days in Paris</h1>
+        <h1>Give me <Dropdown chooseDays={this.chooseDays}/> days in Paris</h1>
       </div>
     )
   }
