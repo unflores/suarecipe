@@ -12,14 +12,15 @@ const config = {
   devtool: 'source-map',
   resolve: {
     alias: { frontapp: path.resolve(__dirname, 'front/app') },
-    extensions: ['.js', '.jsx', '.ts', '.tsx']
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   module: {
     rules: [
       { test: /\.css$/, loader: 'style-loader'},
       {
         test: /\.tsx?$/,
-        loader: 'ts-loader'
+        loader: 'ts-loader',
+        exclude: /\_\_tests\_\_/,
       },
 
       { enforce: "pre", test: /\.js$/, loader: 'source-map-loader' },
