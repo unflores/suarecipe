@@ -6,18 +6,26 @@ import { Dispatch } from 'redux'
 import DayChooser from './DayChooser'
 import Itinerary from './Itinerary'
 
-export class ItineraryBuilder extends React.Component<IState, {}> {
-  constructor(props: IState) {
+interface IItineraryBuilder extends IState {
+  onChosen: (days: number) => void
+}
+
+export class ItineraryBuilder extends React.Component<IItineraryBuilder, {}> {
+  constructor(props: IItineraryBuilder) {
     super(props)
 
   }
 
   public render() {
     if (this.props.view === View.form ) {
-      return <DayChooser/>
+      return <DayChooser handleChosenDays={this.handleChosenDays} />
     } else {
       return <Itinerary/>
     }
+  }
+
+  private handleChosenDays = (days: number) => {
+    this.props.onChosen(days)
   }
 }
 

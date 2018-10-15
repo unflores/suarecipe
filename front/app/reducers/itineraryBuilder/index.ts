@@ -12,9 +12,11 @@ interface IAction {
 }
 
 export default function reduce(state: IState = initialState, action: IAction) {
-  switch (action.type) {
+  const {payload, type} = action
+
+  switch (type) {
     case Action.CHANGE_VIEW:
-      return state
+      return {...state, days: payload.days, view: payload.view}
     default:
       return state
   }
