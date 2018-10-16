@@ -10,6 +10,10 @@ const app = express()
 
 // Middleware Setup
 app.use('/assets/', express.static(__dirname + '/front/assets')) // Set location of static data
+// If we didn't find it in assets, send a 404
+app.use('/assets/', (req, res) => {
+  res.status(404).send('Not Found')
+})
 app.use(morgan('dev'))                                         // Log requests to console
 app.use(bodyParser.urlencoded({'extended':'true'}))            // Parse extended utf urls
 app.use(cookieParser())                                        // Read cookies for auth
