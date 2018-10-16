@@ -21,5 +21,6 @@ app.get('*', (req, res) => {
   res.sendFile(__dirname + '/front/index.html')
 })
 
-app.listen(9090, '0.0.0.0')
-console.log("I see you on port 9090")
+const port = process.env.PORT || '9090'
+app.listen(port, '0.0.0.0')
+console.log(`I see you on ${port}`)
