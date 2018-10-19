@@ -1,6 +1,5 @@
 # Built assets dir
 front/assets/js/*
-front/assets/css/*
 
 # Allow for commiting a directory but not its contents
 !**/.keepme
