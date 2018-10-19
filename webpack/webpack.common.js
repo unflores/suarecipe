@@ -21,14 +21,20 @@ module.exports = {
 
       { test: /\.js$/, enforce: "pre", loader: 'source-map-loader' },
 
-      { test: /\.css$/, loader: 'style-loader'},
       {
         test: /\.css$/,
-        loader: 'css-loader',
-        query: {
-          modules: true,
-          localIdentName: '[name]__[local]___[hash:base64:5]'
-        }
+        include: APP_DIR,
+        use: [
+          'style-loader',
+          {
+            loader: 'typings-for-css-modules-loader',
+            options: {
+              modules: true,
+              namedExport: true,
+              camelCase: true
+            }
+          }
+        ]
       }
     ]
   }

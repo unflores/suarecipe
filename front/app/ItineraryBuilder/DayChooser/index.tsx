@@ -1,4 +1,5 @@
 import * as React from 'react'
+import * as styles from './styles.css'
 
 interface IDropdownProps {
   chooseDays(event: any): void
@@ -33,7 +34,7 @@ class DayChooser extends React.Component<IDayChooserProps, {}> {
   public render() {
     return (
       <div>
-        <h1>Give me <Dropdown chooseDays={this.chooseDays}/> days in Paris</h1>
+        <h1 className={styles.parisDays}>Give me <Dropdown chooseDays={this.chooseDays}/> days in Paris</h1>
       </div>
     )
   }

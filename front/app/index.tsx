@@ -1,3 +1,4 @@
+import Main from 'frontapp/templates/Main'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
@@ -14,7 +15,9 @@ import ItineraryBuilder from './ItineraryBuilder'
 const App = () => (
   <Provider store={store}>
     <div>
-      <ItineraryBuilder />
+      <Main>
+        <ItineraryBuilder />
+      </Main>
     </div>
   </Provider>
 )
