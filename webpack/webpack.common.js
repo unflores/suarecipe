@@ -16,8 +16,23 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.tsx?$/, enforce: "pre", loader: 'tslint-loader' },
-      { test: /\.tsx?$/, loader: 'ts-loader', exclude: /\_\_tests\_\_/},
+      {
+        test: /\.tsx?$/,
+        enforce: "pre",
+        loader: 'tslint-loader',
+        options: {
+          configFile: path.resolve(__dirname, "..","typescript", "front.tslint.json"),
+          tsConfigFile:  path.resolve(__dirname, "..","typescript", "front.tsconfig.json")
+        }
+      },
+      {
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
+        exclude: /\_\_tests\_\_/,
+        options: {
+          configFile: path.resolve(__dirname, "..","typescript", "front.tsconfig.json")
+        }
+      },
 
       { test: /\.js$/, enforce: "pre", loader: 'source-map-loader' },
 

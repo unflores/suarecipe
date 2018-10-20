@@ -8,7 +8,7 @@
     "dev": "nodemon --inspect ./starter.js",
     "postinstall": "webpack --config webpack/webpack.prod.js",
     "build": "./node_modules/.bin/webpack -d --config webpack/webpack.dev.js --watch",
-    "tsfix": "./node_modules/.bin/tslint --project ./tsconfig.json -c ./tslint.json --fix",
+    "tsfix": "./node_modules/.bin/tslint --project ./typescript/front.tsconfig.json -c ./typescript/front.tslint.json --fix",
     "test": "jest --config jest.config.js --watch",
     "console": "node"
   },

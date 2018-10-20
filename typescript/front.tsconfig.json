@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "outDir": "./front/assets/js/",
+        "outDir": "../front/assets/js/",
         "sourceMap": true,
         "noImplicitAny": true,
         "module": "commonjs",
@@ -12,6 +12,6 @@
         }
     },
     "include": [
-        "./front/app/**/*"
+        "../front/app/**/*"
     ]
 }
