@@ -1,13 +1,12 @@
-import express      from 'express'
-import cookieParser from 'cookie-parser'
+import express = require('express')
+import cookieParser = require('cookie-parser')
 
 // Middleware
-import morgan          from 'morgan'           // Logger
-import bodyParser      from 'body-parser'      // Parses Html Body
-import methodOverride  from 'method-override'  // Simulate DELETE and PUT
+import morgan          = require('morgan')           // Logger
+import bodyParser      = require('body-parser')      // Parses Html Body
+import methodOverride  = require('method-override')  // Simulate DELETE and PUT
 
 const app = express()
-
 // Middleware Setup
 app.use('/assets/', express.static(__dirname + '/front/assets')) // Set location of static data
 // If we didn't find it in assets, send a 404
