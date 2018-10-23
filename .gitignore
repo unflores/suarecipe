@@ -1,5 +1,8 @@
-# Built assets dir
+# Built front assets dir
 front/assets/js/*
+
+# Build back assets dir
+dist
 
 # Allow for commiting a directory but not its contents
 !**/.keepme

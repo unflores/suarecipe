@@ -1,14 +1,17 @@
-import express = require('express')
-import cookieParser = require('cookie-parser')
+const path         = require('path')
+const express      = require('express')
+const cookieParser = require('cookie-parser')
 
 // Middleware
-import morgan          = require('morgan')           // Logger
-import bodyParser      = require('body-parser')      // Parses Html Body
-import methodOverride  = require('method-override')  // Simulate DELETE and PUT
+const morgan          = require('morgan')           // Logger
+const bodyParser      = require('body-parser')      // Parses Html Body
+const methodOverride  = require('method-override')  // Simulate DELETE and PUT
 
 const app = express()
+const baseDir = path.resolve(__dirname, '../')
+
 // Middleware Setup
-app.use('/assets/', express.static(__dirname + '/front/assets')) // Set location of static data
+app.use('/assets/', express.static(baseDir + '/front/assets')) // Set location of static data
 // If we didn't find it in assets, send a 404
 app.use('/assets/', (req, res) => {
   res.status(404).send('Not Found')
@@ -21,7 +24,7 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' })) // Parse incoming
 app.use(methodOverride())
 
 app.get('*', (req, res) => {
-  res.sendFile(__dirname + '/front/index.html')
+  res.sendFile(path.resolve(baseDir, 'front/index.html'))
 })
 
 const port = process.env.PORT || '9090'
