@@ -1,10 +1,10 @@
 import { initialState } from '../'
-import { View, daysChosen } from '../actionBuilders'
 import reduce from '../'
+import { daysChosen, View } from '../actionBuilders'
 
 describe('Reducers#itineraryBuilder', () => {
   test('should initialize state', () => {
-    expect(reduce(undefined, {type: '@@init', payload:{}})).toEqual(initialState)
+    expect(reduce(undefined, {type: '@@init', payload: {}})).toEqual(initialState)
   })
 
   test('should change the view with new days', () => {
