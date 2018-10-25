@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# Assumes being called from a simlink
+DIR=$(dirname $(readlink -f `which $0`))
+
+tmux new-session -d -s $DIR -c "$DIR" 'vim;bash -i'
+
+# First window already created
+tmux rename-window 'app'
+# Create all other windows
+tmux new-window -t $DIR:2 -d -c "$DIR" -n 'command-line'
+tmux new-window -t $DIR:3 -d -c "$DIR" -n 'console'
+tmux new-window -t $DIR:4 -d -c "$DIR" -n 'server'
+tmux new-window -t $DIR:5 -d -c "$DIR" -n 'buildFront' 'yarn run buildFront;bash -i'
+
+tmux select-window -t $DIR:5
+tmux split-window -h -t $DIR:5 -c "$DIR" 'yarn run test;bash -i' 
+
+# Start at 1
+tmux select-window -t $DIR:1
+
+# Attach the session and start tmuxing
+tmux attach-session -t $DIR
+
