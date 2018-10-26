@@ -33,6 +33,12 @@
     reflect-metadata "^0.1.12"
     tslib "^1.8.1"
 
+"@types/bson@*":
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/@types/bson/-/bson-1.0.11.tgz#c95ad69bb0b3f5c33b4bb6cc86d86cafb273335c"
+  dependencies:
+    "@types/node" "*"
+
 "@types/cheerio@*":
   version "0.22.9"
   resolved "https://registry.yarnpkg.com/@types/cheerio/-/cheerio-0.22.9.tgz#b5990152604c2ada749b7f88cab3476f21f39d7b"
@@ -53,6 +59,20 @@
 "@types/jest@^23.3.2":
   version "23.3.2"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.3.2.tgz#07b90f6adf75d42c34230c026a2529e56c249dbb"
+
+"@types/mongodb@*", "@types/mongodb@^3.1.12":
+  version "3.1.12"
+  resolved "https://registry.yarnpkg.com/@types/mongodb/-/mongodb-3.1.12.tgz#673cd6d8f494cf03860f15525c653302e109e0f9"
+  dependencies:
+    "@types/bson" "*"
+    "@types/node" "*"
+
+"@types/mongoose@^5.2.20":
+  version "5.2.20"
+  resolved "https://registry.yarnpkg.com/@types/mongoose/-/mongoose-5.2.20.tgz#a20eb5b2a9b5ad6c1621308da2ba103cda5d3463"
+  dependencies:
+    "@types/mongodb" "*"
+    "@types/node" "*"
 
 "@types/node@*":
   version "10.10.1"

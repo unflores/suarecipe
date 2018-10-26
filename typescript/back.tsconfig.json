@@ -4,10 +4,12 @@
     "module": "commonjs",
     "outDir": "../dist/",
     "noUnusedLocals": true,
+    "allowUnreachableCode": true,
     "sourceMap": true
   },
   "include": [
-    "../index.ts"
+    "../index.ts",
+    "back/"
   ],
   "exclude": [
     "../dist/",
