@@ -16,12 +16,19 @@ app.use('/assets/', express.static(baseDir + '/front/assets')) // Set location o
 app.use('/assets/', (req, res) => {
   res.status(404).send('Not Found')
 })
+
+// Controllers
+import * as itinerariesController from './back/controllers/itineraries'
+
 app.use(morgan('dev'))                                         // Log requests to console
 app.use(bodyParser.urlencoded({'extended':'true'}))            // Parse extended utf urls
 app.use(cookieParser())                                        // Read cookies for auth
 app.use(bodyParser.json())                                     // Parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })) // Parse incoming data as json
 app.use(methodOverride())
+
+
+app.post('/api/itineraries', itinerariesController.post)
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(baseDir, 'front/index.html'))
