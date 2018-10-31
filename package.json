@@ -11,7 +11,8 @@
     "buildBack": "./node_modules/.bin/tsc -d --project ./typescript/back.tsconfig.json",
     "tsfix": "./node_modules/.bin/tslint --project ./typescript/front.tsconfig.json -c ./typescript/front.tslint.json --fix",
     "test": "jest --config jest.config.js --watch",
-    "console": "node"
+    "console": "node",
+    "ts-node": "./node_modules/.bin/ts-node"
   },
   "engines": {
     "node": "10.12.0",
@@ -20,6 +21,7 @@
   "author": "me@austinflores.com",
   "license": "ISC",
   "dependencies": {
+    "@types/csv-parse": "^1.1.11",
     "@types/mongodb": "^3.1.12",
     "@types/mongoose": "^5.2.20",
     "@types/react": "^16.4.14",
@@ -34,8 +36,10 @@
     "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.26.0",
     "cookie-parser": "^1.4.3",
+    "csv-parse": "^3.1.3",
     "express": "^4.16.3",
     "method-override": "^3.0.0",
+    "mongoose": "^5.3.8",
     "morgan": "^1.9.1",
     "npx": "^10.2.0",
     "package.json": "^2.0.1",
@@ -62,6 +66,7 @@
     "enzyme-to-json": "^3.3.4",
     "jest": "^23.6.0",
     "ts-jest": "^23.10.1",
+    "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
     "tslint-config-airbnb": "^5.11.0",
     "tslint-loader": "^3.6.0",
