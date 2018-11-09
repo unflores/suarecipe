@@ -8,11 +8,12 @@
     "dev": "nodemon --inspect ./dist/index.js",
     "postinstall": "webpack --config webpack/webpack.prod.js && yarn run buildBack",
     "buildFront": "./node_modules/.bin/webpack -d --config webpack/webpack.dev.js",
-    "buildBack": "./node_modules/.bin/tsc -d --project ./typescript/back.tsconfig.json",
-    "tsfix": "./node_modules/.bin/tslint --project ./typescript/front.tsconfig.json -c ./typescript/front.tslint.json --fix",
+    "buildBack": "./node_modules/.bin/tsc -d --project ./back/tsconfig.json",
+    "tsfix": "./node_modules/.bin/tslint --project ./front/tsconfig.json -c ./front/tslint.json --fix",
     "frontTest": "jest --config front/jest.config.js",
     "backTest": "jest --config back/jest.config.js",
     "console": "node",
+    "console": "ts-node ./back/scripts/repl.ts",
     "ts-node": "./node_modules/.bin/ts-node"
   },
   "engines": {
