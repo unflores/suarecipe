@@ -10,7 +10,8 @@
     "buildFront": "./node_modules/.bin/webpack -d --config webpack/webpack.dev.js",
     "buildBack": "./node_modules/.bin/tsc -d --project ./typescript/back.tsconfig.json",
     "tsfix": "./node_modules/.bin/tslint --project ./typescript/front.tsconfig.json -c ./typescript/front.tslint.json --fix",
-    "test": "jest --config jest.config.js --watch",
+    "frontTest": "jest --config front/jest.config.js",
+    "backTest": "jest --config back/jest.config.js",
     "console": "node",
     "ts-node": "./node_modules/.bin/ts-node"
   },

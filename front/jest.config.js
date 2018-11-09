@@ -1,10 +1,11 @@
 module.exports = {
   "verbose": true,
   "roots": [
-    "<rootDir>/front/app"
+    "<rootDir>/app"
   ],
   "moduleNameMapper": {
-      "frontapp(.*)$": "<rootDir>/front/app/$1"
+      "frontapp(.*)$": "<rootDir>/app/$1",
+      "\\.css$": "<rootDir>/__mocks__/styleMock.js"
   },
   "transform": {
     "^.+\\.tsx?$": "ts-jest"
@@ -16,5 +17,5 @@ module.exports = {
     "js",
   ],
   "snapshotSerializers": ["enzyme-to-json/serializer"],
-  "setupTestFrameworkScriptFile": "<rootDir>/front/app/setupEnzyme.ts"
+  "setupTestFrameworkScriptFile": "<rootDir>/app/setupEnzyme.ts"
 }

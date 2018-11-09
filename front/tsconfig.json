@@ -9,10 +9,10 @@
         "baseUrl": ".",
         "allowUnreachableCode": true,
         "paths": {
-          "frontapp/*": ["front/app/*"]
+          "frontapp/*": ["./app/*"]
         }
     },
     "include": [
-        "../front/app/**/*"
+        "./app/**/*"
     ]
 }
