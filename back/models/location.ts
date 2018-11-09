@@ -12,6 +12,11 @@ export interface ILocation {
 export interface ILocationModel extends ILocation, mongoose.Document {
 }
 
+export enum dayParts {
+  morning   = 'morning',
+  afternoon = 'afternoon',
+  night = 'night'
+}
 
 const locationSchema = new mongoose.Schema({
   name: {
@@ -22,6 +27,17 @@ const locationSchema = new mongoose.Schema({
   type: {
     type: String,
     required: true
+  },
+  partsOfDay: {
+    type: [String],
+    required: true,
+    validate:  {
+      validator: function (parts) {
+        let dayPartValues = Object.values(dayParts)
+        let invalidDayParts = parts.filter(value => dayPartValues.indexOf(value) < 0)
+        return parts.length == 0 || invalidDayParts > 0
+      }
+    }
   },
   description: String,
   siteLink: { // Link to the main site

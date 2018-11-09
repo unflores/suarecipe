@@ -5,7 +5,8 @@
     "outDir": "../dist/",
     "noUnusedLocals": true,
     "allowUnreachableCode": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "lib": ["es2017"]
   },
   "include": [
     "../index.ts",
