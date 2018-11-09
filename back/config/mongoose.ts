@@ -11,6 +11,13 @@ const config: IConfig = {}
 switch(env){
   case 'development':
     config.url = 'mongodb://127.0.0.1:27017/planOtterPOC_development'
+    break
+  case 'test':
+    config.url = 'mongodb://127.0.0.1:27017/planOtterPOC_test'
+    break
+  default:
+    console.log('Missing env!')
+    process.exit()
 }
 mongoose.set('debug')
 mongoose.Promise = bluebird
