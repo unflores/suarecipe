@@ -1,7 +1,10 @@
 import * as mongoose from 'mongoose'
+import * as uniqueValidator from 'mongoose-unique-validator'
 
 export interface ILocation {
   name?: string
+  type?: string
+  partsOfDay?: string[]
   description?: string
   siteLink?: string
   street?: string
@@ -15,7 +18,7 @@ export interface ILocationModel extends ILocation, mongoose.Document {
 export enum dayParts {
   morning   = 'morning',
   afternoon = 'afternoon',
-  night = 'night'
+  night     = 'night'
 }
 
 const locationSchema = new mongoose.Schema({
@@ -30,12 +33,11 @@ const locationSchema = new mongoose.Schema({
   },
   partsOfDay: {
     type: [String],
-    required: true,
     validate:  {
       validator: function (parts) {
         let dayPartValues = Object.values(dayParts)
         let invalidDayParts = parts.filter(value => dayPartValues.indexOf(value) < 0)
-        return parts.length == 0 || invalidDayParts > 0
+        return parts.length > 0 && invalidDayParts == 0
       }
     }
   },
@@ -56,5 +58,7 @@ const locationSchema = new mongoose.Schema({
   }
 })
 
-const Location = mongoose.model("Location", locationSchema)
+locationSchema.plugin(uniqueValidator)
+
+const Location: mongoose.Model<ILocationModel> = mongoose.model<ILocationModel>('Location', locationSchema)
 export default Location
