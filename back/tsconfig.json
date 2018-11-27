@@ -1,12 +1,17 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "es2017",
     "module": "commonjs",
     "outDir": "../dist/",
     "noUnusedLocals": true,
     "allowUnreachableCode": true,
     "sourceMap": true,
-    "lib": ["es2017"]
+    "pretty": true,
+    "lib": ["es2017", "dom"],
+    "baseUrl": ".",
+    "paths": {
+      "mongoose": ["./typings/mongoose/"]
+    }
   },
   "include": [
     "../index.ts",
