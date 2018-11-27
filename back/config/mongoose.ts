@@ -1,12 +1,12 @@
 const mongoose = require('mongoose')
-const bluebird = require('bluebird')
+const Bluebird = require('bluebird')
 const env = process.env.NODE_ENV
 
 interface IConfig {
   url?: string
 }
 
-const config: IConfig = {}
+const config: IConfig = { }
 
 switch(env){
   case 'development':
@@ -20,7 +20,7 @@ switch(env){
     process.exit()
 }
 mongoose.set('debug')
-mongoose.Promise = bluebird
+mongoose.Promise = Bluebird
 
 mongoose.connection.on('connected', function () {
   console.log('Mongoose default connection open to ' + config.url);
@@ -38,4 +38,5 @@ mongoose.connection.on('disconnected', function () {
 
 export default function (){
   mongoose.connect(config.url)
+  return mongoose
 }
