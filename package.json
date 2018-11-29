@@ -12,13 +12,12 @@
     "tsfix": "./node_modules/.bin/tslint --project ./front/tsconfig.json -c ./front/tslint.json --fix",
     "frontTest": "jest --config front/jest.config.js",
     "backTest": "jest --config back/jest.config.js",
-    "console": "node",
-    "console": "ts-node ./back/scripts/repl.ts",
-    "ts-node": "./node_modules/.bin/ts-node"
+    "console": "ts-node --project ./back/tsconfig.json ./back/scripts/repl.ts",
+    "ts-node": "./node_modules/.bin/ts-node --project ./back/tsconfig.json"
   },
   "engines": {
     "node": "10.12.0",
-    "yarn": "1.2.1"
+    "yarn": "1.12.3"
   },
   "author": "me@austinflores.com",
   "license": "ISC",
@@ -27,6 +26,7 @@
     "@types/csv-parse": "^1.1.11",
     "@types/mongodb": "^3.1.12",
     "@types/mongoose": "^5.2.20",
+    "@types/mongoose-unique-validator": "^1.0.1",
     "@types/react": "^16.4.14",
     "@types/react-dom": "^16.0.7",
     "awesome-typescript-loader": "^5.2.1",
@@ -43,6 +43,7 @@
     "express": "^4.16.3",
     "method-override": "^3.0.0",
     "mongoose": "^5.3.8",
+    "mongoose-unique-validator": "^2.0.2",
     "morgan": "^1.9.1",
     "npx": "^10.2.0",
     "package.json": "^2.0.1",

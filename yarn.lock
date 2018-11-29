@@ -77,6 +77,21 @@
     "@types/bson" "*"
     "@types/node" "*"
 
+"@types/mongoose-unique-validator@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@types/mongoose-unique-validator/-/mongoose-unique-validator-1.0.1.tgz#56028e5c561dc36f7ee1a1c393475f7554a7a0e7"
+  integrity sha512-FI8tlxl7Hv6t7JSCq1sf3MqCpwcEZVmRUVwbPBDud0G0Gx6Hr30g93h/uOXh1u24D/r//JnIZu0cPaepcNpc2Q==
+  dependencies:
+    "@types/mongoose" "*"
+
+"@types/mongoose@*":
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/@types/mongoose/-/mongoose-5.3.1.tgz#97112342e9d5930b75fe60121f820a310f98b6b7"
+  integrity sha512-4ASViFpeE9LLE+VLs/NgPy1gSS6nlUA5Iz9UBm1X5VMLqgGURvGfqML3liRrzna6WUt5kNTcLf245GQHxCxuBQ==
+  dependencies:
+    "@types/mongodb" "*"
+    "@types/node" "*"
+
 "@types/mongoose@^5.2.20":
   version "5.2.20"
   resolved "https://registry.yarnpkg.com/@types/mongoose/-/mongoose-5.2.20.tgz#a20eb5b2a9b5ad6c1621308da2ba103cda5d3463"
@@ -4471,7 +4486,12 @@ lodash.flattendeep@^4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/lodash.flattendeep/-/lodash.flattendeep-4.4.0.tgz#fb030917f86a3134e5bc9bec0d69e0013ddfedb2"
 
-lodash.get@4.4.2:
+lodash.foreach@^4.1.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.foreach/-/lodash.foreach-4.5.0.tgz#1a6a35eace401280c7f06dddec35165ab27e3e53"
+  integrity sha1-Gmo16s5AEoDH8G3d7DUWWrJ+PlM=
+
+lodash.get@4.4.2, lodash.get@^4.0.2:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
 
@@ -4811,6 +4831,14 @@ mongodb@3.1.8:
 mongoose-legacy-pluralize@1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/mongoose-legacy-pluralize/-/mongoose-legacy-pluralize-1.0.2.tgz#3ba9f91fa507b5186d399fb40854bff18fb563e4"
+
+mongoose-unique-validator@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/mongoose-unique-validator/-/mongoose-unique-validator-2.0.2.tgz#a980e68638157cd8fcea86d754eeb2cf67e6bb76"
+  integrity sha512-gbKFiEzWQi8wZvZFeeEkx4nCV1qWaeRoQBNm+672+h54/0u/Y8rSdNubScn/1H2ScCPO55asDow+OXq67RQDmg==
+  dependencies:
+    lodash.foreach "^4.1.0"
+    lodash.get "^4.0.2"
 
 mongoose@^5.3.8:
   version "5.3.8"
