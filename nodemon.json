@@ -1,0 +1,5 @@
+{
+  "watch": ["back/"],
+  "ignore": ["back/**/*.spec.tsx?"],
+  "exec": "ts-node"
+}
