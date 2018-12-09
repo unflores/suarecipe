@@ -6,7 +6,25 @@ interface IItinerary {
   evening: ILocation
 }
 
-export function exec (days: number): Promise<IItinerary[]> {
+type DocumentChooser = (limit: number, choices: number) => number[]
+
+export function randomChooser(limit: number, choices: number): number[] {
+  const chosen: number[] = []
+
+  for( let i: number = 0; i < choices; i++) {
+    let choice
+
+    do {
+      choice = Math.floor((Math.random() * limit) + 1)
+    } while(chosen.includes(choice))
+
+    chosen[i] = choice
+  }
+
+  return chosen
+}
+
+export function exec (days: number, chooser: DocumentChooser = randomChooser): Promise<IItinerary[]> {
   const itinerary = []
   for(let index: number = 0; index < days ; index++){
     itinerary[index] = {}
@@ -15,19 +33,43 @@ export function exec (days: number): Promise<IItinerary[]> {
   const mornings = Location.find({})
     .where('partsOfDay')
     .equals('morning')
-    .limit(days)
 
   const evenings = Location.find({})
     .where('partsOfDay')
     .in(['afternoon', 'night'])
-    .limit(days)
+
+
+  for(let query of [mornings, evenings]) {
+    query.catch((error) => {
+      console.log(error)
+      return []
+    })
+  }
 
   // TODO
   // Get randomized data within mongo instead of calculating it
   // in node
-  return Promise.all([mornings,evenings]).then(([mornings, evenings]) => {
-    mornings.forEach((location, index) => itinerary[index]['morning'])
-    evenings.forEach((location, index) => itinerary[index]['evening'])
+  return Promise.all([mornings, evenings]).then(([mornings, evenings]) => {
+    if (mornings.length < days) {
+      console.log('Not enough morning locations available')
+      return []
+    }
+    if (evenings.length < days) {
+      console.log('Not enough evening locations available')
+      return []
+    }
+
+    let morningsIndexes = chooser(mornings.length, days)
+    let eveningsIndexes = chooser(mornings.length, days)
+
+    for(let index = 0; index < morningsIndexes.length; index++) {
+      itinerary[index]['morning'] = mornings[morningsIndexes[index]]
+    }
+
+    for(let index in eveningsIndexes) {
+      itinerary[index]['evening'] = evenings[eveningsIndexes[index]]
+    }
+
     return itinerary
   })
 

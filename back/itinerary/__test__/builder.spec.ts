@@ -22,7 +22,7 @@ describe('Builder', () => {
       let eveningParams: ILocation = {
         name: `nameevening${index}`,
         type: 'type',
-        partsOfDay: ['morning'],
+        partsOfDay: ['afternoon'],
         description: 'description',
         siteLink: 'http://derp.com',
         street: 'street',
@@ -34,7 +34,8 @@ describe('Builder', () => {
       locations.push(morningLocation.save())
       locations.push(eveningLocation.save())
     })
-    Promise.all(locations).finally(() => done())
+    Promise.all(locations).then(() => { done()})
+
   })
 
   test('should return an itinerary of 3 days', (done) => {
