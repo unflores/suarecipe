@@ -1,6 +1,7 @@
 const path         = require('path')
 const express      = require('express')
 const cookieParser = require('cookie-parser')
+import mongooseConfig from './back/config/mongoose'
 
 // Middleware
 const morgan          = require('morgan')           // Logger
@@ -8,7 +9,9 @@ const bodyParser      = require('body-parser')      // Parses Html Body
 const methodOverride  = require('method-override')  // Simulate DELETE and PUT
 
 const app = express()
-const baseDir = path.resolve(__dirname, '../')
+const baseDir = path.resolve(__dirname)
+
+mongooseConfig(()=>{})
 
 // Middleware Setup
 app.use('/assets/', express.static(baseDir + '/front/assets')) // Set location of static data
