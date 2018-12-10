@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const Bluebird = require('bluebird')
 const env = process.env.NODE_ENV
+console.log(process.env.NODE_ENV)
 
 interface IConfig {
   url?: string
@@ -11,6 +12,9 @@ const config: IConfig = { }
 switch(env){
   case 'development':
     config.url = 'mongodb://127.0.0.1:27017/planOtterPOC_development'
+    break
+  case 'production':
+    config.url = process.env.MONGODB_URI
     break
   default:
     console.log('Missing env!')

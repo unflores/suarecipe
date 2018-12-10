@@ -9,7 +9,7 @@ const bodyParser      = require('body-parser')      // Parses Html Body
 const methodOverride  = require('method-override')  // Simulate DELETE and PUT
 
 const app = express()
-const baseDir = path.resolve(__dirname)
+const baseDir = process.env.NODE_ENV === 'production' ? path.resolve('/app') : path.resolve(__dirname)
 
 mongooseConfig(()=>{})
 
