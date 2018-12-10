@@ -24,7 +24,7 @@ export function randomChooser(limit: number, choices: number): number[] {
   return chosen
 }
 
-export function exec (days: number, chooser: DocumentChooser = randomChooser): Promise<IItinerary[]> {
+export function buildItinerary (days: number, chooser: DocumentChooser = randomChooser): Promise<IItinerary[]> {
   const itinerary = []
   for(let index: number = 0; index < days ; index++){
     itinerary[index] = {}

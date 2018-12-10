@@ -39,14 +39,14 @@ describe('Builder', () => {
   })
 
   test('should return an itinerary of 3 days', (done) => {
-    Builder.exec(3).then((itinerary) => {
+    Builder.buildItinerary(3).then((itinerary) => {
       expect(itinerary.length).toEqual(3)
       done()
     })
   })
 
   test('should split mornings and evenings', (done) => {
-    Builder.exec(3).then((itinerary) => {
+    Builder.buildItinerary(3).then((itinerary) => {
       expect(itinerary[0].morning.partsOfDay).toContain('morning')
       done()
     })
