@@ -21,8 +21,8 @@ module.exports = {
         enforce: "pre",
         loader: 'tslint-loader',
         options: {
-          configFile: path.resolve(__dirname, "..","typescript", "front.tslint.json"),
-          tsConfigFile:  path.resolve(__dirname, "..","typescript", "front.tsconfig.json")
+          configFile: path.resolve(__dirname, "..","front", "tslint.json"),
+          tsConfigFile:  path.resolve(__dirname, "..","front", "tsconfig.json")
         }
       },
       {
@@ -30,7 +30,7 @@ module.exports = {
         loader: 'ts-loader',
         exclude: /\_\_tests\_\_/,
         options: {
-          configFile: path.resolve(__dirname, "..","typescript", "front.tsconfig.json")
+          configFile: path.resolve(__dirname, "..","front", "tsconfig.json")
         }
       },
 
