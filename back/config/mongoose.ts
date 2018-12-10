@@ -12,9 +12,6 @@ switch(env){
   case 'development':
     config.url = 'mongodb://127.0.0.1:27017/planOtterPOC_development'
     break
-  case 'test':
-    config.url = 'mongodb://127.0.0.1:27017/planOtterPOC_test'
-    break
   default:
     console.log('Missing env!')
     process.exit()
@@ -36,7 +33,7 @@ mongoose.connection.on('disconnected', function () {
   console.log('Mongoose default connection disconnected');
 });
 
-export default function (){
-  mongoose.connect(config.url)
+export default function (cb?: () => void){
+  mongoose.connect(config.url, cb)
   return mongoose
 }
