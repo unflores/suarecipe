@@ -1,13 +1,16 @@
+import DayChooser from './DayChooser'
+import { IItineraryResponse } from 'frontapp/libs/api/Responses'
+import Endpoints from 'frontapp/libs/api/Routes'
 import { IApplicationState } from 'frontapp/reducers'
-import { Action, daysChosen, IState , View } from 'frontapp/reducers/itineraryBuilder/actionBuilders'
+import { Action, itineraryBuilt, daysChosen, IState , View } from 'frontapp/reducers/itineraryBuilder/actionBuilders'
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
-import DayChooser from './DayChooser'
 import Itinerary from './Itinerary'
 
 interface IItineraryBuilder extends IState {
   onChosen: (days: number) => void
+  onBuildItinerary: (itineraryResponse: IItineraryResponse) => void
 }
 
 export class ItineraryBuilder extends React.Component<IItineraryBuilder, {}> {
@@ -26,6 +29,12 @@ export class ItineraryBuilder extends React.Component<IItineraryBuilder, {}> {
 
   private handleChosenDays = (days: number) => {
     this.props.onChosen(days)
+
+    Endpoints.create('itineraries', {}, {days})
+      .then((itineraryResponse) => {
+        this.props.onBuildItinerary(itineraryResponse)
+      })
+
   }
 }
 
@@ -39,6 +48,9 @@ const mapDispatch = (dispatch: Dispatch) => ({
   onChosen: (days: number) => {
     dispatch(daysChosen(days))
   },
+  onBuildItinerary: (itineraryResponse: IItineraryResponse) => {
+    dispatch(itineraryBuilt(itineraryResponse))
+  }
 })
 
 export default connect(mapState, mapDispatch)(ItineraryBuilder)
