@@ -10,7 +10,10 @@
         "allowUnreachableCode": true,
         "paths": {
           "frontapp/*": ["./app/*"]
-        }
+        },
+        "typeRoots": [
+          "../node_modules/@types", "./typings"
+        ]
     },
     "include": [
         "./app/**/*"
