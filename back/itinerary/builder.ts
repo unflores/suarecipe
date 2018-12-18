@@ -33,10 +33,12 @@ export function buildItinerary (days: number, chooser: DocumentChooser = randomC
   const mornings = Location.find({})
     .where('partsOfDay')
     .equals('morning')
+    .exec()
 
   const evenings = Location.find({})
     .where('partsOfDay')
     .in(['afternoon', 'night'])
+    .exec()
 
 
   for(let query of [mornings, evenings]) {

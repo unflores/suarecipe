@@ -60,5 +60,5 @@ const locationSchema = new mongoose.Schema({
 
 locationSchema.plugin(uniqueValidator)
 
-const Location: mongoose.Model<ILocationModel> = mongoose.model<ILocationModel>('Location', locationSchema)
+const Location = mongoose.model<ILocationModel>('Location', locationSchema)
 export default Location
