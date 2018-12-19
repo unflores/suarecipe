@@ -3,19 +3,25 @@
 declare module 'apicaballero' {
   type HTTPMethod = 'list'|'show'|'update'|'create'|'destroy'
 
-  export interface Routes {
-    options: { base_path: string }
-    [s: string]: { [s: string]: string }
+
+
+  namespace APICaballero {
+    export interface Routes {
+      options: { base_path: string }
+      [s: string]: { [s: string]: string }
+    }
   }
 
-  export default class APICaballero {
-    constructor(routes: Routes);
-    list(type: string, pathVars: object, data?: object): Promise<string>
-    show(type: string, pathVars: object, data?: object): Promise<string>
-    update(type: string, pathVars: object, data?: object): Promise<string>
-    create(type: string, pathVars: object, data?: object): Promise<string>
-    destroy(type: string, pathVars: object, data?: object): Promise<string>
-    private call(method: HTTPMethod, type: string, pathVars: object, data: object): Promise<string>
+  class APICaballero {
+    constructor(routes: APICaballero.Routes)
+    list(type: string, pathVars: object, data?: object): Promise<object>
+    show(type: string, pathVars: object, data?: object): Promise<object>
+    update(type: string, pathVars: object, data?: object): Promise<object>
+    create(type: string, pathVars: object, data?: object): Promise<object>
+    destroy(type: string, pathVars: object, data?: object): Promise<object>
+    private call(method: HTTPMethod, type: string, pathVars: object, data: object): Promise<object>
   }
+
+  export = APICaballero
 
 }

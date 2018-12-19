@@ -1,7 +1,6 @@
-import { Routes } from 'apicaballero'
-import APICaballero from 'apicaballero'
+import * as APICaballero from 'apicaballero'
 
-const routes: Routes = {
+const routes: APICaballero.Routes = {
   itineraries: {
     create : '/itineraries/',
   },
@@ -10,6 +9,6 @@ const routes: Routes = {
   },
 }
 
-const caballero= new APICaballero(routes)
+const caballero = new APICaballero(routes)
 
 export default caballero
