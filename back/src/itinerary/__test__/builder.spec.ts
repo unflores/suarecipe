@@ -16,7 +16,7 @@ describe('Builder', () => {
         partsOfDay: ['morning'],
         description: 'description',
         siteLink: 'http://derp.com',
-        street: 'street',
+        address: 'address',
         zipcode: 75010,
       }
       let eveningParams: ILocation = {
@@ -25,7 +25,7 @@ describe('Builder', () => {
         partsOfDay: ['afternoon'],
         description: 'description',
         siteLink: 'http://derp.com',
-        street: 'street',
+        address: 'address',
         zipcode: 75010,
       }
       let morningLocation = new Location(morningParams)

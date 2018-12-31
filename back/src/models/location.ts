@@ -7,7 +7,8 @@ export interface ILocation {
   partsOfDay?: string[]
   description?: string
   siteLink?: string
-  street?: string
+  address?: string
+  price?: number
   zipcode?: number
   city?: string
 }
@@ -31,6 +32,15 @@ const locationSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  price: {
+    type: Number,
+    default: null,
+    validate: {
+      validator: (value) => {
+        return value === null || typeof value === 'number' && value > 0
+      }
+    },
+  },
   partsOfDay: {
     type: [String],
     validate:  {
@@ -51,7 +61,7 @@ const locationSchema = new mongoose.Schema({
       message: '{VALUE} is not a valid url'
     }
   },
-  street: String,       // Street ex. 22 rue de chabrol
+  address: String,       // Street ex. 22 rue de chabrol
   zipcode: {
     type: String,       // ex. 75010
     required: true

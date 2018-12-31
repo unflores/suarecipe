@@ -20,7 +20,8 @@ describe('Location', () => {
       partsOfDay: ['night'],
       description: 'description',
       siteLink: 'http://derp.com',
-      street: 'street',
+      price: 38,
+      address: 'street',
       zipcode: 75010,
     }
     let location = new Location(params)

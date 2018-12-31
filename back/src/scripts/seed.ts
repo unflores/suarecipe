@@ -14,6 +14,7 @@ interface IImportedLocation {
   website: string
   address: string
   zipcode: string
+  Price: number
 }
 
 class MasterListHandler {
@@ -32,6 +33,7 @@ class MasterListHandler {
       description:  imported.Description,
       partsOfDay:    imported['Day Part'].split(','),
       type:         imported.Type,
+      price:        imported.Price,
       siteLink:     imported.website,
       address:      imported.address,
       zipcode:      imported.zipcode
@@ -39,10 +41,8 @@ class MasterListHandler {
 
     this.tasks.push(location.save().catch((err: ValidationError) => {
       const objectErrors: string[] = []
-      objectErrors.push(`listing: ${imported.Name}`)
-      Object.entries(err).forEach(
-        ([key, value]) => objectErrors.push(`${key} : ${value}`)
-      )
+      objectErrors.push(`Error listing: ${imported.Name}`)
+      objectErrors.push(`message: ${err.message}`)
       objectErrors.push('================')
 
       this.errors.push(objectErrors.join("\n"))
