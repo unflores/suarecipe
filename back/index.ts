@@ -1,7 +1,7 @@
 const path         = require('path')
 const express      = require('express')
 const cookieParser = require('cookie-parser')
-import mongooseConfig from './back/config/mongoose'
+import mongooseConfig from './config/mongoose'
 
 // Middleware
 const morgan          = require('morgan')           // Logger
@@ -21,7 +21,7 @@ app.use('/assets/', (req, res) => {
 })
 
 // Controllers
-import * as itinerariesController from './back/controllers/itineraries'
+import * as itinerariesController from './src/controllers/itineraries'
 
 app.use(morgan('dev'))                                         // Log requests to console
 app.use(bodyParser.urlencoded({'extended':'true'}))            // Parse extended utf urls

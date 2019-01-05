@@ -14,11 +14,10 @@
     }
   },
   "include": [
-    "../index.ts",
-    "./**/*"
+    "./index.ts",
+    "./src/*"
   ],
   "exclude": [
-    "../dist/",
     "node_modules"
   ]
 }

@@ -1,5 +1,5 @@
 import * as parse from 'csv-parse'
-import mongooseConfig from '../config/mongoose'
+import mongooseConfig from '../../config/mongoose'
 mongooseConfig()
 import {createReadStream} from 'fs'
 import * as path from 'path'

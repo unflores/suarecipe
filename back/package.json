@@ -1,15 +1,16 @@
 {
-  "name": "planotterpoc",
+  "name": "planotterpocback",
   "version": "1.0.0",
   "description": "Few page app to get itinerary information for monuments",
   "main": "index.js",
   "scripts": {
     "start": "node ./dist/index.js",
     "development:start": "./node_modules/.bin/nodemon ./index.ts",
-    "postinstall": "webpack --config webpack/webpack.prod.js && npm run build",
+    "production:postinstall": "npm run build",
     "build": "./node_modules/.bin/tsc -d --project ./tsconfig.json",
     "test": "jest --config ./jest.config.js",
     "console": "ts-node --project ./tsconfig.json ./scripts/repl.ts",
+    "static": "find ./src -name \"*.csv\" -type f -type f -exec cp --parents {} ../dist \\;",
     "ts-node": "./node_modules/.bin/ts-node --project ./tsconfig.json"
   },
   "engines": {
@@ -41,18 +42,18 @@
     "morgan": "^1.9.1",
     "package.json": "^2.0.1",
     "source-map-loader": "^0.2.4",
-    "typescript": "^3.2.2"
+    "typescript": "^3.2.2",
+    "webpack": "^4.0.0-alpha.3"
   },
   "devDependencies": {
     "@types/jest": "^23.3.2",
-    "@types/node": "^10.12.0",
+    "@types/node": "^10.12.18",
     "jest": "^23.6.0",
     "nodemon": "^1.18.9",
     "ts-jest": "^23.10.1",
     "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
     "tslint-config-airbnb": "^5.11.0",
-    "tslint-loader": "^3.6.0",
-    "typings-for-css-modules-loader": "^1.7.0",
+    "tslint-loader": "^3.6.0"
   }
 }

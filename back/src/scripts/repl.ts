@@ -1,5 +1,5 @@
 const repl        = require('repl')
-import mongooseConfig from '../config/mongoose'
+import mongooseConfig from '../../config/mongoose'
 mongooseConfig()
 
 const replServer = repl.start('> ')
