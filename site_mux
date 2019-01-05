@@ -10,15 +10,15 @@ tmux rename-window 'app'
 # Create all other windows
 tmux new-window -t $DIR:2 -d -c "$DIR" -n 'command-line'
 tmux new-window -t $DIR:3 -d -c "$DIR" -n 'console'
-tmux new-window -t $DIR:4 -d -c "$DIR" -n 'appBack' 'yarn run buildBack --watch;bash -i'
-tmux new-window -t $DIR:5 -d -c "$DIR" -n 'appFront' 'yarn run buildFront --watch;bash -i'
-tmux new-window -t $DIR:6 -d -c "$DIR" -n 'server' 'yarn run dev;bash -i'
+tmux new-window -t $DIR:4 -d -c "$DIR" -n 'appBack' 'npm run buildBack --watch;bash -i'
+tmux new-window -t $DIR:5 -d -c "$DIR" -n 'appFront' 'npm run buildFront --watch;bash -i'
+tmux new-window -t $DIR:6 -d -c "$DIR" -n 'server' 'npm run dev;bash -i'
 
 tmux select-window -t $DIR:5
-tmux split-window -h -t $DIR:5 -c "$DIR" 'yarn run frontTest --watch;bash -i' 
+tmux split-window -h -t $DIR:5 -c "$DIR" 'npm run frontTest --watch;bash -i' 
 
 tmux select-window -t $DIR:4
-tmux split-window -h -t $DIR:4 -c "$DIR" 'yarn run backTest --watch;bash -i'
+tmux split-window -h -t $DIR:4 -c "$DIR" 'npm run backTest --watch;bash -i'
 
 # Start at 1
 tmux select-window -t $DIR:1
