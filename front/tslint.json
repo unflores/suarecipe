@@ -1,8 +1,10 @@
 // tslint.json
+//object-literal-sort-keys https://github.com/prettier/prettier/issues/1096
 {
   "extends": ["tslint:recommended", "tslint-react"],
   "rules": {
     "semicolon": [true, "never"],
-    "quotemark": [false]
+    "quotemark": [false],
+    "object-literal-sort-keys": false
   }
 }
