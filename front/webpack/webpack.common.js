@@ -1,7 +1,7 @@
 const path = require('path')
 
-const APP_DIR   = path.resolve(__dirname, '..', 'front/app')
-const DIST_DIR  = path.resolve(__dirname, '..', 'front/assets/')
+const APP_DIR   = path.resolve(__dirname, '..', 'app')
+const DIST_DIR  = path.resolve(__dirname, '..', 'assets')
 
 module.exports = {
   entry: { 'main': APP_DIR + '/index.tsx'},
@@ -21,8 +21,8 @@ module.exports = {
         enforce: "pre",
         loader: 'tslint-loader',
         options: {
-          configFile: path.resolve(__dirname, "..","front", "tslint.json"),
-          tsConfigFile:  path.resolve(__dirname, "..","front", "tsconfig.json")
+          configFile: path.resolve(__dirname, "..", "tslint.json"),
+          tsConfigFile:  path.resolve(__dirname, "..", "tsconfig.json")
         }
       },
       {
@@ -30,7 +30,7 @@ module.exports = {
         loader: 'ts-loader',
         exclude: /\_\_tests\_\_/,
         options: {
-          configFile: path.resolve(__dirname, "..","front", "tsconfig.json")
+          configFile: path.resolve(__dirname, "..", "tsconfig.json")
         }
       },
 

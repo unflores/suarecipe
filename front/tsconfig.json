@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "outDir": "../front/assets/js/",
+        "outDir": "./assets/js/",
         "sourceMap": true,
         "noImplicitAny": true,
         "module": "commonjs",
@@ -12,7 +12,7 @@
           "frontapp/*": ["./app/*"]
         },
         "typeRoots": [
-          "../node_modules/@types", "./typings"
+          "./node_modules/@types", "./typings"
         ]
     },
     "include": [
