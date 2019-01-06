@@ -2,7 +2,7 @@ import * as APICaballero from 'apicaballero'
 
 const routes: APICaballero.Routes = {
   itineraries: {
-    create : '/itineraries/',
+    create: '/itineraries/',
   },
   options: {
     base_path: '/api',

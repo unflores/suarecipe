@@ -1,22 +1,24 @@
-interface Event {
+interface IEvent {
   name: string
   description: string
   type: string
-  zipcode: string
+  siteLink: string
+  address: string
 }
 
-interface Evening extends Event {
-  partsOfDay: ["night", "afternoon"]
+interface IEvening extends IEvent {
+  partsOfDay: ['night', 'afternoon']
 }
 
-interface Morning extends Event {
-  partsOfDay: ["morning"]
+interface IMorning extends IEvent {
+  partsOfDay: ['morning']
 }
+
+export interface IDay {
+  evening: IEvening
+  morning: IMorning
+}
+
 export interface IItineraryResponse {
-  itinerary: [
-    {
-      evening: Evening
-      morning: Morning
-    }
-  ]
+  itinerary: IDay[]
 }

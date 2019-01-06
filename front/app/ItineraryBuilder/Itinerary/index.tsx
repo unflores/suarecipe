@@ -1,35 +1,58 @@
+import { IDay, IItineraryResponse } from 'frontapp/libs/api/Responses'
 import * as React from 'react'
 
-class Itinerary extends React.Component<{}, {}> {
-  public render() {
-    return (
-      <div>
-        <h2>Day 1</h2>
-        <h3>Morning - Musée d'Orsay</h3>
-        <p>
-          Once a train station in the heart of the city,
-          the Orsay museum is dedicated to impressionist and Post-Impressionist
-          art (roughly 1848 to 1914). Its collections include some of the most famous
-          paintings by Monet, Renoir, and Van Gogh. Make sure you take a break from the
-          art & visit the café on the top level, where you will get to see the city from
-          behind one of the giant clocks!
-        </p>
-        <p>
-          <strong>Things to note:</strong>
-          We recommend buying your ticket in advance.
-          The museum is open Tuesday-Sunday, 9:30-18:00, and on Thursday until 21:00
-        </p>
-        <ul>
-          <li><strong>Time to spend:</strong> 4 hours with lunch</li>
-          <li>
-            <a href='blah'>website</a> |
-            <strong> Price: 12 euros</strong> |
-            1 rue de la legion d'honneur, 75005
-          </li>
-        </ul>
+interface IDayProps {
+  day: IDay
+  dayNumber: number
+}
 
-      </div>
-    )
+interface IItineraryProps {
+  itinerary: IDay[]
+}
+
+const Day = ({ day, dayNumber }: IDayProps) => {
+  return (
+    <div>
+      <h2>Day {dayNumber}</h2>
+      <h3>Morning - {day.morning.name}</h3>
+      <p>{day.morning.description}</p>
+      <ul>
+        <li>
+          <a href={day.morning.siteLink}>website</a> |
+          {/*<strong> Price: 12 euros</strong> |*/}
+          {day.morning.address}
+        </li>
+      </ul>
+
+      <h3>Evening - {day.evening.name}</h3>
+      <p>{day.evening.description}</p>
+      <ul>
+        <li>
+          <a href={day.evening.siteLink}>website</a> |
+          {/*<strong> Price: 12 euros</strong> |*/}
+          {day.evening.address}
+        </li>
+      </ul>
+    </div>
+  )
+}
+
+const Days = ({ itinerary }: IItineraryProps) => {
+  const days = itinerary.map((day, index) => (
+    <Day key={index} day={day} dayNumber={index + 1} />
+  ))
+  return <div>{days}</div>
+}
+
+class Itinerary extends React.Component<IItineraryProps, {}> {
+  constructor(props: IItineraryProps) {
+    super(props)
+  }
+
+  public render() {
+    const { itinerary } = this.props
+
+    return <Days itinerary={itinerary} />
   }
 }
 

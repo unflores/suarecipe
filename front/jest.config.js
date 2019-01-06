@@ -8,8 +8,9 @@ module.exports = {
       "\\.css$": "<rootDir>/__mocks__/styleMock.js"
   },
   "transform": {
-    "^.+\\.tsx?$": "ts-jest"
+    "^.+\\.tsx?$": 'ts-jest',
   },
+  transformIgnorePatterns: ['<rootDir>/../../node_modules/(?!apicaballero)'],
   "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
   "moduleFileExtensions": [
     "ts",

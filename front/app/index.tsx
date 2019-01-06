@@ -7,7 +7,8 @@ import reducer from './reducers/index'
 
 const store = createStore(
   reducer,
-  (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__(),
+  (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
+    (window as any).__REDUX_DEVTOOLS_EXTENSION__(),
 )
 
 import ItineraryBuilder from './ItineraryBuilder'
@@ -22,4 +23,4 @@ const App = () => (
   </Provider>
 )
 
-ReactDOM.render(<App/>, document.getElementById('app'))
+ReactDOM.render(<App />, document.getElementById('app'))

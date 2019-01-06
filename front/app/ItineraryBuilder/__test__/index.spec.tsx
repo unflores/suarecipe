@@ -4,15 +4,20 @@ import { View } from 'frontapp/reducers/itineraryBuilder/actionBuilders'
 import * as React from 'react'
 import { ItineraryBuilder } from '../'
 
+const onChosenStub = (num: number) => ({})
+const onBuildItineraryStub = (itineraryResponse: IItineraryResponse) => ({})
+
 describe('ItineraryBuilder', () => {
   test('renders DayChooser initially', () => {
     const subject = shallow(
       <ItineraryBuilder
-        onChosen={(num: number) => {}}
-        onBuildItinerary={(itineraryResponse: IItineraryResponse) => {}}
-        view={View.form}
+        days={3}
         isLoading={false}
-        days={3} />
+        itinerary={[]}
+        onChosen={onChosenStub}
+        onBuildItinerary={onBuildItineraryStub}
+        view={View.form}
+      />,
     )
     expect(subject.text()).toEqual('<DayChooser />')
   })
@@ -20,12 +25,14 @@ describe('ItineraryBuilder', () => {
   test('renders Itinerary after day has been chosen', () => {
     const subject = shallow(
       <ItineraryBuilder
-        onChosen={(num: number) => {}}
-        onBuildItinerary={(itineraryResponse: IItineraryResponse) => {}}
+        onChosen={onChosenStub}
+        onBuildItinerary={onBuildItineraryStub}
         view={View.itinerary}
         isLoading={false}
-        days={5}/>
-      )
+        itinerary={[]}
+        days={5}
+      />,
+    )
 
     expect(subject.text()).toEqual('<Itinerary />')
   })
