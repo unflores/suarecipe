@@ -1,16 +1,16 @@
-import Location from '../../models/location'
-import * as Builder from '../builder'
-import {ILocation, ILocationModel} from '../../models/location'
 import * as Promise from 'bluebird'
+import location from '../../models/location'
+import { ILocation, ILocationModel } from '../../models/location'
+import * as Builder from '../builder'
 
 process.env.TEST_SUITE = 'builder-spec'
 
 describe('Builder', () => {
   beforeEach((done) => {
-    const locations: Promise<ILocationModel>[] = []
+    const locations: Array<Promise<ILocationModel>> = []
 
     Array.from(Array(3)).forEach((val, index) => {
-      let morningParams: ILocation = {
+      const morningParams: ILocation = {
         name: `namemorning${index}`,
         type: 'type',
         partsOfDay: ['morning'],
@@ -19,7 +19,7 @@ describe('Builder', () => {
         address: 'address',
         zipcode: 75010,
       }
-      let eveningParams: ILocation = {
+      const eveningParams: ILocation = {
         name: `nameevening${index}`,
         type: 'type',
         partsOfDay: ['afternoon'],
@@ -28,8 +28,8 @@ describe('Builder', () => {
         address: 'address',
         zipcode: 75010,
       }
-      let morningLocation = new Location(morningParams)
-      let eveningLocation = new Location(eveningParams)
+      const morningLocation = new Location(morningParams)
+      const eveningLocation = new Location(eveningParams)
 
       locations.push(morningLocation.save())
       locations.push(eveningLocation.save())

@@ -1,9 +1,9 @@
-const repl        = require('repl')
-import mongooseConfig from '../../config/mongoose'
+const repl = require('repl')
+import mongoose from '../../config/mongoose'
 mongooseConfig()
 
 const replServer = repl.start('> ')
-import Location from '../models/location'
+import location from '../models/location'
 
 replServer.context.Location = Location
-
+replServer.context.fin = val => console.log(val)

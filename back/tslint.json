@@ -3,6 +3,7 @@
   "extends": ["tslint:recommended", "tslint-config-airbnb"],
   "rules": {
     "semicolon": [true, "never"],
-    "quotemark": [false]
+    "quotemark": [false],
+    "object-literal-sort-keys": false
   }
 }

@@ -9,16 +9,11 @@
     "pretty": true,
     "lib": ["es2017", "dom"],
     "baseUrl": ".",
+    "extendedDiagnostics": true,
     "paths": {
       "mongoose": ["./typings/mongoose/"]
     }
   },
-  "include": [
-    "./index.ts",
-    "./src/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "include": ["./index.ts", "./src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

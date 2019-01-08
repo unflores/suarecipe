@@ -19,18 +19,18 @@ export interface ILocationModel extends ILocation, mongoose.Document {
 export enum dayParts {
   morning   = 'morning',
   afternoon = 'afternoon',
-  night     = 'night'
+  night     = 'night',
 }
 
 const locationSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    index: { unique: true }
+    index: { unique: true },
   },
   type: {
     type: String,
-    required: true
+    required: true,
   },
   price: {
     type: Number,
@@ -38,18 +38,18 @@ const locationSchema = new mongoose.Schema({
     validate: {
       validator: (value) => {
         return value === null || typeof value === 'number' && value > 0
-      }
+      },
     },
   },
   partsOfDay: {
     type: [String],
     validate:  {
-      validator: function (parts) {
-        let dayPartValues = Object.values(dayParts)
-        let invalidDayParts = parts.filter(value => dayPartValues.indexOf(value) < 0)
+      validator (parts) {
+        const dayPartValues = Object.values(dayParts)
+        const invalidDayParts = parts.filter(value => dayPartValues.indexOf(value) < 0)
         return parts.length > 0 && invalidDayParts == 0
-      }
-    }
+      },
+    },
   },
   description: String,
   siteLink: { // Link to the main site
@@ -58,14 +58,14 @@ const locationSchema = new mongoose.Schema({
       validator: (value) => {
         return /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/.test(value)
       },
-      message: '{VALUE} is not a valid url'
-    }
+      message: '{VALUE} is not a valid url',
+    },
   },
   address: String,       // Street ex. 22 rue de chabrol
   zipcode: {
     type: String,       // ex. 75010
-    required: true
-  }
+    required: true,
+  },
 })
 
 locationSchema.plugin(uniqueValidator)

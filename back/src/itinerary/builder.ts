@@ -1,5 +1,5 @@
-import Location from '../models/location'
-import {ILocation} from '../models/location'
+import location from '../models/location'
+import { ILocation } from '../models/location'
 
 interface IItinerary {
   morning: ILocation
@@ -11,12 +11,12 @@ type DocumentChooser = (limit: number, choices: number) => number[]
 export function randomChooser(limit: number, choices: number): number[] {
   const chosen: number[] = []
 
-  for( let i: number = 0; i < choices; i++) {
+  for (let i: number = 0; i < choices; i++) {
     let choice
 
     do {
       choice = Math.floor((Math.random() * limit) + 1)
-    } while(chosen.includes(choice))
+    } while (chosen.includes(choice))
 
     chosen[i] = choice
   }
@@ -24,9 +24,9 @@ export function randomChooser(limit: number, choices: number): number[] {
   return chosen
 }
 
-export function buildItinerary (days: number, chooser: DocumentChooser = randomChooser): Promise<IItinerary[]> {
+export function buildItinerary(days: number, chooser: DocumentChooser = randomChooser): Promise<IItinerary[]> {
   const itinerary = []
-  for(let index: number = 0; index < days ; index++){
+  for (let index: number = 0; index < days ; index++) {
     itinerary[index] = {}
   }
 
@@ -40,8 +40,7 @@ export function buildItinerary (days: number, chooser: DocumentChooser = randomC
     .in(['afternoon', 'night'])
     .exec()
 
-
-  for(let query of [mornings, evenings]) {
+  for (const query of [mornings, evenings]) {
     query.catch((error) => {
       console.log(error)
       return []
@@ -61,19 +60,18 @@ export function buildItinerary (days: number, chooser: DocumentChooser = randomC
       return []
     }
 
-    let morningsIndexes = chooser(mornings.length, days)
-    let eveningsIndexes = chooser(mornings.length, days)
+    const morningsIndexes = chooser(mornings.length, days)
+    const eveningsIndexes = chooser(mornings.length, days)
 
-    for(let index = 0; index < morningsIndexes.length; index++) {
-      itinerary[index]['morning'] = mornings[morningsIndexes[index]]
+    for (let index = 0; index < morningsIndexes.length; index++) {
+      itinerary[index].morning = mornings[morningsIndexes[index]]
     }
 
-    for(let index in eveningsIndexes) {
-      itinerary[index]['evening'] = evenings[eveningsIndexes[index]]
+    for (const index in eveningsIndexes) {
+      itinerary[index].evening = evenings[eveningsIndexes[index]]
     }
 
     return itinerary
   })
 
 }
-

@@ -1,5 +1,5 @@
-import Location from '../location'
-import {ILocation} from '../location'
+import location from '../location'
+import { ILocation } from '../location'
 
 process.env.TEST_SUITE = 'seed-spec'
 
@@ -14,7 +14,7 @@ describe('Location', () => {
   })
 
   test('name is unique', (done) => {
-    let params: ILocation = {
+    const params: ILocation = {
       name: 'name',
       type: 'type',
       partsOfDay: ['night'],
@@ -24,11 +24,11 @@ describe('Location', () => {
       address: 'street',
       zipcode: 75010,
     }
-    let location = new Location(params)
+    const location = new Location(params)
 
     location.save((error) => {
       expect(error).toBe(null)
-      let location2 = new Location(params)
+      const location2 = new Location(params)
       location2.save((error) => {
         expect(error.errors.name).not.toBe(undefined)
         done()
@@ -51,7 +51,7 @@ describe('Location', () => {
   })
 
   test('requires partsOfDay to have values from dayParts enum', (done) => {
-    const location = new Location({partsOfDay: ['derply']})
+    const location = new Location({ partsOfDay: ['derply'] })
     location.validate((error) => {
       expect(error.errors.partsOfDay).not.toBe(undefined)
       done()
@@ -59,7 +59,7 @@ describe('Location', () => {
   })
 
   test('requires siteLink to be a url', (done) => {
-    const location = new Location({siteLink: 'derply'})
+    const location = new Location({ siteLink: 'derply' })
     location.validate((error) => {
       expect(error.errors.siteLink).not.toBe(undefined)
       done()
