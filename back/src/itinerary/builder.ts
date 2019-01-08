@@ -1,5 +1,4 @@
-import location from '../models/location'
-import { ILocation } from '../models/location'
+import Location, { ILocation } from '../models/location'
 
 interface IItinerary {
   morning: ILocation
@@ -11,11 +10,11 @@ type DocumentChooser = (limit: number, choices: number) => number[]
 export function randomChooser(limit: number, choices: number): number[] {
   const chosen: number[] = []
 
-  for (let i: number = 0; i < choices; i++) {
+  for (let i: number = 0; i < choices; i += 1) {
     let choice
 
     do {
-      choice = Math.floor((Math.random() * limit) + 1)
+      choice = Math.floor(Math.random() * limit + 1)
     } while (chosen.includes(choice))
 
     chosen[i] = choice
@@ -24,23 +23,27 @@ export function randomChooser(limit: number, choices: number): number[] {
   return chosen
 }
 
-export function buildItinerary(days: number, chooser: DocumentChooser = randomChooser): Promise<IItinerary[]> {
+export function buildItinerary(
+  days: number,
+  chooser: DocumentChooser = randomChooser,
+): Promise<IItinerary[]> {
   const itinerary = []
-  for (let index: number = 0; index < days ; index++) {
+  for (let index: number = 0; index < days; index += 1) {
     itinerary[index] = {}
   }
 
-  const mornings = Location.find({})
-    .where('partsOfDay')
-    .equals('morning')
-    .exec()
+  const dayPlans = [
+    Location.find({})
+      .where('partsOfDay')
+      .equals('morning')
+      .exec(),
+    Location.find({})
+      .where('partsOfDay')
+      .in(['afternoon', 'night'])
+      .exec(),
+  ]
 
-  const evenings = Location.find({})
-    .where('partsOfDay')
-    .in(['afternoon', 'night'])
-    .exec()
-
-  for (const query of [mornings, evenings]) {
+  for (const query of dayPlans) {
     query.catch((error) => {
       console.log(error)
       return []
@@ -50,7 +53,7 @@ export function buildItinerary(days: number, chooser: DocumentChooser = randomCh
   // TODO
   // Get randomized data within mongo instead of calculating it
   // in node
-  return Promise.all([mornings, evenings]).then(([mornings, evenings]) => {
+  return Promise.all(dayPlans).then(([mornings, evenings]) => {
     if (mornings.length < days) {
       console.log('Not enough morning locations available')
       return []
@@ -63,15 +66,14 @@ export function buildItinerary(days: number, chooser: DocumentChooser = randomCh
     const morningsIndexes = chooser(mornings.length, days)
     const eveningsIndexes = chooser(mornings.length, days)
 
-    for (let index = 0; index < morningsIndexes.length; index++) {
+    for (let index = 0; index < morningsIndexes.length; index += 1) {
       itinerary[index].morning = mornings[morningsIndexes[index]]
     }
 
-    for (const index in eveningsIndexes) {
+    eveningsIndexes.forEach((index) => {
       itinerary[index].evening = evenings[eveningsIndexes[index]]
-    }
+    })
 
     return itinerary
   })
-
 }

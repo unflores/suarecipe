@@ -1,20 +1,23 @@
-const path = require('path')
-const express = require('express')
-const cookieParser = require('cookie-parser')
+import cookieParser from 'cookie-parser'
+import express from 'express'
+import * as path from 'path'
 import mongoose from './config/mongoose'
 
 // Middleware
-const morgan = require('morgan') // Logger
-const bodyParser = require('body-parser') // Parses Html Body
-const methodOverride = require('method-override') // Simulate DELETE and PUT
+// Logger
+// Parses Html Body
+import bodyParser from 'body-parser'
+// Simulate DELETE and PUT
+import methodOverride from 'method-override'
+import morgan from 'morgan'
 
 const app = express()
 const baseDir =
   process.env.NODE_ENV === 'production'
     ? path.resolve('/app')
     : path.resolve(__dirname)
-
-mongooseConfig(() => {})
+// TODO wtf was I thinking here?
+mongoose(() => ({}))
 
 // Middleware Setup
 app.use('/assets/', express.static(path.resolve(baseDir, 'assets'))) // Set location of static data

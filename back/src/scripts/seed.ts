@@ -1,11 +1,11 @@
 import * as parse from 'csv-parse'
 import mongoose from '../../config/mongoose'
-mongooseConfig()
+mongoose()
 import * as Bluebird from 'bluebird'
 import { createReadStream } from 'fs'
 import { Document } from 'mongoose'
 import * as path from 'path'
-import location from '../models/location'
+import Location from '../models/location'
 
 interface IImportedLocation {
   Name: string
@@ -52,13 +52,13 @@ class MasterListHandler {
 
   public handleEnd = (): void => {
     Bluebird.all(this.tasks)
-      .then(data => {
+      .then((data) => {
         console.log('errors: ', this.errors.join('\n'))
         console.log('total rows: ', this.tasks.length)
         console.log('total errors: ', this.errors.length)
         console.log('total saved: ', this.tasks.length - this.errors.length)
       })
-      .catch(error => {
+      .catch((error) => {
         console.log('Problem loading data', error)
       })
       .finally(() => {

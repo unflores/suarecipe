@@ -1,5 +1,4 @@
-import location from '../location'
-import { ILocation } from '../location'
+import Location, { ILocation } from '../location'
 
 process.env.TEST_SUITE = 'seed-spec'
 
@@ -29,8 +28,8 @@ describe('Location', () => {
     location.save((error) => {
       expect(error).toBe(null)
       const location2 = new Location(params)
-      location2.save((error) => {
-        expect(error.errors.name).not.toBe(undefined)
+      location2.save((error1) => {
+        expect(error1.errors.name).not.toBe(undefined)
         done()
       })
     })
@@ -65,5 +64,4 @@ describe('Location', () => {
       done()
     })
   })
-
 })

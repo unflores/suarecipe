@@ -13,13 +13,12 @@ export interface ILocation {
   city?: string
 }
 
-export interface ILocationModel extends ILocation, mongoose.Document {
-}
+export interface ILocationModel extends ILocation, mongoose.Document {}
 
 export enum dayParts {
-  morning   = 'morning',
+  morning = 'morning',
   afternoon = 'afternoon',
-  night     = 'night',
+  night = 'night',
 }
 
 const locationSchema = new mongoose.Schema({
@@ -37,38 +36,42 @@ const locationSchema = new mongoose.Schema({
     default: null,
     validate: {
       validator: (value) => {
-        return value === null || typeof value === 'number' && value > 0
+        return value === null || (typeof value === 'number' && value > 0)
       },
     },
   },
   partsOfDay: {
     type: [String],
-    validate:  {
-      validator (parts) {
+    validate: {
+      validator(parts) {
         const dayPartValues = Object.values(dayParts)
-        const invalidDayParts = parts.filter(value => dayPartValues.indexOf(value) < 0)
-        return parts.length > 0 && invalidDayParts == 0
+        const invalidDayParts = parts.filter((value) => {
+          return dayPartValues.indexOf(value) < 0
+        })
+        return parts.length > 0 && invalidDayParts === 0
       },
     },
   },
   description: String,
-  siteLink: { // Link to the main site
+  siteLink: {
+    // Link to the main site
     type: String,
     validate: {
       validator: (value) => {
-        return /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/.test(value)
+        return /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}/.test(
+          value,
+        )
       },
       message: '{VALUE} is not a valid url',
     },
   },
-  address: String,       // Street ex. 22 rue de chabrol
+  address: String, // Street ex. 22 rue de chabrol
   zipcode: {
-    type: String,       // ex. 75010
+    type: String, // ex. 75010
     required: true,
   },
 })
 
 locationSchema.plugin(uniqueValidator)
 
-const Location = mongoose.model<ILocationModel>('Location', locationSchema)
-export default Location
+export default mongoose.model<ILocationModel>('Location', locationSchema)

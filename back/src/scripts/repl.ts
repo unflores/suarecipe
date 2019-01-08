@@ -1,9 +1,14 @@
-const repl = require('repl')
+import * as repl from 'repl'
 import mongoose from '../../config/mongoose'
-mongooseConfig()
+mongoose()
 
 const replServer = repl.start('> ')
-import location from '../models/location'
+import Location from '../models/location'
+
+console.log('Location: ', Location)
 
 replServer.context.Location = Location
-replServer.context.fin = val => console.log(val)
+/* tslint:disable:no-console*/
+replServer.context.fin = (val) => {
+  console.log(val)
+}

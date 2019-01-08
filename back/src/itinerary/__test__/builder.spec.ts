@@ -1,6 +1,5 @@
 import * as Promise from 'bluebird'
-import location from '../../models/location'
-import { ILocation, ILocationModel } from '../../models/location'
+import Location, { ILocation, ILocationModel } from '../../models/location'
 import * as Builder from '../builder'
 
 process.env.TEST_SUITE = 'builder-spec'
@@ -34,8 +33,9 @@ describe('Builder', () => {
       locations.push(morningLocation.save())
       locations.push(eveningLocation.save())
     })
-    Promise.all(locations).then(() => { done()})
-
+    Promise.all(locations).then(() => {
+      done()
+    })
   })
 
   test('should return an itinerary of 3 days', (done) => {

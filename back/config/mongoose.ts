@@ -22,21 +22,21 @@ switch (env) {
 mongoose.set('debug', true)
 mongoose.Promise = bluebird
 
-mongoose.connection.on('connected', function() {
-  console.log('Mongoose default connection open to ' + config.url)
+mongoose.connection.on('connected', () => {
+  console.log(`Mongoose default connection open to ${config.url}`)
 })
 
 // If the connection throws an error
-mongoose.connection.on('error', function(err) {
-  console.log('Mongoose default connection error: ' + err)
+mongoose.connection.on('error', (err) => {
+  console.log(`Mongoose default connection error: ${err}`)
 })
 
 // When the connection is disconnected
-mongoose.connection.on('disconnected', function() {
-  console.log('Mongoose default connection disconnected')
+mongoose.connection.on('disconnected', () => {
+  console.log(`Mongoose default connection disconnected`)
 })
 
-export default function(cb?: () => void) {
+export default (cb?: () => void) => {
   mongoose.connect(
     config.url,
     cb,
