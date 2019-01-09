@@ -9,7 +9,6 @@
     "pretty": true,
     "lib": ["es2017", "dom"],
     "baseUrl": ".",
-    "extendedDiagnostics": true,
     "paths": {
       "mongoose": ["./typings/mongoose/"]
     }
