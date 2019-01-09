@@ -1,3 +1,4 @@
+import logger from '../../config/logger'
 import Location, { ILocation } from '../models/location'
 
 interface IItinerary {
@@ -45,7 +46,7 @@ export function buildItinerary(
 
   for (const query of dayPlans) {
     query.catch((error) => {
-      console.log(error)
+      logger.error(error)
       return []
     })
   }
@@ -55,11 +56,11 @@ export function buildItinerary(
   // in node
   return Promise.all(dayPlans).then(([mornings, evenings]) => {
     if (mornings.length < days) {
-      console.log('Not enough morning locations available')
+      logger.error('Not enough morning locations available')
       return []
     }
     if (evenings.length < days) {
-      console.log('Not enough evening locations available')
+      logger.error('Not enough evening locations available')
       return []
     }
 

@@ -5,6 +5,7 @@ import * as Bluebird from 'bluebird'
 import { createReadStream } from 'fs'
 import { Document } from 'mongoose'
 import * as path from 'path'
+import logger from '../../config/logger'
 import Location from '../models/location'
 
 interface IImportedLocation {
@@ -53,13 +54,13 @@ class MasterListHandler {
   public handleEnd = (): void => {
     Bluebird.all(this.tasks)
       .then((data) => {
-        console.log('errors: ', this.errors.join('\n'))
-        console.log('total rows: ', this.tasks.length)
-        console.log('total errors: ', this.errors.length)
-        console.log('total saved: ', this.tasks.length - this.errors.length)
+        logger.info(`Errors: ${this.errors.join('\n')}`)
+        logger.info(`Total rows: ${this.tasks.length}`)
+        logger.info(`Total errors: ${this.errors.length}`)
+        logger.info(`Total saved: ${this.tasks.length - this.errors.length}`)
       })
       .catch((error) => {
-        console.log('Problem loading data', error)
+        logger.info('Problem loading data', error)
       })
       .finally(() => {
         process.exit()
@@ -77,5 +78,3 @@ fileStream
   .pipe(parser)
   .on('data', handler.handleData)
   .on('end', handler.handleEnd)
-
-console.log('at the end of the hallway')

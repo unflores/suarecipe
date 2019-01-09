@@ -1,10 +1,10 @@
-import { NextFunction, Request, Response } from "express"
+import { NextFunction, Request, Response } from 'express'
+import logger from '../../config/logger'
 import * as Builder from './../itinerary/builder'
 
 export let post = (req: Request, res: Response, next: NextFunction) => {
   if (!req.body.days || req.body.days === 0) {
-    res.status(400)
-      .send(`bad request. days: ${req.body.days}`)
+    res.status(400).send(`bad request. days: ${req.body.days}`)
     next()
     return
   }
@@ -12,8 +12,9 @@ export let post = (req: Request, res: Response, next: NextFunction) => {
     .then((itinerary) => {
       res.status(200).send({ itinerary })
       next()
-    }).catch((error) => {
-      console.log(error)
+    })
+    .catch((error) => {
+      logger.error(error)
       res.status(500).send('Something went wrong')
       next()
     })

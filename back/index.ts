@@ -1,6 +1,7 @@
 import cookieParser from 'cookie-parser'
 import express from 'express'
 import * as path from 'path'
+import logger from './config/logger'
 import mongoose from './config/mongoose'
 
 // Middleware
@@ -44,4 +45,4 @@ app.get('*', (req, res) => {
 
 const port = process.env.PORT || '9090'
 app.listen(port, '0.0.0.0')
-console.log(`I see you on ${port}`)
+logger.info(`I see you on ${port}`)
