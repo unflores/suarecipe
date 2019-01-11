@@ -1,5 +1,5 @@
-import cookieParser from 'cookie-parser'
-import express from 'express'
+import cookieParser = require('cookie-parser')
+import express = require('express')
 import * as path from 'path'
 import logger from './config/logger'
 import mongoose from './config/mongoose'
@@ -7,10 +7,10 @@ import mongoose from './config/mongoose'
 // Middleware
 // Logger
 // Parses Html Body
-import bodyParser from 'body-parser'
+import bodyParser = require('body-parser')
 // Simulate DELETE and PUT
-import methodOverride from 'method-override'
-import morgan from 'morgan'
+import methodOverride = require('method-override')
+import morgan = require('morgan')
 
 const app = express()
 const baseDir =
