@@ -19,19 +19,19 @@ function clearDB(done) {
 }
 
 beforeEach((done) => {
-    mongoose.connect(
-      `mongodb://localhost:27017/${process.env.TEST_SUITE}`,
-      function(err) {
-        if (err) {
-          throw err
-        }
-        console.log(`Clearing stuffs now: ${process.env.TEST_SUITE}`)
-        return clearDB(done)
+  mongoose.connect(
+    `mongodb://localhost:27017/${process.env.TEST_SUITE}`,
+    function(err) {
+      if (err) {
+        throw err
       }
-    )
+      console.log(`Clearing stuffs now: ${process.env.TEST_SUITE}`)
+      return clearDB(done)
+    },
+  )
 })
 
-afterAll(done => {
+afterAll((done) => {
   console.log(`All done ${process.env.TEST_SUITE}`)
   mongoose.disconnect()
   return done()
