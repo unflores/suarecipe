@@ -3,20 +3,16 @@
   "version": "1.0.0",
   "description": "Few page app to get itinerary information for monuments",
   "main": "index.js",
-  "watch": {
-    "tslint": "{src}/*.tsx?",
-    "build": "{src}/*.tsx?"
-  },
   "scripts": {
     "start": "node ./dist/index.js",
-    "start:development": "NODE_ENV=development ./node_modules/.bin/nodemon ./dist/index.js",
+    "dev": "NODE_ENV=development npx nodemon ./dist/index.js | bunyan",
     "postinstall:production": "npm run build",
-    "watch": "npm-watch",
-    "tslint": "npx tslint --project ./tsconfig.json --config ./tslint.json -t verbose ",
-    "build": "npx tsc -d --project ./tsconfig.json",
     "postbuild": "npm run copyStatic",
     "copyStatic": "node copyStatic.js ./ src ./dist",
+    "tslint": "npx tslint --project ./tsconfig.json --config ./tslint.json -t verbose ",
+    "build": "npx tsc -d --project ./tsconfig.json",
     "test": "jest --config ./jest.config.js",
+    "test:watch": "npm run test --watch",
     "console:development": "NODE_ENV=development ts-node --project ./tsconfig.json ./dist/src/scripts/repl.js",
     "static": "find ./src -name \"*.csv\" -type f -type f -exec cp --parents {} ./dist \\;"
   },
@@ -59,7 +55,6 @@
     "@types/node": "^10.12.18",
     "jest": "^23.6.0",
     "nodemon": "^1.18.9",
-    "npm-watch": "^0.5.0",
     "ts-jest": "^23.10.1",
     "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
