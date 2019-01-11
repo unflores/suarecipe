@@ -1,6 +1,6 @@
 import Location, { ILocation } from '../location'
 
-process.env.TEST_SUITE = 'seed-spec'
+process.env.TEST_SUITE = 'location-spec'
 
 describe('Location', () => {
   const subject = new Location({})

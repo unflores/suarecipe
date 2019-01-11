@@ -9,15 +9,6 @@ describe('Builder', () => {
     const locations: Array<Promise<ILocationModel>> = []
 
     Array.from(Array(3)).forEach((val, index) => {
-      const morningParams: ILocation = {
-        name: `namemorning${index}`,
-        type: 'type',
-        partsOfDay: ['morning'],
-        description: 'description',
-        siteLink: 'http://derp.com',
-        address: 'address',
-        zipcode: 75010,
-      }
       const eveningParams: ILocation = {
         name: `nameevening${index}`,
         type: 'type',
@@ -27,13 +18,27 @@ describe('Builder', () => {
         address: 'address',
         zipcode: 75010,
       }
-      const morningLocation = new Location(morningParams)
-      const eveningLocation = new Location(eveningParams)
 
-      locations.push(morningLocation.save())
+      const eveningLocation = new Location(eveningParams)
       locations.push(eveningLocation.save())
     })
-    Promise.all(locations).then(() => {
+
+    Array.from(Array(4)).forEach((val, index) => {
+      const morningParams: ILocation = {
+        name: `namemorning${index}`,
+        type: 'type',
+        partsOfDay: ['morning'],
+        description: 'description',
+        siteLink: 'http://derp.com',
+        address: 'address',
+        zipcode: 75010,
+      }
+
+      const morningLocation = new Location(morningParams)
+
+      locations.push(morningLocation.save())
+    })
+    Promise.all(locations).then((locs) => {
       done()
     })
   })

@@ -48,7 +48,7 @@ const locationSchema = new mongoose.Schema({
         const invalidDayParts = parts.filter((value) => {
           return dayPartValues.indexOf(value) < 0
         })
-        return parts.length > 0 && invalidDayParts === 0
+        return parts.length > 0 && invalidDayParts.length === 0
       },
     },
   },
