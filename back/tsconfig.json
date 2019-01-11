@@ -9,6 +9,7 @@
     "pretty": true,
     "lib": ["es2017", "dom"],
     "baseUrl": ".",
+    "alwaysStrict": true,
     "paths": {
       "mongoose": ["./typings/mongoose/"]
     }
