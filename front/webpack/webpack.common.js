@@ -1,12 +1,12 @@
 const path = require('path')
-const afterCopy = require('./afterCopy')
+const AfterCopyWebpackPlugin = require('./AfterCopyWebpackPlugin.js')
 
 const APP_DIR = path.resolve(__dirname, '..', 'app')
 const DIST_DIR = path.resolve(__dirname, '..', 'assets')
 
 module.exports = {
   plugins: [
-    new afterCopy({
+    new AfterCopyWebpackPlugin({
       files: [
         { base: './', name: './index.html', destination: '../back/dist/' },
       ],
