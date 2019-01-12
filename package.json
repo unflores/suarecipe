@@ -6,6 +6,7 @@
     "yarn": "1.12.3"
   },
   "scripts": {
+    "start": "node ./back/dist/index.js",
     "prepareSubs": "yarn install --cwd back && yarn install --cwd front && yarn run buildSubs",
     "buildSubs": "npm run build --prefix back && npm run build --prefix front"
   }
