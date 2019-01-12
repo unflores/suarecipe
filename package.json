@@ -8,7 +8,7 @@
   "scripts": {
     "start": "node ./back/dist/index.js",
     "postinstall": "yarn install --cwd back && yarn install --cwd front && yarn run buildSubs",
-    "buildSubs": "yarn run --cwd back build && yarn run build --cwd front"
+    "buildSubs": "yarn run build --cwd back && yarn run build --cwd front"
   },
   "license": "ISC"
 }
