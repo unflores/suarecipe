@@ -35,7 +35,7 @@ export class ItineraryBuilder extends React.Component<IItineraryBuilder, {}> {
   private handleChosenDays = (days: number) => {
     this.props.onChosen(days)
 
-    Endpoints.create('itineraries', {}, { days }).then(itineraryResponse => {
+    Endpoints.create('itineraries', {}, { days }).then((itineraryResponse) => {
       this.props.onBuildItinerary(itineraryResponse as IItineraryResponse)
     })
   }
