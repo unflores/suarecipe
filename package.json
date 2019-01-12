@@ -1,0 +1,9 @@
+{
+  "name": "planotterpoc",
+  "version": "0.1.0",
+  "scripts": {
+    "postinstall": "npm run installSubs && npm run buildSubs",
+    "installSubs": "npm install --prefix back && npm install --prefix front",
+    "buildSubs": "npm run build --prefix back && npm run build --prefix front"
+  }
+}
