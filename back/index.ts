@@ -15,7 +15,7 @@ import morgan = require('morgan')
 const app = express()
 const baseDir =
   process.env.NODE_ENV === 'production'
-    ? path.resolve('/app')
+    ? path.resolve('/app/back/dist/')
     : path.resolve(__dirname)
 // TODO wtf was I thinking here?
 mongoose(() => ({}))

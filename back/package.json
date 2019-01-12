@@ -7,6 +7,7 @@
     "start": "node ./dist/index.js",
     "dev": "NODE_ENV=development npx nodemon ./dist/index.js | bunyan",
     "build": "npx tsc -d --project ./tsconfig.json",
+    "build:production": "NODE_ENV=production npx tsc -d --project ./tsconfig.prod.json",
     "postbuild": "npm run copyStatic",
     "copyStatic": "node copyStatic.js ./ src ./dist",
     "tslint": "npx tslint --project ./tsconfig.json --config ./tslint.json -t verbose ",
