@@ -6,11 +6,10 @@
   "scripts": {
     "start": "node ./dist/index.js",
     "dev": "NODE_ENV=development npx nodemon ./dist/index.js | bunyan",
-    "build": "npm run build",
+    "build": "npx tsc -d --project ./tsconfig.json",
     "postbuild": "npm run copyStatic",
     "copyStatic": "node copyStatic.js ./ src ./dist",
     "tslint": "npx tslint --project ./tsconfig.json --config ./tslint.json -t verbose ",
-    "build": "npx tsc -d --project ./tsconfig.json",
     "test": "jest --config ./jest.config.js",
     "test:watch": "npm run test --watch",
     "console:development": "NODE_ENV=development ts-node --project ./tsconfig.json ./dist/src/scripts/repl.js",
