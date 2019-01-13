@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "./node_modules/.bin/webpack -d --config webpack/webpack.dev.js",
-    "build:production": "NODE_ENV=production ./node_modules/.bin/webpack -d --config webpack/webpack.dev.js",
+    "build:production": "NODE_ENV=production ./node_modules/.bin/webpack -d --config webpack/webpack.prod.js",
     "tsc": "./node_modules/.bin/tslint --project ./tsconfig.json -c ./tslint.json -t verbose",
     "tsc:fix": "tsc --fix",
     "test": "jest --config ./jest.config.js"
