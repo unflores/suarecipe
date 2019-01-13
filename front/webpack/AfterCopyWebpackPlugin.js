@@ -20,13 +20,16 @@ class AfterCopyWebpackPlugin {
     const options = this.options
     compiler.hooks.done.tap('AfterCopyWebpackPlugin', (compilation) => {
       const { files, directories } = options
-
       files.forEach((file) => {
         const { base, name, destination } = file
-        copyFile(
-          path.resolve(base, name),
-          path.resolve(destination, name),
-        ).catch((err) => console.log(err))
+        const from = path.resolve(base, name)
+        const to = path.resolve(destination, name)
+
+        copyFile(from, to)
+          .then(() => {
+            console.log(`copying : ${from} to ${to}`)
+          })
+          .catch((err) => console.log(err))
       })
       directories.forEach((directory) => {
         const { base, entryPoint, destination } = directory
