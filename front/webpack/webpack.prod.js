@@ -7,7 +7,8 @@ module.exports = merge(common, {
   module: {
     rules: [
       {
-        test: /^[^_]+(?!__test__)+[^.]+(\.tsx?)/,
+        test: /\.tsx?$/,
+        exclude: /\_\_tests\_\_/,
         enforce: 'pre',
         loader: 'tslint-loader',
         options: {
