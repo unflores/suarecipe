@@ -8,7 +8,7 @@ module.exports = merge(common, {
     rules: [
       {
         test: /\.tsx?$/,
-        exclude: /\_\_tests\_\_/,
+        exclude: [/\_\_tests\_\_/, path.resolve('../app/setupEnzyme.ts')],
         enforce: 'pre',
         loader: 'tslint-loader',
         options: {
@@ -19,7 +19,7 @@ module.exports = merge(common, {
       {
         test: /\.tsx?$/,
         loader: 'ts-loader',
-        exclude: /\_\_tests\_\_/,
+        exclude: [/\_\_tests\_\_/, path.resolve('../app/setupEnzyme.ts')],
         options: {
           configFile: path.resolve(__dirname, '..', 'tsconfig.json'),
         },
