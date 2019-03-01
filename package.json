@@ -10,5 +10,8 @@
     "postinstall": "yarn install --cwd back && yarn install --cwd front && yarn run buildSubs",
     "buildSubs": "cd ./back ; yarn run build:production; cd ../ && cd front; yarn run build:production; cd ../"
   },
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "typings-for-css-modules-loader": "^1.7.0"
+  }
 }
