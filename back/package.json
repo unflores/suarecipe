@@ -13,7 +13,7 @@
     "tslint": "npx tslint --project ./tsconfig.json --config ./tslint.json -t verbose ",
     "test": "jest --config ./jest.config.js",
     "test:watch": "npm run test --watch",
-    "console:development": "NODE_ENV=development ts-node --project ./tsconfig.json ./dist/src/scripts/repl.js",
+    "console:development": "NODE_OPTIONS=--experimental-repl-await NODE_ENV=development ts-node --project ./tsconfig.json ./dist/src/scripts/repl.js",
     "static": "find ./src -name \"*.csv\" -type f -type f -exec cp --parents {} ./dist \\;"
   },
   "engines": {

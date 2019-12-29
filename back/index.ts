@@ -3,6 +3,8 @@ import express = require('express')
 import * as path from 'path'
 import logger from './config/logger'
 import mongoose from './config/mongoose'
+import * as dotenv from 'dotenv'
+dotenv.config()
 
 // Middleware
 // Logger
