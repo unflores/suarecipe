@@ -1,8 +1,9 @@
-import { NextFunction, Request, Response } from 'express'
+import { Router, Request, Response, NextFunction } from 'express'
 import logger from '../../config/logger'
 import * as Builder from './../itinerary/builder'
 
-export let post = (req: Request, res: Response, next: NextFunction) => {
+const router = Router()
+router.post('/', function (req: Request, res: Response, next: NextFunction) {
   if (!req.body.days || req.body.days === 0) {
     res.status(400).send(`bad request. days: ${req.body.days}`)
     next()
@@ -18,4 +19,6 @@ export let post = (req: Request, res: Response, next: NextFunction) => {
       res.status(500).send('Something went wrong')
       next()
     })
-}
+})
+
+export default router

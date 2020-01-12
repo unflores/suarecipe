@@ -4,6 +4,7 @@ import * as path from 'path'
 import logger from './config/logger'
 import mongoose from './config/mongoose'
 import * as dotenv from 'dotenv'
+import buildRoutes from './src/router'
 dotenv.config()
 
 // Middleware
@@ -29,9 +30,6 @@ app.use('/assets/', (req, res) => {
   res.status(404).send('Not Found')
 })
 
-// Controllers
-import * as itinerariesController from './src/controllers/itineraries'
-
 app.use(morgan('dev')) // Log requests to console
 app.use(bodyParser.urlencoded({ extended: 'true' })) // Parse extended utf urls
 app.use(cookieParser()) // Read cookies for auth
@@ -39,7 +37,7 @@ app.use(bodyParser.json()) // Parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })) // Parse incoming data as json
 app.use(methodOverride())
 
-app.post('/api/itineraries', itinerariesController.post)
+buildRoutes(app)
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(baseDir, 'index.html'))
