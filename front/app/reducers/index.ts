@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
 import itineraryBuilder from './itineraryBuilder'
-import { IState } from './itineraryBuilder/actionBuilders'
+import { ItineraryBuilderState } from './itineraryBuilder/actionBuilders'
 
 export interface IApplicationState {
-  itineraryBuilder: IState
+  itineraryBuilder: ItineraryBuilderState
 }
 
 const rootReducer = combineReducers<IApplicationState>({

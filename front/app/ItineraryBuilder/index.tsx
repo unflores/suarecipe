@@ -2,9 +2,8 @@ import { IItineraryResponse } from 'frontapp/libs/api/Responses'
 import Endpoints from 'frontapp/libs/api/Routes'
 import { IApplicationState } from 'frontapp/reducers'
 import {
-  Action,
   daysChosen,
-  IState,
+  ItineraryBuilderState,
   itineraryBuilt,
   View,
 } from 'frontapp/reducers/itineraryBuilder/actionBuilders'
@@ -14,7 +13,7 @@ import { Dispatch } from 'redux'
 import DayChooser from './DayChooser'
 import Itinerary from './Itinerary'
 
-interface IItineraryBuilder extends IState {
+interface IItineraryBuilder extends ItineraryBuilderState {
   onChosen: (days: number) => void
   onBuildItinerary: (itineraryResponse: IItineraryResponse) => void
 }

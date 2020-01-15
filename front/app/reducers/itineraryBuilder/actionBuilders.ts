@@ -10,7 +10,7 @@ export enum View {
   itinerary = 'itinerary',
 }
 
-export interface IState {
+export interface ItineraryBuilderState {
   readonly view: View
   readonly days: number
   readonly isLoading: boolean
