@@ -1,6 +1,13 @@
-import { Action, daysChosen, IState, View } from './actionBuilders'
+import { CHANGE_VIEW, LOAD_ITINERARY, ActionReturnType, View } from './actionBuilders'
+import { IDay } from 'frontapp/libs/api/Responses'
+export interface ItineraryBuilderState {
+  readonly view: View
+  readonly days: number
+  readonly isLoading: boolean
+  readonly itinerary: IDay[]
+}
 
-export const initialState: IState = {
+export const initialState: ItineraryBuilderState = {
   days: 3,
   isLoading: false,
   itinerary: [],
@@ -12,16 +19,21 @@ interface IAction {
   payload: any
 }
 
-export default function reduce(state: IState = initialState, action: IAction) {
-  const { payload, type } = action
-
-  switch (type) {
-    case Action.CHANGE_VIEW:
-      return { ...state, days: payload.days, view: payload.view }
+export default function reduce(state: ItineraryBuilderState = initialState, action: ActionReturnType): ItineraryBuilderState {
+  switch (action.type) {
+    case CHANGE_VIEW:
+      return {
+        ...state,
+        days: action.payload.days,
+        view: action.payload.view
+      }
       break
-    case Action.LOAD_ITINERARY:
-      const { itinerary } = payload
-      return { ...state, itinerary }
+    case LOAD_ITINERARY:
+
+      return {
+        ...state,
+        itinerary: action.payload.itinerary
+      }
       break
     default:
       return state

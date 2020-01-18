@@ -3,10 +3,10 @@ import Endpoints from 'frontapp/libs/api/Routes'
 import { IApplicationState } from 'frontapp/reducers'
 import {
   daysChosen,
-  ItineraryBuilderState,
   itineraryBuilt,
   View,
 } from 'frontapp/reducers/itineraryBuilder/actionBuilders'
+import { ItineraryBuilderState } from 'frontapp/reducers/itineraryBuilder'
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'

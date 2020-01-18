@@ -1,35 +1,44 @@
-import { IDay, IItineraryResponse } from 'frontapp/libs/api/Responses'
+import { IItineraryResponse } from 'frontapp/libs/api/Responses'
+import { IDay } from 'frontapp/libs/api/Responses'
 
-export enum Action {
-  CHANGE_VIEW = 'change_view',
-  LOAD_ITINERARY = 'load_itinerary',
-}
+export const CHANGE_VIEW = 'change_view'
+export const LOAD_ITINERARY = 'load_itinerary'
 
 export enum View {
   form = 'form',
   itinerary = 'itinerary',
 }
 
-export interface ItineraryBuilderState {
-  readonly view: View
-  readonly days: number
-  readonly isLoading: boolean
-  readonly itinerary: IDay[]
+interface DaysChosenReturn {
+  payload: {
+    days: number
+    isLoading: boolean
+    view: View
+  },
+  type: typeof CHANGE_VIEW
 }
-
-export const daysChosen = (days: number) => ({
+export const daysChosen = (days: number): DaysChosenReturn => ({
   payload: {
     days,
     isLoading: true,
     view: View.itinerary,
   },
-  type: Action.CHANGE_VIEW,
+  type: CHANGE_VIEW,
 })
 
+interface ItineraryBuiltReturn {
+  payload: {
+    itinerary: IDay[],
+    view: View
+  },
+  type: typeof LOAD_ITINERARY
+}
 export const itineraryBuilt = ({ itinerary }: IItineraryResponse) => ({
   payload: {
     itinerary,
     view: View.itinerary,
   },
-  type: Action.LOAD_ITINERARY,
+  type: LOAD_ITINERARY,
 })
+
+export type ActionReturnType = DaysChosenReturn | ItineraryBuiltReturn
