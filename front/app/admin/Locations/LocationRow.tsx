@@ -1,10 +1,10 @@
 import * as React from 'react'
-
-interface ProtoProps {
-  location: { [s: string]: string | number }
+import { LocationResponse } from 'frontapp/libs/api/Responses'
+interface Props {
+  location: LocationResponse
 }
 
-const LocationRow = ({ location }: ProtoProps) => {
+const LocationRow = ({ location }: Props) => {
   return (
     <tr>
       <td>{location.name}</td>

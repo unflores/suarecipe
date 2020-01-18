@@ -22,3 +22,12 @@ export interface IDay {
 export interface IItineraryResponse {
   itinerary: IDay[]
 }
+
+export interface LocationResponse {
+  _id: string
+  name: string
+  type: string
+  address: string
+  siteLink: string
+  zipcode: number
+}

@@ -1,23 +1,24 @@
 import * as React from 'react'
 import LocationRow from './LocationRow'
-import Endpoints from 'frontapp/libs/api/Routes'
 import { IApplicationState } from 'frontapp/reducers'
 import { connect } from 'react-redux'
+import api from 'frontapp/api'
+import { LocationResponse } from 'frontapp/libs/api/Responses'
+import { locationsFetched } from 'frontapp/reducers/locations/actionBuilders'
+import { Dispatch } from 'redux'
+
 
 interface Props {
-
+  onFetchLocations: (locations: LocationResponse[]) => void
+  locations: LocationResponse[]
 }
-
-const locations = [
-  { _id: '1234', name: 'name', type: 'type', address: 'address', siteLink: 'sitelink', zipcode: 75010 }
-]
 
 class Locations extends React.Component<Props, {}> {
 
-
   async componentDidMount() {
-    locationResponse = await Endpoints.list('locations')
-    this.props.onFetchLocations(locationsResponse)
+    const locationsResponse = await api.get<LocationResponse[]>('/api/locations/')
+
+    this.props.onFetchLocations(locationsResponse.data)
   }
 
   render() {
@@ -34,7 +35,7 @@ class Locations extends React.Component<Props, {}> {
         </thead>
         <tbody>
           {
-            locations.map((location) =>
+            this.props.locations.map((location) =>
               <LocationRow
                 key={location._id}
                 location={location}
@@ -47,15 +48,13 @@ class Locations extends React.Component<Props, {}> {
   }
 }
 
-const mapState = ({
-  locations,
-}: IApplicationState) => ({
-  locations
+const mapState = ({ locations }: IApplicationState) => ({
+  locations: Object.values(locations.byId)
 })
 
 const mapDispatch = (dispatch: Dispatch) => ({
-  onFetchLocations: (locationsResponse: ILocationsResponse) => {
-    dispatch(locationsFetched(locationsResponse))
+  onFetchLocations: (locations: LocationResponse[]) => {
+    dispatch(locationsFetched(locations))
   }
 })
 
