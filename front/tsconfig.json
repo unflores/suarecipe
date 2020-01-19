@@ -7,6 +7,7 @@
         "target": "es6",
         "jsx": "react",
         "baseUrl": ".",
+        "lib": ["es2017", "dom"],
         "allowUnreachableCode": true,
         "paths": {
           "frontapp/*": ["./app/*"]
