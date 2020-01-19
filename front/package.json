@@ -21,7 +21,6 @@
     "@types/react-dom": "^16.0.11",
     "@types/react-redux": "^6.0.9",
     "@types/react-router-dom": "^5.1.3",
-    "apicaballero": "https://github.com/unflores/APICaballero.git",
     "awesome-typescript-loader": "^5.2.1",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",

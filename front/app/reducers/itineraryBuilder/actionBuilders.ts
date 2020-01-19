@@ -41,4 +41,4 @@ export const itineraryBuilt = ({ itinerary }: IItineraryResponse) => ({
   type: LOAD_ITINERARY,
 })
 
-export type ActionReturnType = DaysChosenReturn | ItineraryBuiltReturn
+export type ActionReturnType = DaysChosenReturn | ItineraryBuiltReturn | { type: '@@init', payload: {} }

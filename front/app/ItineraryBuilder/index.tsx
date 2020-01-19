@@ -1,5 +1,4 @@
 import { IItineraryResponse } from 'frontapp/libs/api/Responses'
-import Endpoints from 'frontapp/libs/api/Routes'
 import { IApplicationState } from 'frontapp/reducers'
 import {
   daysChosen,
@@ -12,6 +11,7 @@ import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 import DayChooser from './DayChooser'
 import Itinerary from './Itinerary'
+import api from 'frontapp/api'
 
 interface IItineraryBuilder extends ItineraryBuilderState {
   onChosen: (days: number) => void
@@ -31,12 +31,11 @@ export class ItineraryBuilder extends React.Component<IItineraryBuilder, {}> {
     }
   }
 
-  private handleChosenDays = (days: number) => {
+  private handleChosenDays = async (days: number) => {
     this.props.onChosen(days)
 
-    Endpoints.create('itineraries', {}, { days }).then((itineraryResponse) => {
-      this.props.onBuildItinerary(itineraryResponse as IItineraryResponse)
-    })
+    const response = await api.post<IItineraryResponse>('/api/itineraries', { days })
+    this.props.onBuildItinerary(response.data)
   }
 }
 
