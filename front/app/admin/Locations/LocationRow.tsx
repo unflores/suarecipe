@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { LocationResponse } from 'frontapp/libs/api/Responses'
 import Modal from 'frontapp/rcl/modal'
+import LocationForm from 'frontapp/admin/Locations/LocationForm'
 
 interface Props {
   location: LocationResponse
@@ -42,7 +43,7 @@ class LocationRow extends React.Component<Props, State> {
               title="Modify Location"
               onClose={this.handleCloseModal}
             >
-              Thing
+              <LocationForm onSuccess={() => { }} location={location} />
             </Modal>
           }
           <button onClick={this.handleOpenModal}>Modify</button>
