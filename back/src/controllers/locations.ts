@@ -1,16 +1,16 @@
 import { Request, Response, Router } from 'express'
+import Location from '../models/location'
+
 
 const router = Router()
 
-router.get('/', function (req: Request, res: Response) {
-  res.send([{
-    _id: '1234',
-    name: 'name',
-    type: 'type',
-    address: 'address',
-    siteLink: 'sitelink',
-    zipcode: 75010
-  }])
+router.get('/', async function (req: Request, res: Response) {
+  const locations = await Location.find({})
+  res.send(locations)
+})
+
+router.patch('/:id', async function (req: Request, res: Response) {
+  res.send(req.body)
 })
 
 export default router;
