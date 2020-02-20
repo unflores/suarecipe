@@ -12,6 +12,10 @@ async function buildResults<T>(responseData: Response):
     }
   } catch (error) {
     console.warn(error)
+    return {
+      code: responseData.status,
+      data: undefined
+    }
   }
 }
 
