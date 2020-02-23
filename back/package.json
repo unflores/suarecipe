@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./dist/index.js",
-    "dev": "NODE_ENV=development npx nodemon ./dist/index.js | bunyan",
+    "dev": "NODE_ENV=development npx nodemon --inspect ./dist/index.js | bunyan",
     "build": "npx tsc -d --project ./tsconfig.json",
     "build:production": "NODE_ENV=production npx tsc -d --project ./tsconfig.prod.json",
     "postbuild": "npm run copyStatic",
@@ -22,6 +22,7 @@
   "author": "me@austinflores.com",
   "license": "ISC",
   "dependencies": {
+    "@hapi/joi": "^17.1.0",
     "@types/algoliasearch": "^3.30.5",
     "@types/bluebird": "^3.5.24",
     "@types/csv-parse": "^1.1.11",
@@ -56,6 +57,7 @@
   "devDependencies": {
     "@types/bunyan": "^1.8.5",
     "@types/jest": "^23.3.2",
+    "@types/joi": "^14.3.4",
     "@types/node": "^10.12.18",
     "jest": "^23.6.0",
     "nodemon": "^1.18.9",
