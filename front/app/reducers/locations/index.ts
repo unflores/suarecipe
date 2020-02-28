@@ -17,16 +17,21 @@ export const initialState: LocationsState = {
 }
 
 export function reduce(state: LocationsState = initialState, action: ActionReturnTypes): LocationsState {
-  const { payload, type } = action
+  let byId: LocationHash = {}
 
-  switch (type) {
+  switch (action.type) {
     case Actions.FETCH_LOCATIONS:
-      const ids = payload.locations.map((location: LocationResponse) => location._id)
-      const byId: LocationHash = {}
+      const ids = action.payload.locations.map((location: LocationResponse) => location._id)
 
-      payload.locations.forEach((location: LocationResponse) => byId[location._id] = location)
+      action.payload.locations.forEach((location: LocationResponse) => byId[location._id] = location)
       return { ...state, ids, byId }
-      break;
+      break
+    case Actions.UPDATE_LOCATION:
+      byId = Object.assign({}, state.byId)
+      byId[action.payload.location._id] = action.payload.location
+
+      return { ...state, byId }
+      break
     default:
       return state
   }

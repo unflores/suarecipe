@@ -1,12 +1,16 @@
 import * as React from 'react'
 import { LocationResponse } from 'frontapp/libs/api/Responses'
+import { connect } from 'react-redux'
+import { locationUpdated } from 'frontapp/reducers/locations/actionBuilders'
 import BasicInput from 'frontapp/rcl/BasicInput'
 import Button from 'frontapp/rcl/Button'
 import api from 'frontapp/api'
+import { Dispatch } from 'redux'
 
 interface Props {
   onSuccess: () => void
   location: LocationResponse
+  onUpdateLocation: (arg0: LocationResponse) => {}
 }
 
 interface State {
@@ -43,6 +47,9 @@ class LocationForm extends React.Component<Props, State> {
 
     if (response.code >= 400) {
       console.log("There was an error setting your information")
+    } else {
+      this.props.onUpdateLocation(response.data)
+      this.props.onSuccess()
     }
   }
 
@@ -73,4 +80,14 @@ class LocationForm extends React.Component<Props, State> {
   }
 
 }
-export default LocationForm
+
+const mapDispatch = (dispatch: Dispatch) => ({
+  onUpdateLocation: (location: LocationResponse) => {
+    dispatch(locationUpdated(location))
+  }
+})
+
+export default connect(
+  () => ({}),
+  mapDispatch,
+)(LocationForm)

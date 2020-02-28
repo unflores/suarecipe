@@ -43,7 +43,7 @@ class LocationRow extends React.Component<Props, State> {
               title="Modify Location"
               onClose={this.handleCloseModal}
             >
-              <LocationForm onSuccess={() => { }} location={location} />
+              <LocationForm onSuccess={this.handleCloseModal} location={location} />
             </Modal>
           }
           <button onClick={this.handleOpenModal}>Modify</button>
