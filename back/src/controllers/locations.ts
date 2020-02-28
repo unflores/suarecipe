@@ -23,7 +23,7 @@ router.patch('/:id', async function (req: Request, res: Response) {
   const location = await Location.findById(req.params.id)
 
   location.set(body.value).save().then(
-    _ => res.send({ location })
+    _ => res.send(location)
   ).catch(
     result => res.status(400).send(result)
   )
