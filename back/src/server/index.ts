@@ -3,7 +3,7 @@ import express = require('express')
 import * as path from 'path'
 import mongoose from '../../config/mongoose'
 import * as dotenv from 'dotenv'
-import buildRoutes from '../router'
+import buildRoutes from './router'
 dotenv.config()
 
 import bodyParser = require('body-parser')
@@ -15,7 +15,7 @@ const app = express()
 const baseDir =
   process.env.NODE_ENV === 'production'
     ? path.resolve('/app/back/dist/')
-    : path.resolve(__dirname)
+    : path.resolve(__dirname, "../../")
 
 // TODO wtf was I thinking here?
 mongoose(() => ({}))
