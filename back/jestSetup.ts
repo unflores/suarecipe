@@ -13,7 +13,7 @@ mongoose.Promise = Bluebird
 */
 function clearDB(done) {
   for (let i in mongoose.connection.collections) {
-    mongoose.connection.collections[i].remove(function() {})
+    mongoose.connection.collections[i].remove(function () { })
   }
   return done()
 }
@@ -21,7 +21,7 @@ function clearDB(done) {
 beforeEach((done) => {
   mongoose.connect(
     `mongodb://localhost:27017/${process.env.TEST_SUITE}`,
-    function(err) {
+    function (err) {
       if (err) {
         throw err
       }

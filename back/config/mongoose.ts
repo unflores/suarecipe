@@ -13,6 +13,9 @@ switch (env) {
   case 'development':
     config.url = 'mongodb://127.0.0.1:27017/planOtterPOC_development'
     break
+  case 'test':
+    config.url = 'mongodb://127.0.0.1:27017/planOtterPOC_test'
+    break
   case 'production':
     config.url = process.env.MONGODB_URI
     break
