@@ -1,6 +1,6 @@
 import * as parse from 'csv-parse'
-import mongoose from '../../config/mongoose'
-mongoose()
+import { dbSetup } from '../../config/mongoose'
+dbSetup()
 import * as Bluebird from 'bluebird'
 import { createReadStream } from 'fs'
 import { Document } from 'mongoose'

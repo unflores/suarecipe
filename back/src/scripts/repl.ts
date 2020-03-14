@@ -1,8 +1,8 @@
 import * as repl from 'repl'
 import * as dotenv from 'dotenv'
 dotenv.config()
-import mongoose from '../../config/mongoose'
-mongoose()
+import { dbSetup } from '../../config/mongoose'
+dbSetup()
 
 const replServer = repl.start('> ')
 import Location from '../models/location'

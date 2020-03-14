@@ -1,24 +1,24 @@
+import * as dotenv from 'dotenv'
+dotenv.config()
+
 import cookieParser = require('cookie-parser')
 import express = require('express')
 import * as path from 'path'
-import mongoose from '../../config/mongoose'
-import * as dotenv from 'dotenv'
+import { dbSetup } from '../../config/mongoose'
 import buildRoutes from './router'
-dotenv.config()
 
 import bodyParser = require('body-parser')
 // Simulate DELETE and PUT
 import methodOverride = require('method-override')
 import morgan = require('morgan')
 
+dbSetup()
+
 const app = express()
 const baseDir =
   process.env.NODE_ENV === 'production'
     ? path.resolve('/app/back/dist/')
     : path.resolve(__dirname, "../../")
-
-// TODO wtf was I thinking here?
-mongoose(() => ({}))
 
 // Middleware Setup
 app.use('/assets/', express.static(path.resolve(baseDir, 'assets'))) // Set location of static data

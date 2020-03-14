@@ -4,10 +4,6 @@ import * as request from 'supertest'
 
 const server = request(app)
 
-afterAll(() => {
-
-})
-
 describe('locations', () => {
   describe('get', () => {
     it('responds with a location array', async () => {

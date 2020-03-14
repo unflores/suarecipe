@@ -20,7 +20,7 @@ switch (env) {
     config.url = process.env.MONGODB_URI
     break
   default:
-    logger.fatal('Missing env!')
+    logger.fatal(`Missing env for '${env}'!`)
     process.exit()
 }
 mongoose.set('debug', true)
@@ -40,10 +40,8 @@ mongoose.connection.on('disconnected', () => {
   logger.info(`Mongoose default connection disconnected`)
 })
 
-export default (cb?: () => void) => {
-  mongoose.connect(
-    config.url,
-    cb,
-  )
-  return mongoose
+export const dbSetup = () => {
+  mongoose.connect(config.url)
 }
+
+export default mongoose
