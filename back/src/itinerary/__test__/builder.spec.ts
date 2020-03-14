@@ -1,8 +1,8 @@
+import { expect } from 'chai'
 import * as Promise from 'bluebird'
 import Location, { ILocation, ILocationModel } from '../../models/location'
 import * as Builder from '../builder'
-
-process.env.TEST_SUITE = 'builder-spec'
+require('../../specs/specHelper')
 
 describe('Builder', () => {
   beforeEach((done) => {
@@ -43,17 +43,18 @@ describe('Builder', () => {
     })
   })
 
-  test('should return an itinerary of 3 days', (done) => {
+  it('should return an itinerary of 3 days', (done) => {
     Builder.buildItinerary(3).then((itinerary) => {
-      expect(itinerary.length).toEqual(3)
+      expect(itinerary.length).to.equal(3)
       done()
     })
   })
 
-  test('should split mornings and evenings', (done) => {
+  it('should split mornings and evenings', (done) => {
     Builder.buildItinerary(3).then((itinerary) => {
-      expect(itinerary[0].morning.partsOfDay).toContain('morning')
+      expect(itinerary[0].morning.partsOfDay).to.contain('morning')
       done()
     })
   })
 })
+
