@@ -23,7 +23,10 @@ switch (env) {
     logger.fatal(`Missing env for '${env}'!`)
     process.exit()
 }
-mongoose.set('debug', true)
+if (env !== 'test') {
+  mongoose.set('debug', true)
+}
+
 mongoose.Promise = bluebird
 
 mongoose.connection.on('connected', () => {
@@ -35,13 +38,27 @@ mongoose.connection.on('error', (err) => {
   logger.error(`Mongoose default connection error: ${err}`)
 })
 
+let connection
+
 // When the connection is disconnected
 mongoose.connection.on('disconnected', () => {
   logger.info(`Mongoose default connection disconnected`)
 })
 
-export const dbSetup = () => {
-  mongoose.connect(config.url)
+export const dbSetup = async () => {
+  if (connection) {
+    return
+  }
+
+  connection = await mongoose.connection.openUri(config.url)
+}
+
+export const dbClose = async () => {
+  if (!connection) {
+    return
+  }
+
+  await connection.close()
 }
 
 export default mongoose

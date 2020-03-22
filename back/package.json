@@ -11,7 +11,7 @@
     "postbuild": "npm run copyStatic",
     "copyStatic": "node copyStatic.js ./ src ./dist",
     "tslint": "npx tslint --project ./tsconfig.json --config ./tslint.json -t verbose ",
-    "test": "mocha src/**/*.spec.ts -r ts-node/register -A",
+    "test": "NODE_ENV=test mocha src/**/*.spec.ts -r ts-node/register -A --file ./src/specs/setup.ts",
     "test:watch": "npm run test --watch",
     "console:development": "NODE_OPTIONS=--experimental-repl-await NODE_ENV=development ts-node --project ./tsconfig.json ./dist/src/scripts/repl.js",
     "static": "find ./src -name \"*.csv\" -type f -type f -exec cp --parents {} ./dist \\;"
@@ -57,8 +57,10 @@
   "devDependencies": {
     "@types/bunyan": "^1.8.5",
     "@types/chai": "^4.2.11",
+    "@types/express": "^4.17.3",
     "@types/joi": "^14.3.4",
     "@types/mocha": "^7.0.2",
+    "@types/morgan": "^1.9.0",
     "@types/node": "^10.12.18",
     "@types/supertest": "^2.0.8",
     "chai": "^4.2.0",

@@ -2,7 +2,7 @@ import { expect } from 'chai'
 import * as Promise from 'bluebird'
 import Location, { ILocation, ILocationModel } from '../../models/location'
 import * as Builder from '../builder'
-require('../../specs/specHelper')
+
 
 describe('Builder', () => {
   beforeEach((done) => {

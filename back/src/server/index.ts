@@ -2,17 +2,14 @@ import * as dotenv from 'dotenv'
 dotenv.config()
 
 import cookieParser = require('cookie-parser')
-import express = require('express')
+import * as express from 'express'
 import * as path from 'path'
-import { dbSetup } from '../../config/mongoose'
 import buildRoutes from './router'
 
-import bodyParser = require('body-parser')
+import * as bodyParser from 'body-parser'
 // Simulate DELETE and PUT
 import methodOverride = require('method-override')
-import morgan = require('morgan')
-
-dbSetup()
+import * as morgan from 'morgan'
 
 const app = express()
 const baseDir =
@@ -28,7 +25,7 @@ app.use('/assets/', (req, res) => {
 })
 
 app.use(morgan('dev')) // Log requests to console
-app.use(bodyParser.urlencoded({ extended: 'true' })) // Parse extended utf urls
+app.use(bodyParser.urlencoded({ extended: true })) // Parse extended utf urls
 app.use(cookieParser()) // Read cookies for auth
 app.use(bodyParser.json()) // Parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })) // Parse incoming data as json
