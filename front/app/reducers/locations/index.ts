@@ -1,34 +1,34 @@
 import { Actions, ActionReturnTypes } from './actionBuilders'
-import { LocationResponse } from 'frontapp/libs/api/Responses'
+import { IngredientResponse } from 'frontapp/libs/api/Responses'
 
 
-interface LocationHash {
-  [id: string]: LocationResponse
+interface IngredientHash {
+  [id: string]: IngredientResponse
 }
 
-export interface LocationsState {
-  readonly byId: LocationHash,
+export interface IngredientsState {
+  readonly byId: IngredientHash,
   readonly ids: string[]
 }
 
-export const initialState: LocationsState = {
+export const initialState: IngredientsState = {
   byId: {},
   ids: []
 }
 
-export function reduce(state: LocationsState = initialState, action: ActionReturnTypes): LocationsState {
-  let byId: LocationHash = {}
+export function reduce(state: IngredientsState = initialState, action: ActionReturnTypes): IngredientsState {
+  let byId: IngredientHash = {}
 
   switch (action.type) {
     case Actions.FETCH_LOCATIONS:
-      const ids = action.payload.locations.map((location: LocationResponse) => location._id)
+      const ids = action.payload.ingredients.map((ingredient: IngredientResponse) => ingredient._id)
 
-      action.payload.locations.forEach((location: LocationResponse) => byId[location._id] = location)
+      action.payload.ingredients.forEach((ingredient: IngredientResponse) => byId[ingredient._id] = ingredient)
       return { ...state, ids, byId }
       break
     case Actions.UPDATE_LOCATION:
       byId = Object.assign({}, state.byId)
-      byId[action.payload.location._id] = action.payload.location
+      byId[action.payload.ingredient._id] = action.payload.ingredient
 
       return { ...state, byId }
       break

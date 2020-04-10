@@ -1,37 +1,37 @@
-import { LocationResponse } from 'frontapp/libs/api/Responses'
+import { IngredientResponse } from 'frontapp/libs/api/Responses'
 
 export enum Actions {
-  FETCH_LOCATIONS = 'fetch_locations',
-  UPDATE_LOCATION = 'update_location'
+  FETCH_LOCATIONS = 'fetch_ingredients',
+  UPDATE_LOCATION = 'update_ingredient'
 }
 
-interface locationsFetchedReturn {
+interface ingredientsFetchedReturn {
   payload: {
-    locations: LocationResponse[]
+    ingredients: IngredientResponse[]
   },
   type: typeof Actions.FETCH_LOCATIONS
 }
 
-export const locationsFetched = (locations: LocationResponse[]): locationsFetchedReturn => ({
+export const ingredientsFetched = (ingredients: IngredientResponse[]): ingredientsFetchedReturn => ({
   payload: {
-    locations
+    ingredients
   },
   type: Actions.FETCH_LOCATIONS
 })
 
-interface locationUpdatedReturn {
+interface ingredientUpdatedReturn {
   payload: {
-    location: LocationResponse
+    ingredient: IngredientResponse
   },
   type: typeof Actions.UPDATE_LOCATION
 }
 
-export const locationUpdated = (location: LocationResponse): locationUpdatedReturn => ({
+export const ingredientUpdated = (ingredient: IngredientResponse): ingredientUpdatedReturn => ({
   payload: {
-    location
+    ingredient
   },
   type: Actions.UPDATE_LOCATION
 })
 
 
-export type ActionReturnTypes = locationUpdatedReturn | locationsFetchedReturn
+export type ActionReturnTypes = ingredientUpdatedReturn | ingredientsFetchedReturn

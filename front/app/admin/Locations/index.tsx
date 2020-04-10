@@ -1,24 +1,24 @@
 import * as React from 'react'
-import LocationRow from './LocationRow'
+import IngredientRow from './IngredientRow'
 import { IApplicationState } from 'frontapp/reducers'
 import { connect } from 'react-redux'
 import api from 'frontapp/api'
-import { LocationResponse } from 'frontapp/libs/api/Responses'
-import { locationsFetched } from 'frontapp/reducers/locations/actionBuilders'
+import { IngredientResponse } from 'frontapp/libs/api/Responses'
+import { ingredientsFetched } from 'frontapp/reducers/ingredients/actionBuilders'
 import { Dispatch } from 'redux'
 
 
 interface Props {
-  onFetchLocations: (locations: LocationResponse[]) => void
-  locations: LocationResponse[]
+  onFetchIngredients: (ingredients: IngredientResponse[]) => void
+  ingredients: IngredientResponse[]
 }
 
-class Locations extends React.Component<Props, {}> {
+class Ingredients extends React.Component<Props, {}> {
 
   async componentDidMount() {
-    const locationsResponse = await api.get<LocationResponse[]>('/api/locations/')
+    const ingredientsResponse = await api.get<IngredientResponse[]>('/api/ingredients/')
 
-    this.props.onFetchLocations(locationsResponse.data)
+    this.props.onFetchIngredients(ingredientsResponse.data)
   }
 
   render() {
@@ -35,10 +35,10 @@ class Locations extends React.Component<Props, {}> {
         </thead>
         <tbody>
           {
-            this.props.locations.map((location) =>
-              <LocationRow
-                key={location._id}
-                location={location}
+            this.props.ingredients.map((ingredient) =>
+              <IngredientRow
+                key={ingredient._id}
+                ingredient={ingredient}
               />
             )
           }
@@ -48,17 +48,17 @@ class Locations extends React.Component<Props, {}> {
   }
 }
 
-const mapState = ({ locations }: IApplicationState) => ({
-  locations: Object.values(locations.byId)
+const mapState = ({ ingredients }: IApplicationState) => ({
+  ingredients: Object.values(ingredients.byId)
 })
 
 const mapDispatch = (dispatch: Dispatch) => ({
-  onFetchLocations: (locations: LocationResponse[]) => {
-    dispatch(locationsFetched(locations))
+  onFetchIngredients: (ingredients: IngredientResponse[]) => {
+    dispatch(ingredientsFetched(ingredients))
   }
 })
 
 export default connect(
   mapState,
   mapDispatch,
-)(Locations)
+)(Ingredients)

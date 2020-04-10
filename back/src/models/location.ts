@@ -1,7 +1,7 @@
 import * as mongoose from 'mongoose'
 import * as uniqueValidator from 'mongoose-unique-validator'
 
-export interface ILocation {
+export interface IIngredient {
   name?: string
   type?: string
   partsOfDay?: string[]
@@ -13,7 +13,7 @@ export interface ILocation {
   city?: string
 }
 
-export interface ILocationModel extends ILocation, mongoose.Document {}
+export interface IIngredientModel extends IIngredient, mongoose.Document { }
 
 export enum dayParts {
   morning = 'morning',
@@ -21,7 +21,7 @@ export enum dayParts {
   night = 'night',
 }
 
-const locationSchema = new mongoose.Schema({
+const ingredientSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -72,6 +72,6 @@ const locationSchema = new mongoose.Schema({
   },
 })
 
-locationSchema.plugin(uniqueValidator)
+ingredientSchema.plugin(uniqueValidator)
 
-export default mongoose.model<ILocationModel>('Location', locationSchema)
+export default mongoose.model<IIngredientModel>('Ingredient', ingredientSchema)

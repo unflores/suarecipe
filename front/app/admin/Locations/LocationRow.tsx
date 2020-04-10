@@ -1,17 +1,17 @@
 import * as React from 'react'
-import { LocationResponse } from 'frontapp/libs/api/Responses'
+import { IngredientResponse } from 'frontapp/libs/api/Responses'
 import Modal from 'frontapp/rcl/modal'
-import LocationForm from 'frontapp/admin/Locations/LocationForm'
+import IngredientForm from 'frontapp/admin/Ingredients/IngredientForm'
 
 interface Props {
-  location: LocationResponse
+  ingredient: IngredientResponse
 }
 
 interface State {
   isModalVisible: boolean
 }
 
-class LocationRow extends React.Component<Props, State> {
+class IngredientRow extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props)
 
@@ -29,21 +29,21 @@ class LocationRow extends React.Component<Props, State> {
   }
 
   render() {
-    const { location } = this.props
+    const { ingredient } = this.props
 
     return (
       <tr>
-        <td>{location.name}</td>
-        <td>{location.type}</td>
-        <td>{location.address}</td>
-        <td>{location.zipcode}</td>
+        <td>{ingredient.name}</td>
+        <td>{ingredient.type}</td>
+        <td>{ingredient.address}</td>
+        <td>{ingredient.zipcode}</td>
         <td>
           {this.state.isModalVisible &&
             <Modal
-              title="Modify Location"
+              title="Modify Ingredient"
               onClose={this.handleCloseModal}
             >
-              <LocationForm onSuccess={this.handleCloseModal} location={location} />
+              <IngredientForm onSuccess={this.handleCloseModal} ingredient={ingredient} />
             </Modal>
           }
           <button onClick={this.handleOpenModal}>Modify</button>
@@ -53,4 +53,4 @@ class LocationRow extends React.Component<Props, State> {
   }
 }
 
-export default LocationRow;
+export default IngredientRow;

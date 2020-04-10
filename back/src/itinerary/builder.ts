@@ -1,9 +1,9 @@
 import logger from '../../config/logger'
-import Location, { ILocation } from '../models/location'
+import Ingredient, { IIngredient } from '../models/ingredient'
 
 interface IItinerary {
-  morning: ILocation
-  evening: ILocation
+  morning: IIngredient
+  evening: IIngredient
 }
 
 type DocumentChooser = (limit: number, choices: number) => number[]
@@ -45,12 +45,12 @@ export function buildItinerary(
   }
 
   const dayPlans = [
-    Location.find({})
+    Ingredient.find({})
       .where('partsOfDay')
       .equals('morning')
       .exec()
       .catch(queryCatch),
-    Location.find({})
+    Ingredient.find({})
       .where('partsOfDay')
       .in(['afternoon', 'night'])
       .exec()
@@ -62,11 +62,11 @@ export function buildItinerary(
   // in node
   return Promise.all(dayPlans).then(([mornings, evenings]) => {
     if (mornings.length < days) {
-      logger.error('Not enough morning locations available')
+      logger.error('Not enough morning ingredients available')
       return []
     }
     if (evenings.length < days) {
-      logger.error('Not enough evening locations available')
+      logger.error('Not enough evening ingredients available')
       return []
     }
 

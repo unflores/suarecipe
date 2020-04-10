@@ -18,7 +18,7 @@ const baseDir =
     : path.resolve(__dirname, "../../")
 
 // Middleware Setup
-app.use('/assets/', express.static(path.resolve(baseDir, 'assets'))) // Set location of static data
+app.use('/assets/', express.static(path.resolve(baseDir, 'assets'))) // Set ingredient of static data
 // If we didn't find it in assets, send a 404
 app.use('/assets/', (req, res) => {
   res.status(404).send('Not Found')

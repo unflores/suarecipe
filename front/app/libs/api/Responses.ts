@@ -23,7 +23,7 @@ export interface IItineraryResponse {
   itinerary: IDay[]
 }
 
-export interface LocationResponse {
+export interface IngredientResponse {
   _id: string
   name: string
   type: string

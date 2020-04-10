@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express'
 import * as Joi from '@hapi/joi'
-import Location from '../models/location'
+import Ingredient from '../models/ingredient'
 
 const schema = Joi.object({
   name: Joi.string(),
@@ -10,8 +10,8 @@ const schema = Joi.object({
 const router = Router()
 
 router.get('/', async function (req: Request, res: Response) {
-  const locations = await Location.find({})
-  res.send(locations)
+  const ingredients = await Ingredient.find({})
+  res.send(ingredients)
 })
 
 router.patch('/:id', async function (req: Request, res: Response) {
@@ -20,10 +20,10 @@ router.patch('/:id', async function (req: Request, res: Response) {
     return res.status(400).json({ error: body.error });
   }
 
-  const location = await Location.findById(req.params.id)
+  const ingredient = await Ingredient.findById(req.params.id)
 
-  location.set(body.value).save().then(
-    _ => res.send(location)
+  ingredient.set(body.value).save().then(
+    _ => res.send(ingredient)
   ).catch(
     result => res.status(400).send(result)
   )

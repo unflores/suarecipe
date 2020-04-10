@@ -1,15 +1,15 @@
 import { expect } from 'chai'
 import * as Promise from 'bluebird'
-import Location, { ILocation, ILocationModel } from '../../models/location'
+import Ingredient, { IIngredient, IIngredientModel } from '../../models/ingredient'
 import * as Builder from '../builder'
 
 
 describe('Builder', () => {
   beforeEach((done) => {
-    const locations: Array<Promise<ILocationModel>> = []
+    const ingredients: Array<Promise<IIngredientModel>> = []
 
     Array.from(Array(3)).forEach((val, index) => {
-      const eveningParams: ILocation = {
+      const eveningParams: IIngredient = {
         name: `nameevening${index}`,
         type: 'type',
         partsOfDay: ['afternoon'],
@@ -19,12 +19,12 @@ describe('Builder', () => {
         zipcode: 75010,
       }
 
-      const eveningLocation = new Location(eveningParams)
-      locations.push(eveningLocation.save())
+      const eveningIngredient = new Ingredient(eveningParams)
+      ingredients.push(eveningIngredient.save())
     })
 
     Array.from(Array(4)).forEach((val, index) => {
-      const morningParams: ILocation = {
+      const morningParams: IIngredient = {
         name: `namemorning${index}`,
         type: 'type',
         partsOfDay: ['morning'],
@@ -34,11 +34,11 @@ describe('Builder', () => {
         zipcode: 75010,
       }
 
-      const morningLocation = new Location(morningParams)
+      const morningIngredient = new Ingredient(morningParams)
 
-      locations.push(morningLocation.save())
+      ingredients.push(morningIngredient.save())
     })
-    Promise.all(locations).then((locs) => {
+    Promise.all(ingredients).then((locs) => {
       done()
     })
   })

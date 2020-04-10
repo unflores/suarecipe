@@ -6,9 +6,9 @@ import { createReadStream } from 'fs'
 import { Document } from 'mongoose'
 import * as path from 'path'
 import logger from '../../config/logger'
-import Location from '../models/location'
+import Ingredient from '../models/ingredient'
 
-interface IImportedLocation {
+interface IImportedIngredient {
   Name: string
   Description: string
   Type: string
@@ -32,8 +32,8 @@ class MasterListHandler {
     this.errors = []
   }
 
-  public handleData = (imported: IImportedLocation): void => {
-    const location = new Location({
+  public handleData = (imported: IImportedIngredient): void => {
+    const ingredient = new Ingredient({
       name: imported.Name,
       description: imported.Description,
       partsOfDay: imported['Day Part'].split(','),
@@ -45,7 +45,7 @@ class MasterListHandler {
     })
 
     this.tasks.push(
-      location.save().catch((err: Error) => {
+      ingredient.save().catch((err: Error) => {
         this.errors.push({
           error_listing: imported.Name,
           message: err.message,

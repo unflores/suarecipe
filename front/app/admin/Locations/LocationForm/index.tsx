@@ -1,7 +1,7 @@
 import * as React from 'react'
-import { LocationResponse } from 'frontapp/libs/api/Responses'
+import { IngredientResponse } from 'frontapp/libs/api/Responses'
 import { connect } from 'react-redux'
-import { locationUpdated } from 'frontapp/reducers/locations/actionBuilders'
+import { ingredientUpdated } from 'frontapp/reducers/ingredients/actionBuilders'
 import BasicInput from 'frontapp/rcl/BasicInput'
 import Button from 'frontapp/rcl/Button'
 import api from 'frontapp/api'
@@ -9,21 +9,21 @@ import { Dispatch } from 'redux'
 
 interface Props {
   onSuccess: () => void
-  location: LocationResponse
-  onUpdateLocation: (arg0: LocationResponse) => {}
+  ingredient: IngredientResponse
+  onUpdateIngredient: (arg0: IngredientResponse) => {}
 }
 
 interface State {
-  location: LocationResponse
+  ingredient: IngredientResponse
 }
 
-class LocationForm extends React.Component<Props, State> {
+class IngredientForm extends React.Component<Props, State> {
 
   constructor(props: Props) {
     super(props)
 
     this.state = {
-      location: props.location
+      ingredient: props.ingredient
     }
   }
 
@@ -33,44 +33,44 @@ class LocationForm extends React.Component<Props, State> {
     stateChange[name] = value
 
     this.setState({
-      location: { ...this.state.location, ...stateChange }
+      ingredient: { ...this.state.ingredient, ...stateChange }
     })
   }
 
   handleSubmit = async () => {
-    const location = this.state.location
+    const ingredient = this.state.ingredient
 
-    const response = await api.put<LocationResponse>(`/api/locations/${location._id}`, {
-      name: location.name,
-      zipcode: location.zipcode
+    const response = await api.put<IngredientResponse>(`/api/ingredients/${ingredient._id}`, {
+      name: ingredient.name,
+      zipcode: ingredient.zipcode
     })
 
     if (response.code >= 400) {
       console.log("There was an error setting your information")
     } else {
-      this.props.onUpdateLocation(response.data)
+      this.props.onUpdateIngredient(response.data)
       this.props.onSuccess()
     }
   }
 
   render() {
-    const { location } = this.state
+    const { ingredient } = this.state
     return (
       <form>
         <BasicInput
           labelText="Name: "
-          id={location._id}
+          id={ingredient._id}
           name="name"
-          value={location.name}
+          value={ingredient.name}
           onChange={this.updateObject}
         />
 
         <BasicInput
           labelText="Zip code:"
-          id={location.zipcode.toString()}
+          id={ingredient.zipcode.toString()}
           type="number"
           name="zipcode"
-          value={location.zipcode.toString()}
+          value={ingredient.zipcode.toString()}
           onChange={this.updateObject}
         />
 
@@ -82,12 +82,12 @@ class LocationForm extends React.Component<Props, State> {
 }
 
 const mapDispatch = (dispatch: Dispatch) => ({
-  onUpdateLocation: (location: LocationResponse) => {
-    dispatch(locationUpdated(location))
+  onUpdateIngredient: (ingredient: IngredientResponse) => {
+    dispatch(ingredientUpdated(ingredient))
   }
 })
 
 export default connect(
   () => ({}),
   mapDispatch,
-)(LocationForm)
+)(IngredientForm)

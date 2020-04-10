@@ -3,11 +3,11 @@ import * as request from 'supertest'
 
 const server = request(app)
 
-describe('locations', () => {
+describe('ingredients', () => {
   describe('get', () => {
-    it('responds with a location array', async () => {
+    it('responds with a ingredient array', async () => {
       await server
-        .get('/api/locations/')
+        .get('/api/ingredients/')
         .expect(200)
         .expect('derp')
     })

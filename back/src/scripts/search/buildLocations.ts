@@ -1,11 +1,11 @@
-import Location from '../../models/location'
+import Ingredient from '../../models/ingredient'
 import search from '../../initializers/search'
 
 async function buildIndex() {
-  const locationsIndex = await search.initIndex('locations')
-  const locations = await Location.find({}, 'id partsOfDay zipcode')
+  const ingredientsIndex = await search.initIndex('ingredients')
+  const ingredients = await Ingredient.find({}, 'id partsOfDay zipcode')
   try {
-    locationsIndex.addObjects(locations)
+    ingredientsIndex.addObjects(ingredients)
   } catch (error) {
     console.error(error)
   }

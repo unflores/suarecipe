@@ -13,7 +13,7 @@ const store = createStore(
 )
 
 import ItineraryBuilder from './ItineraryBuilder'
-import Locations from './admin/Locations'
+import Ingredients from './admin/Ingredients'
 
 const App = () => (
   <Provider store={store}>
@@ -24,8 +24,8 @@ const App = () => (
             <Route path="/builder">
               <ItineraryBuilder />
             </Route>
-            <Route path="/admin/locations">
-              <Locations />
+            <Route path="/admin/ingredients">
+              <Ingredients />
             </Route>
             <Route>
               <ItineraryBuilder />

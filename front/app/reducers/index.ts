@@ -1,16 +1,16 @@
 import { combineReducers } from 'redux'
 import itineraryBuilder from './itineraryBuilder'
 import { ItineraryBuilderState } from './itineraryBuilder'
-import { LocationsState, reduce as locations } from './locations'
+import { IngredientsState, reduce as ingredients } from './ingredients'
 
 export interface IApplicationState {
   itineraryBuilder: ItineraryBuilderState
-  locations: LocationsState
+  ingredients: IngredientsState
 }
 
 const rootReducer = combineReducers<IApplicationState>({
   itineraryBuilder,
-  locations
+  ingredients
 })
 
 export default rootReducer

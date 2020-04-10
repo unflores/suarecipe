@@ -1,7 +1,7 @@
 import itinerariesController from '../controllers/itineraries'
-import locationsController from '../controllers/locations'
+import ingredientsController from '../controllers/ingredients'
 
 export default (app) => {
   app.use('/api/itineraries', itinerariesController)
-  app.use('/api/locations', locationsController)
+  app.use('/api/ingredients', ingredientsController)
 }

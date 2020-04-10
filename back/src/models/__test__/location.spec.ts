@@ -1,8 +1,8 @@
 import { expect } from 'chai'
-import Location, { ILocation } from '../location'
+import Ingredient, { IIngredient } from '../ingredient'
 
-describe('Location', () => {
-  const subject = new Location({})
+describe('Ingredient', () => {
+  const subject = new Ingredient({})
 
   it('requires name', (done) => {
     subject.validate((error) => {
@@ -12,7 +12,7 @@ describe('Location', () => {
   })
 
   it('name is unique', (done) => {
-    const params: ILocation = {
+    const params: IIngredient = {
       name: 'name',
       type: 'type',
       partsOfDay: ['night'],
@@ -22,12 +22,12 @@ describe('Location', () => {
       address: 'street',
       zipcode: 75010,
     }
-    const location = new Location(params)
+    const ingredient = new Ingredient(params)
 
-    location.save((error) => {
+    ingredient.save((error) => {
       expect(error).to.be.an('null')
-      const location2 = new Location(params)
-      location2.save((error1) => {
+      const ingredient2 = new Ingredient(params)
+      ingredient2.save((error1) => {
         expect(error1.errors.name).not.to.be.an('undefined')
         done()
       })
@@ -49,16 +49,16 @@ describe('Location', () => {
   })
 
   it('requires partsOfDay to have values from dayParts enum', (done) => {
-    const location = new Location({ partsOfDay: ['derply'] })
-    location.validate((error) => {
+    const ingredient = new Ingredient({ partsOfDay: ['derply'] })
+    ingredient.validate((error) => {
       expect(error.errors.partsOfDay).not.to.be.an('undefined')
       done()
     })
   })
 
   it('requires siteLink to be a url', (done) => {
-    const location = new Location({ siteLink: 'derply' })
-    location.validate((error) => {
+    const ingredient = new Ingredient({ siteLink: 'derply' })
+    ingredient.validate((error) => {
       expect(error.errors.siteLink).not.to.be.an('undefined')
       done()
     })
