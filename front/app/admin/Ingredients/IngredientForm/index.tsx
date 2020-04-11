@@ -41,8 +41,7 @@ class IngredientForm extends React.Component<Props, State> {
     const ingredient = this.state.ingredient
 
     const response = await api.put<IngredientResponse>(`/api/ingredients/${ingredient._id}`, {
-      name: ingredient.name,
-      zipcode: ingredient.zipcode
+      name: ingredient.name
     })
 
     if (response.code >= 400) {
@@ -62,15 +61,6 @@ class IngredientForm extends React.Component<Props, State> {
           id={ingredient._id}
           name="name"
           value={ingredient.name}
-          onChange={this.updateObject}
-        />
-
-        <BasicInput
-          labelText="Zip code:"
-          id={ingredient.zipcode.toString()}
-          type="number"
-          name="zipcode"
-          value={ingredient.zipcode.toString()}
           onChange={this.updateObject}
         />
 

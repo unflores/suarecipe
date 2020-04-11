@@ -23,27 +23,27 @@ class Ingredients extends React.Component<Props, {}> {
 
   render() {
     return (
-      <table className="table table-striped">
-        <thead className="thead-light">
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Type</th>
-            <th scope="col">Address</th>
-            <th scope="col">Zipcode</th>
-            <th scope="col" />
-          </tr>
-        </thead>
-        <tbody>
-          {
-            this.props.ingredients.map((ingredient) =>
-              <IngredientRow
-                key={ingredient._id}
-                ingredient={ingredient}
-              />
-            )
-          }
-        </tbody>
-      </table>
+      <>
+        <h3>Ingredients</h3>
+        <table className="table table-striped">
+          <thead className="thead-light">
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col" />
+            </tr>
+          </thead>
+          <tbody>
+            {
+              this.props.ingredients.map((ingredient) =>
+                <IngredientRow
+                  key={ingredient._id}
+                  ingredient={ingredient}
+                />
+              )
+            }
+          </tbody>
+        </table>
+      </>
     )
   }
 }

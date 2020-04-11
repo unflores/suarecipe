@@ -34,9 +34,6 @@ class IngredientRow extends React.Component<Props, State> {
     return (
       <tr>
         <td>{ingredient.name}</td>
-        <td>{ingredient.type}</td>
-        <td>{ingredient.address}</td>
-        <td>{ingredient.zipcode}</td>
         <td>
           {this.state.isModalVisible &&
             <Modal

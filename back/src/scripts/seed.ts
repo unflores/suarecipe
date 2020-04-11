@@ -10,12 +10,7 @@ import Ingredient from '../models/ingredient'
 
 interface IImportedIngredient {
   Name: string
-  Description: string
-  Type: string
-  website: string
-  address: string
-  zipcode: string
-  Price: number
+
 }
 
 interface IErrorListing {
@@ -34,14 +29,7 @@ class MasterListHandler {
 
   public handleData = (imported: IImportedIngredient): void => {
     const ingredient = new Ingredient({
-      name: imported.Name,
-      description: imported.Description,
-      partsOfDay: imported['Day Part'].split(','),
-      type: imported.Type,
-      price: imported.Price,
-      siteLink: imported.website,
-      address: imported.address,
-      zipcode: imported.zipcode,
+      name: imported.Name
     })
 
     this.tasks.push(

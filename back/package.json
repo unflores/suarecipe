@@ -14,6 +14,7 @@
     "test": "NODE_ENV=test mocha src/**/*.spec.ts -r ts-node/register -A --file ./src/specs/setup.ts",
     "test:watch": "npm run test --watch",
     "console:development": "NODE_OPTIONS=--experimental-repl-await NODE_ENV=development ts-node --project ./tsconfig.json ./dist/src/scripts/repl.js",
+    "seed": "NODE_ENV=development ts-node --project ./tsconfig.json ./src/scripts/seed.ts",
     "static": "find ./src -name \"*.csv\" -type f -type f -exec cp --parents {} ./dist \\;"
   },
   "engines": {
