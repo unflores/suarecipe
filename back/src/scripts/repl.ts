@@ -6,11 +6,10 @@ dbSetup()
 
 const replServer = repl.start('> ')
 import Ingredient from '../models/ingredient'
+import Recipe from '../models/recipe'
 
-import search from '../initializers/search'
-
-replServer.context.search = search
 replServer.context.Ingredient = Ingredient
+replServer.context.Recipe = Recipe
 /* tslint:disable: no-console*/
 replServer.context.fin = (val) => {
   console.log(val)
