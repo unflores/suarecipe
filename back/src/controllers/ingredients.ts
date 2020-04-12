@@ -3,8 +3,7 @@ import * as Joi from '@hapi/joi'
 import Ingredient from '../models/ingredient'
 
 const schema = Joi.object({
-  name: Joi.string(),
-  zipcode: Joi.number()
+  name: Joi.string()
 })
 
 const router = Router()
