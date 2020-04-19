@@ -7,6 +7,7 @@
     "start": "node ./dist/index.js",
     "dev": "NODE_ENV=development npx nodemon --inspect ./dist/index.js | bunyan",
     "build": "npx tsc -d --project ./tsconfig.json",
+    "build:watch": "yarn run build -w",
     "build:production": "NODE_ENV=production npx tsc -d --project ./tsconfig.prod.json",
     "postbuild": "npm run copyStatic",
     "copyStatic": "node copyStatic.js ./ src ./dist",

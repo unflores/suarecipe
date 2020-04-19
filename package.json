@@ -8,7 +8,9 @@
   "scripts": {
     "start": "node ./back/dist/index.js",
     "postinstall": "yarn install --cwd back && yarn install --cwd front && yarn run buildSubs",
-    "buildSubs": "cd ./back ; yarn run build:production; cd ../ && cd front; yarn run build:production; cd ../"
+    "buildSubs": "cd ./back ; yarn run build:production; cd ../ && cd front; yarn run build:production; cd ../",
+    "dev": "cd ./back ; yarn run dev",
+    "build:watch": "cd ./back ; yarn run build:watch & cd ../front ; yarn run build:watch"
   },
   "license": "ISC",
   "devDependencies": {
