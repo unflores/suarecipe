@@ -1,10 +1,19 @@
-import * as mongoose from 'mongoose'
+import { Document, model, Types, Schema } from 'mongoose'
 import * as uniqueValidator from 'mongoose-unique-validator'
 
-const Schema = mongoose.Schema
-
-export interface IRecipe {
+export interface IRecipe extends Document {
   name?: string
+  steps?: Array<IStep>
+  usedIngredients?: Array<IUsedIngredient>
+}
+
+interface IUsedIngredient extends Document {
+  quantity: number
+  measurement: string
+}
+interface IStep extends Document {
+  id?: Types.ObjectId
+  body: string
 }
 
 const stepSchema = new Schema({
@@ -15,7 +24,7 @@ const stepSchema = new Schema({
 })
 
 const usedIngredientSchema = new Schema({
-  ingredient: { type: mongoose.Types.ObjectId, ref: 'Ingredient' },
+  ingredient: { type: Types.ObjectId, ref: 'Ingredient' },
   quantity: {
     type: Number,
     required: true
@@ -25,8 +34,6 @@ const usedIngredientSchema = new Schema({
     required: true
   }
 })
-
-export interface IRecipeModel extends IRecipe, mongoose.Document { }
 
 const recipeSchema = new Schema({
   name: {
@@ -40,4 +47,4 @@ const recipeSchema = new Schema({
 
 recipeSchema.plugin(uniqueValidator)
 
-export default mongoose.model<IRecipeModel>('Recipe', recipeSchema)
+export default model<IRecipe>('Recipe', recipeSchema)
