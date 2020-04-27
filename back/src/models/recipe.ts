@@ -3,8 +3,8 @@ import * as uniqueValidator from 'mongoose-unique-validator'
 
 export interface IRecipe extends Document {
   name?: string
-  steps?: Array<IStep>
-  usedIngredients?: Array<IUsedIngredient>
+  steps?: Types.DocumentArray<IStep>
+  usedIngredients?: Types.DocumentArray<IUsedIngredient>
 }
 
 interface IUsedIngredient extends Document {
