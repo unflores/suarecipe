@@ -12,7 +12,6 @@ const store = createStore(
   (window as any).__REDUX_DEVTOOLS_EXTENSION__(),
 )
 
-import ItineraryBuilder from './ItineraryBuilder'
 import Ingredients from './admin/Ingredients'
 
 const App = () => (
@@ -21,14 +20,11 @@ const App = () => (
       <div>
         <Main>
           <Switch>
-            <Route path="/builder">
-              <ItineraryBuilder />
-            </Route>
             <Route path="/admin/ingredients">
               <Ingredients />
             </Route>
             <Route>
-              <ItineraryBuilder />
+              <Ingredients />
             </Route>
           </Switch>
         </Main>

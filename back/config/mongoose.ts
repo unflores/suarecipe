@@ -11,10 +11,10 @@ const config: IConfig = {}
 
 switch (env) {
   case 'development':
-    config.url = 'mongodb://127.0.0.1:27017/planOtterPOC_development'
+    config.url = 'mongodb://127.0.0.1:27017/suarecipe_development'
     break
   case 'test':
-    config.url = 'mongodb://127.0.0.1:27017/planOtterPOC_test'
+    config.url = 'mongodb://127.0.0.1:27017/suarecipe_test'
     break
   case 'production':
     config.url = process.env.MONGODB_URI

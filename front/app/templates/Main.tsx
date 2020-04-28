@@ -8,7 +8,7 @@ const Main: React.SFC<IProps> = ({ children }) => (
   <div>
     <header>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand">PlanOtter</a>
+        <a className="navbar-brand">SuaRecipe</a>
       </nav>
     </header>
 
