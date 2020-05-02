@@ -8,7 +8,6 @@ const schema = Joi.object({
 
 const recipesController = Router()
 
-
 recipesController.get('/', async function (req: Request, res: Response) {
   const recipes = await Recipe.find().populate('usedIngredients.ingredient')
   res.send(recipes)

@@ -28,4 +28,4 @@ ingredientsController.patch('/:id', async function (req: Request, res: Response)
   )
 })
 
-export { ingredientsController };
+export { ingredientsController }

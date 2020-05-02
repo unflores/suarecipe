@@ -1,6 +1,7 @@
 import { ingredientsController } from '../controllers/ingredients'
-import { recipesController } from '../controllers/recipes'
+import { recipesController } from '../controllers/recipes/'
 import { stepsController } from '../controllers/recipes/steps'
+
 import { Express } from 'express'
 
 export default (app: Express) => {
