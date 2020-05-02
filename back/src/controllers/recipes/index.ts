@@ -6,15 +6,15 @@ const schema = Joi.object({
   name: Joi.string(),
 })
 
-const router = Router()
+const recipesController = Router()
 
 
-router.get('/', async function (req: Request, res: Response) {
+recipesController.get('/', async function (req: Request, res: Response) {
   const recipes = await Recipe.find().populate('usedIngredients.ingredient')
   res.send(recipes)
 })
 
-router.patch('/:id', async function (req: Request, res: Response) {
+recipesController.patch('/:id', async function (req: Request, res: Response) {
   const body = schema.validate(req.body)
   if (body.error) {
     return res.status(400).json({ error: body.error });
@@ -29,4 +29,4 @@ router.patch('/:id', async function (req: Request, res: Response) {
   )
 })
 
-export default router;
+export { recipesController }

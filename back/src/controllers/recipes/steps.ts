@@ -8,11 +8,11 @@ class ParamsError extends Error {
   }
 }
 
-const router = Router()
+const stepsController = Router()
 
 type RecipeRequest = Request & { recipe: IRecipe }
 
-router.param('recipe_id', async function (req: RecipeRequest, res: Response, next, recipe_id: string) {
+stepsController.param('recipe_id', async function (req: RecipeRequest, res: Response, next, recipe_id: string) {
   const recipe = await Recipe.findOne({ _id: recipe_id })
   if (recipe) {
     req.recipe = recipe
@@ -23,7 +23,7 @@ router.param('recipe_id', async function (req: RecipeRequest, res: Response, nex
 
 })
 
-router.post('/:recipe_id/steps', async function (req: RecipeRequest, res: Response) {
+stepsController.post('/:recipe_id/steps', async function (req: RecipeRequest, res: Response) {
   const formValues = req.body
   const recipe = req.recipe
 
@@ -32,7 +32,7 @@ router.post('/:recipe_id/steps', async function (req: RecipeRequest, res: Respon
   res.send({ step: recipe.steps[recipe.steps.length - 1] })
 })
 
-router.patch('/:recipe_id/steps', async function (req: RecipeRequest, res: Response) {
+stepsController.patch('/:recipe_id/steps', async function (req: RecipeRequest, res: Response) {
   const formValues = req.body
   const steps = formValues.steps
   const recipe = req.recipe
@@ -42,11 +42,11 @@ router.patch('/:recipe_id/steps', async function (req: RecipeRequest, res: Respo
   res.send({ steps: recipe.steps })
 })
 
-router.delete('/:recipe_id/steps/:step_id', async function (req: RecipeRequest, res: Response) {
+stepsController.delete('/:recipe_id/steps/:step_id', async function (req: RecipeRequest, res: Response) {
   const recipe = req.recipe
   await recipe.steps.id(req.params['step_id']).remove()
 
   res.send({ steps: recipe.steps })
 })
 
-export default router;
+export { stepsController }
