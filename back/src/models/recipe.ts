@@ -8,6 +8,7 @@ export interface IRecipe extends Document {
 }
 
 interface IUsedIngredient extends Document {
+  ingredient: Types.ObjectId
   quantity: number
   measurement: string
 }
