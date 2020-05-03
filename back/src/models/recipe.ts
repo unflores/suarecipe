@@ -48,4 +48,4 @@ const recipeSchema = new Schema({
 
 recipeSchema.plugin(uniqueValidator)
 
-export default model<IRecipe>('Recipe', recipeSchema)
+export const Recipe = model<IRecipe>('Recipe', recipeSchema)

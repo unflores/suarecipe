@@ -5,8 +5,8 @@ import { dbSetup } from '../../config/mongoose'
 dbSetup()
 
 const replServer = repl.start('> ')
-import Ingredient from '../models/ingredient'
-import Recipe from '../models/recipe'
+import { Ingredient } from 'src/models/ingredient'
+import { Recipe } from 'src/models/recipe'
 
 replServer.context.Ingredient = Ingredient
 replServer.context.Recipe = Recipe

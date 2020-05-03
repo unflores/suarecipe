@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import Ingredient, { IIngredient } from '../ingredient'
+import { Ingredient, IIngredient } from '../ingredient'
 
 describe('Ingredient', () => {
   const subject = new Ingredient({})

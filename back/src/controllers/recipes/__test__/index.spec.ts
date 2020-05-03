@@ -1,7 +1,7 @@
 import * as mongoose from 'mongoose'
 // import app from '../../../server'
 // import * as request from 'supertest'
-import Recipe, { IRecipe } from '../../../models/recipe'
+import { Recipe, IRecipe } from '../../../models/recipe'
 // import { expect } from 'chai'
 
 // const server = request(app)

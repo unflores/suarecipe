@@ -1,6 +1,6 @@
 import app from '../../server'
 import * as request from 'supertest'
-import Ingredient, { IIngredientModel } from '../../models/ingredient'
+import { Ingredient, IIngredientModel } from '../../models/ingredient'
 import { expect } from 'chai'
 
 const server = request(app)

@@ -21,4 +21,4 @@ const ingredientSchema = new mongoose.Schema({
 
 ingredientSchema.plugin(uniqueValidator)
 
-export default mongoose.model<IIngredientModel>('Ingredient', ingredientSchema)
+export const Ingredient = mongoose.model<IIngredientModel>('Ingredient', ingredientSchema)

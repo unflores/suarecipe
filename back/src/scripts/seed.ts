@@ -1,12 +1,12 @@
 import * as parse from 'csv-parse'
-import { dbSetup } from '../../config/mongoose'
+import { dbSetup } from 'config/mongoose'
 dbSetup()
 import * as Bluebird from 'bluebird'
 import { createReadStream } from 'fs'
 import { Document } from 'mongoose'
 import * as path from 'path'
-import logger from '../../config/logger'
-import Ingredient from '../models/ingredient'
+import logger from 'config/logger'
+import { Ingredient } from 'src/models/ingredient'
 
 interface IImportedIngredient {
   Name: string

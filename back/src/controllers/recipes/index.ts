@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express'
 import * as Joi from '@hapi/joi'
-import Recipe from '../../models/recipe'
+import { Recipe } from '../../models/recipe'
 
 const schema = Joi.object({
   name: Joi.string(),
