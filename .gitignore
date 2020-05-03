@@ -1,6 +1,8 @@
 # Built front assets dir
 front/assets/js/*
 
+back/.env
+
 # Build back assets dir
 dist
 
