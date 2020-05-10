@@ -22,11 +22,11 @@ async function update(req: Request, res: Response) {
   if (body.error) {
     return res.status(400).json({ error: body.error })
   }
-
-  req.paramObjects.recipe.set(body.value).save().then(
-    _ => res.send(req.paramObjects.recipe)
+  const { recipe } = req.paramObjects
+  recipe.set(body.value).save().then(
+    _ => res.send({ recipe })
   ).catch(
-    result => res.status(400).send(result)
+    result => res.status(400).send({ error: result })
   )
 }
 

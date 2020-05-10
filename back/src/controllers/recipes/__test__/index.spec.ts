@@ -68,6 +68,7 @@ describe('recipes', () => {
         .then(response => {
 
           const data = response.body
+          console.log({ data })
           expect(data.recipe.name).to.eql('Cheese dip')
         })
     })
