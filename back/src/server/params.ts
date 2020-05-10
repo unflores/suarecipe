@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
-import { IRecipe } from 'src/models/recipe'
-import { Recipe } from 'src/models/recipe'
-import { Ingredient, IIngredient } from 'src/models/ingredient'
+import { Recipe, IRecipe } from '../models/recipe'
+import { Ingredient, IIngredient } from '../models/ingredient'
 
 class ParamsError extends Error {
   constructor(message: string) {
