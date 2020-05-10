@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
-import { Recipe, IRecipe } from '../models/recipe'
-import { Ingredient, IIngredient } from '../models/ingredient'
+import { Recipe, IRecipeModel } from '../models/recipe'
+import { Ingredient, IIngredientModel } from '../models/ingredient'
 
 class ParamsError extends Error {
   constructor(message: string) {
@@ -10,8 +10,8 @@ class ParamsError extends Error {
 }
 
 interface ParamObjects {
-  recipe?: IRecipe
-  ingredient?: IIngredient
+  recipe?: IRecipeModel
+  ingredient?: IIngredientModel
 }
 
 // TODO: This should really go elsewhere

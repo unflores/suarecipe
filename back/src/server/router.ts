@@ -24,6 +24,7 @@ export default (app: Express) => {
 
   router
     .route('/api/recipes/')
+    .post(recipesController.create)
     .get(recipesController.list)
 
   router
