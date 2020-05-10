@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
-import { Recipe, IRecipeModel } from '../models/recipe'
-import { Ingredient, IIngredientModel } from '../models/ingredient'
+import { Recipe } from '../models/recipe'
+import { Ingredient } from '../models/ingredient'
 
 class ParamsError extends Error {
   constructor(message: string) {
@@ -9,19 +9,6 @@ class ParamsError extends Error {
   }
 }
 
-interface ParamObjects {
-  recipe?: IRecipeModel
-  ingredient?: IIngredientModel
-}
-
-// TODO: This should really go elsewhere
-declare global {
-  namespace Express {
-    interface Request {
-      paramObjects?: ParamObjects
-    }
-  }
-}
 
 export const findIngredient = async function (
   req: Request,
