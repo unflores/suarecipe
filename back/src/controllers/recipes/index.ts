@@ -6,12 +6,12 @@ const schema = Joi.object({
   name: Joi.string(),
 })
 
-const list = async function (req: Request, res: Response) {
+async function list(req: Request, res: Response) {
   const recipes = await Recipe.find().populate('usedIngredients.ingredient')
   res.send(recipes)
 }
 
-const update = async function (req: Request, res: Response) {
+async function update(req: Request, res: Response) {
   const body = schema.validate(req.body)
   if (body.error) {
     return res.status(400).json({ error: body.error });

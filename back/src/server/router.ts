@@ -9,11 +9,18 @@ const router = Router()
 
 export default (app: Express) => {
 
-  app.use('/api/ingredients', ingredientsController)
-
   router
     .param('recipe_id', findRecipe)
     .param('ingredient_id', findIngredient)
+
+  router
+    .route('/api/ingredients')
+    .get(ingredientsController.list)
+
+  router
+    .route('/api/ingredients/:ingredients_id')
+    .patch(ingredientsController.update)
+
 
   router
     .route('/api/recipes/')

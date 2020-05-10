@@ -1,4 +1,4 @@
-import { Request, Response, Router } from 'express'
+import { Request, Response } from 'express'
 import * as Joi from '@hapi/joi'
 import { Ingredient } from '../models/ingredient'
 
@@ -6,14 +6,12 @@ const schema = Joi.object({
   name: Joi.string()
 })
 
-const ingredientsController = Router()
-
-ingredientsController.get('/', async function (req: Request, res: Response) {
+async function list(req: Request, res: Response) {
   const ingredients = await Ingredient.find({})
   res.send(ingredients)
-})
+}
 
-ingredientsController.patch('/:id', async function (req: Request, res: Response) {
+async function update(req: Request, res: Response) {
   const body = schema.validate(req.body)
   if (body.error) {
     return res.status(400).json({ error: body.error });
@@ -26,6 +24,9 @@ ingredientsController.patch('/:id', async function (req: Request, res: Response)
   ).catch(
     result => res.status(400).send(result)
   )
-})
+}
 
-export { ingredientsController }
+export const ingredientsController = {
+  list,
+  update
+}
