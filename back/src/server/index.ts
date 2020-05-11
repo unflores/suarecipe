@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv'
 dotenv.config()
 
-import cookieParser = require('cookie-parser')
+import * as cookieParser from 'cookie-parser'
 import * as express from 'express'
 require('express-async-errors')
 import * as path from 'path'
