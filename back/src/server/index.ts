@@ -5,7 +5,7 @@ import cookieParser = require('cookie-parser')
 import * as express from 'express'
 require('express-async-errors')
 import * as path from 'path'
-import buildRoutes from './router'
+import { router } from './router'
 import handleExceptions from './exceptionHandler'
 
 import * as bodyParser from 'body-parser'
@@ -35,7 +35,7 @@ app.use(methodOverride())
 
 
 
-buildRoutes(app)
+app.use(router)
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(baseDir, 'index.html'))
