@@ -10,7 +10,7 @@ import handleExceptions from './exceptionHandler'
 
 import * as bodyParser from 'body-parser'
 // Simulate DELETE and PUT
-import methodOverride = require('method-override')
+import * as methodOverride from 'method-override'
 import * as morgan from 'morgan'
 
 const app = express()
