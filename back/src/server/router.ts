@@ -7,7 +7,6 @@ import { Router } from 'express'
 
 const router = Router()
 
-
 router
   .param('recipe_id', findRecipe)
   .param('ingredient_id', findIngredient)

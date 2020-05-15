@@ -6,7 +6,7 @@ import * as express from 'express'
 require('express-async-errors')
 import * as path from 'path'
 import { router } from './router'
-import handleExceptions from './exceptionHandler'
+import { errorHandler } from './errorHandler'
 
 import * as bodyParser from 'body-parser'
 // Simulate DELETE and PUT
@@ -41,6 +41,6 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve(baseDir, 'index.html'))
 })
 
-handleExceptions(app)
+app.use(errorHandler)
 
 export default app

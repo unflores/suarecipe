@@ -1,14 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
 import { Recipe } from '../models/recipe'
 import { Ingredient } from '../models/ingredient'
-
-class ParamsError extends Error {
-  constructor(message: string) {
-    super(message)
-    this.name = 'ParamsError'
-  }
-}
-
+import { ResourceNotFoundError } from './errorHandler'
 
 export const findIngredient = async function (
   req: Request,
@@ -22,7 +15,7 @@ export const findIngredient = async function (
     req.paramObjects.ingredient = ingredient
     next()
   } else {
-    next(new ParamsError('Failed to load ingredient from params'))
+    next(new ResourceNotFoundError('Failed to load ingredient from params'))
   }
 }
 
@@ -38,7 +31,7 @@ export const findRecipe = async function (
     req.paramObjects.recipe = recipe
     next()
   } else {
-    next(new ParamsError('Failed to load recipe from params'))
+    next(new ResourceNotFoundError('Failed to load recipe from params'))
   }
 
 }
