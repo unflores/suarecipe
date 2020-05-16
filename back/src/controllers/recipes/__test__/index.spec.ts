@@ -46,7 +46,7 @@ describe('recipes', () => {
       await server
         .post('/api/recipes/')
         .send({
-          name: 'Bean dip',
+          recipe: { name: 'Bean dip' }
         })
         .expect(200)
         .then(response => {
