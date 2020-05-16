@@ -5,7 +5,7 @@ import * as Bluebird from 'bluebird'
 import { createReadStream } from 'fs'
 import { Document } from 'mongoose'
 import * as path from 'path'
-import logger from 'config/logger'
+import { logger } from 'config/logger'
 import { Ingredient } from 'src/models/ingredient'
 
 interface IImportedIngredient {

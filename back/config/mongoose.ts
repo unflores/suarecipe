@@ -1,6 +1,6 @@
 import * as bluebird from 'bluebird'
 import mongoose = require('mongoose')
-import logger from './logger'
+import { logger } from './logger'
 const env = process.env.NODE_ENV
 
 interface IConfig {

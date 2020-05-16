@@ -1,7 +1,7 @@
 import * as bunyan from 'bunyan'
 
-const log = bunyan.createLogger({
+const logger = bunyan.createLogger({
   name: 'suarecipe',
 })
 
-export default log
+export { logger }

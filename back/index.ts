@@ -1,4 +1,4 @@
-import logger from './config/logger'
+import { logger } from './config/logger'
 import app from './src/server'
 import { dbSetup } from './config/mongoose'
 

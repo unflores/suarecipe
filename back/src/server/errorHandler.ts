@@ -1,6 +1,6 @@
 
 import { Response, Request, NextFunction } from 'express'
-
+import { logger } from '../../config/logger'
 export class ResourceNotFoundError extends Error {
   constructor(message: string) {
     super(message)
@@ -10,6 +10,9 @@ export class ResourceNotFoundError extends Error {
 
 export function errorHandler(error: Error, req: Request, res: Response, next: NextFunction) {
   let code: number
+
+  logger.error({ message: error.message, stacktrace: error.stack })
+
 
   switch (error.name) {
     case 'ResourceNotFoundError':
