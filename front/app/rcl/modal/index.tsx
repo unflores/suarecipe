@@ -33,7 +33,6 @@ class Modal extends React.Component<Props, {}> {
     window.removeEventListener('keydown', this.handleKeyDown);
   }
 
-
   render() {
 
     const { onClose, title, children } = this.props

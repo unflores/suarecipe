@@ -17,6 +17,8 @@ interface State {
   ingredient: IngredientResponse
 }
 
+const ENTER_KEY = 13
+
 class IngredientForm extends React.Component<Props, State> {
 
   constructor(props: Props) {
@@ -25,6 +27,25 @@ class IngredientForm extends React.Component<Props, State> {
     this.state = {
       ingredient: props.ingredient
     }
+  }
+
+  handleKeyDown = (event: KeyboardEvent): any => {
+    switch (event.keyCode) {
+      case ENTER_KEY:
+        this.handleSubmit()
+        event.preventDefault()
+        break;
+      default:
+        break;
+    }
+  }
+
+  componentDidMount(): void {
+    window.addEventListener('keydown', this.handleKeyDown);
+  }
+
+  componentWillUnmount(): void {
+    window.removeEventListener('keydown', this.handleKeyDown);
   }
 
   updateObject = (event: React.FormEvent<HTMLInputElement>) => {
