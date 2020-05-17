@@ -16,7 +16,7 @@ router
   .get(ingredientsController.list)
 
 router
-  .route('/api/ingredients/:ingredients_id')
+  .route('/api/ingredients/:ingredient_id')
   .patch(ingredientsController.update)
 
 

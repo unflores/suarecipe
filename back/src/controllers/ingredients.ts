@@ -12,12 +12,12 @@ async function list(req: Request, res: Response) {
 }
 
 async function update(req: Request, res: Response) {
+  const { ingredient } = req.paramObjects
   const body = schema.validate(req.body)
   if (body.error) {
     return res.status(400).json({ error: body.error });
   }
 
-  const ingredient = await Ingredient.findById(req.params.id)
 
   ingredient.set(body.value).save().then(
     _ => res.send(ingredient)
