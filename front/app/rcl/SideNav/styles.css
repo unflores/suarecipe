@@ -1,0 +1,32 @@
+.sidebar {
+  min-width: 15ex;
+  max-width: 15ex;
+  min-height: 100vh;
+  background: #7386D5;
+}
+
+.header{
+  background: #6d7fcc;
+  color: #fff;
+  padding: 2ex;
+}
+
+.active{
+  background: #6d7fcc;
+}
+
+.components {
+  padding: 20px 0;
+}
+
+.components li a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding-left: 2ex
+}
+
+.components li a:hover {
+  color: #7386D5;
+  background: #fff;
+}
