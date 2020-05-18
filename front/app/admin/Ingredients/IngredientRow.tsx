@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { IngredientResponse } from 'frontapp/libs/api/Responses'
-import Modal from 'frontapp/rcl/modal'
+import Modal from 'frontapp/rcl/Modal'
 import IngredientForm from 'frontapp/admin/Ingredients/IngredientForm'
 
 interface Props {
