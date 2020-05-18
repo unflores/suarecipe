@@ -3,6 +3,7 @@ import { IngredientResponse } from 'frontapp/libs/api/Responses'
 import { connect } from 'react-redux'
 import { ingredientUpdated } from 'frontapp/reducers/ingredients/actionBuilders'
 import BasicInput from 'frontapp/rcl/BasicInput'
+import Form from 'frontapp/rcl/Form'
 import Button from 'frontapp/rcl/Button'
 import api from 'frontapp/api'
 import { Dispatch } from 'redux'
@@ -27,25 +28,6 @@ class IngredientForm extends React.Component<Props, State> {
     this.state = {
       ingredient: props.ingredient
     }
-  }
-
-  handleKeyDown = (event: KeyboardEvent): any => {
-    switch (event.keyCode) {
-      case ENTER_KEY:
-        this.handleSubmit()
-        event.preventDefault()
-        break;
-      default:
-        break;
-    }
-  }
-
-  componentDidMount(): void {
-    window.addEventListener('keydown', this.handleKeyDown);
-  }
-
-  componentWillUnmount(): void {
-    window.removeEventListener('keydown', this.handleKeyDown);
   }
 
   updateObject = (event: React.FormEvent<HTMLInputElement>) => {
@@ -76,7 +58,9 @@ class IngredientForm extends React.Component<Props, State> {
   render() {
     const { ingredient } = this.state
     return (
-      <form>
+      <Form
+        handleSubmit={this.handleSubmit}
+      >
         <BasicInput
           labelText="Name: "
           id={ingredient._id}
@@ -84,9 +68,7 @@ class IngredientForm extends React.Component<Props, State> {
           value={ingredient.name}
           onChange={this.updateObject}
         />
-
-        <Button onClick={this.handleSubmit} />
-      </form >
+      </Form >
     )
   }
 
