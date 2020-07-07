@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { ingredientUpdated } from 'frontapp/reducers/ingredients/actionBuilders'
 import BasicInput from 'frontapp/rcl/BasicInput'
 import Form from 'frontapp/rcl/Form'
-import Button from 'frontapp/rcl/Button'
 import api from 'frontapp/api'
 import { Dispatch } from 'redux'
 
