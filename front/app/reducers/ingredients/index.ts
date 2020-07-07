@@ -20,13 +20,13 @@ export function reduce(state: IngredientsState = initialState, action: ActionRet
   let byId: IngredientHash = {}
 
   switch (action.type) {
-    case Actions.FETCH_LOCATIONS:
+    case Actions.FETCH_INGREDIENTS:
       const ids = action.payload.ingredients.map((ingredient: IngredientResponse) => ingredient._id)
 
       action.payload.ingredients.forEach((ingredient: IngredientResponse) => byId[ingredient._id] = ingredient)
       return { ...state, ids, byId }
       break
-    case Actions.UPDATE_LOCATION:
+    case Actions.UPDATE_INGREDIENT:
       byId = Object.assign({}, state.byId)
       byId[action.payload.ingredient._id] = action.payload.ingredient
 
