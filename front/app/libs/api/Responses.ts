@@ -9,8 +9,4 @@ interface IEvent {
 export interface IngredientResponse {
   _id: string
   name: string
-  type: string
-  address: string
-  siteLink: string
-  zipcode: number
 }
