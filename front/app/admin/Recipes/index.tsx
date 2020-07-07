@@ -4,6 +4,7 @@ import RecipeRow from './RecipeRow'
 import { connect } from 'react-redux'
 import api from 'frontapp/api'
 import { Recipe, RecipesResponse } from 'frontapp/libs/api/Responses'
+import AdminTable from 'frontapp/rcl/AdminTable'
 import { recipesFetched } from 'frontapp/reducers/recipes/actionBuilders'
 import { Dispatch } from 'redux'
 
@@ -24,24 +25,18 @@ class Recipes extends React.Component<Props, {}> {
     return (
       <>
         <h3>Recipes</h3>
-        <table className="table table-striped">
-          <thead className="thead-light">
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col" />
-            </tr>
-          </thead>
-          <tbody>
-            {
-              this.props.recipes.map((recipe) =>
-                <RecipeRow
-                  key={recipe._id}
-                  recipe={recipe}
-                />
-              )
-            }
-          </tbody>
-        </table>
+        <AdminTable
+          headers={['Name', '']}
+        >
+          {
+            this.props.recipes.map((recipe) =>
+              <RecipeRow
+                key={recipe._id}
+                recipe={recipe}
+              />
+            )
+          }
+        </AdminTable>
       </>
     )
   }

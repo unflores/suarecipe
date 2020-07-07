@@ -3,6 +3,7 @@ import IngredientRow from './IngredientRow'
 import { IApplicationState } from 'frontapp/reducers'
 import { connect } from 'react-redux'
 import api from 'frontapp/api'
+import AdminTable from 'frontapp/rcl/AdminTable'
 import { IngredientResponse } from 'frontapp/libs/api/Responses'
 import { ingredientsFetched } from 'frontapp/reducers/ingredients/actionBuilders'
 import { Dispatch } from 'redux'
@@ -25,24 +26,18 @@ class Ingredients extends React.Component<Props, {}> {
     return (
       <>
         <h3>Ingredients</h3>
-        <table className="table table-striped">
-          <thead className="thead-light">
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col" />
-            </tr>
-          </thead>
-          <tbody>
-            {
-              this.props.ingredients.map((ingredient) =>
-                <IngredientRow
-                  key={ingredient._id}
-                  ingredient={ingredient}
-                />
-              )
-            }
-          </tbody>
-        </table>
+        <AdminTable
+          headers={['Name', '']}
+        >
+          {
+            this.props.ingredients.map((ingredient) =>
+              <IngredientRow
+                key={ingredient._id}
+                ingredient={ingredient}
+              />
+            )
+          }
+        </AdminTable>
       </>
     )
   }
