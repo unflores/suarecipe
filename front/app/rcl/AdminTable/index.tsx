@@ -13,7 +13,7 @@ class AdminTable extends React.Component<Props, {}> {
           <tr>
             {
               this.props.headers.map((header) =>
-                <th scope="col">{header}</th>
+                <th key={header} scope="col">{header}</th>
               )
             }
           </tr>
