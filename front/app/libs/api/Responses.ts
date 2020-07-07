@@ -6,23 +6,6 @@ interface IEvent {
   address: string
 }
 
-interface IEvening extends IEvent {
-  partsOfDay: ['night', 'afternoon']
-}
-
-interface IMorning extends IEvent {
-  partsOfDay: ['morning']
-}
-
-export interface IDay {
-  evening: IEvening
-  morning: IMorning
-}
-
-export interface IItineraryResponse {
-  itinerary: IDay[]
-}
-
 export interface IngredientResponse {
   _id: string
   name: string
