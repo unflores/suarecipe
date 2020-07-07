@@ -11,6 +11,7 @@ export default function SideNav() {
       </div>
 
       <ul className={styles.components}>
+        <li><Link to="/admin/recipes">Recipes</Link></li>
         <li><Link to="/admin/ingredients">Ingredients</Link></li>
       </ul>
     </nav >

@@ -13,6 +13,7 @@ const store = createStore(
 )
 
 import Ingredients from './admin/Ingredients'
+import Recipes from './admin/Recipes'
 
 const App = () => (
   <Provider store={store}>
@@ -22,6 +23,9 @@ const App = () => (
           <Switch>
             <Route path="/admin/ingredients">
               <Ingredients />
+            </Route>
+            <Route path="/admin/recipes">
+              <Recipes />
             </Route>
             <Route>
               <Ingredients />
