@@ -1,0 +1,13 @@
+.container {
+  position: relative;
+  top: -16px;
+  width: 20rem;
+}
+
+.results {
+  position: absolute;
+  background: #fff;
+  width: 100%;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
