@@ -52,7 +52,7 @@ class Search extends React.Component<Props, State> {
         <div className={styles.container}>
           <div className={styles.results}>
             {this.state.searchResults.map((result) =>
-              <div key={result.id}>{result.value}</div>
+              <div className={styles.result} key={result.id}>{result.value}</div>
             )}
           </div>
         </div>
