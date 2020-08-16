@@ -1,6 +1,9 @@
 import * as React from 'react'
+import * as ReactDOM from 'react-dom';
 import BasicInput from 'frontapp/rcl/BasicInput'
 import * as styles from './styles.css'
+
+const ESCAPE_KEY = 27
 
 interface State {
   search: string
@@ -27,6 +30,19 @@ class Search extends React.Component<Props, State> {
     }
   }
 
+
+
+
+  componentDidMount(): void {
+    window.addEventListener('mousedown', this.handleClickOutside);
+    window.addEventListener('keydown', this.handleKeyDown);
+  }
+
+  componentWillUnmount(): void {
+    window.removeEventListener('keydown', this.handleKeyDown);
+    window.removeEventListener('mousedown', this.handleClickOutside);
+  }
+
   updateSearch = async (event: React.FormEvent<HTMLInputElement>) => {
     const { value } = event.currentTarget
 
@@ -39,9 +55,33 @@ class Search extends React.Component<Props, State> {
     this.setState({ searchResults })
   }
 
+
+  clearResults = () => {
+    this.setState({ search: '', searchResults: [] })
+  }
+  handleKeyDown = (event: KeyboardEvent): any => {
+    switch (event.keyCode) {
+      case ESCAPE_KEY:
+        this.clearResults()
+        break;
+      default:
+        break;
+    }
+  }
+  handleClickOutside = (event: MouseEvent) => {
+    const domNode = ReactDOM.findDOMNode(this);
+    if (!(event.target instanceof HTMLElement)) {
+      return
+    }
+
+    if (!domNode || !domNode.contains(event.target)) {
+      this.clearResults()
+    }
+  }
+
   render() {
     return (
-      <>
+      <div ref={this.wrapperRef}>
         <BasicInput
           id={'temp thing'}
           labelText=""
@@ -56,7 +96,7 @@ class Search extends React.Component<Props, State> {
             )}
           </div>
         </div>
-      </>
+      </div>
     )
   }
 }
