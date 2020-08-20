@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import * as Joi from '@hapi/joi'
-import { Recipe } from '../../models/recipe'
+import { Recipe, IRecipe } from '../../models/recipe'
 
 const schema = Joi.object({
   name: Joi.string(),
@@ -14,7 +14,15 @@ async function create(req: Request, res: Response) {
 }
 
 async function list(req: Request, res: Response) {
-  const recipes = await Recipe.find().populate('usedIngredients.ingredient')
+  const { search } = req.query
+  let recipes: IRecipe[]
+
+  if (search) {
+    recipes = await Recipe.find({ name: { $in: new RegExp(`${search}`, 'i') } }).populate('usedIngredients.ingredient')
+  } else {
+    recipes = await Recipe.find().populate('usedIngredients.ingredient')
+  }
+
   res.send({ recipes: recipes })
 }
 
