@@ -11,7 +11,8 @@ interface State {
 }
 
 interface Props {
-  onSearch: (search: String) => SearchResults[]
+  onSearch: (search: string) => SearchResults[]
+  onSelect: (id: string) => void
 }
 
 interface SearchResults {
@@ -30,19 +31,6 @@ class Search extends React.Component<Props, State> {
     }
   }
 
-
-
-
-  componentDidMount(): void {
-    window.addEventListener('mousedown', this.handleClickOutside);
-    window.addEventListener('keydown', this.handleKeyDown);
-  }
-
-  componentWillUnmount(): void {
-    window.removeEventListener('keydown', this.handleKeyDown);
-    window.removeEventListener('mousedown', this.handleClickOutside);
-  }
-
   updateSearch = async (event: React.FormEvent<HTMLInputElement>) => {
     const { value } = event.currentTarget
 
@@ -55,10 +43,25 @@ class Search extends React.Component<Props, State> {
     this.setState({ searchResults })
   }
 
-
   clearResults = () => {
     this.setState({ search: '', searchResults: [] })
   }
+
+  handleSelect = (id: string) => {
+    this.clearResults()
+    this.props.onSelect(id)
+  }
+
+  componentDidMount(): void {
+    window.addEventListener('mousedown', this.handleClickOutside);
+    window.addEventListener('keydown', this.handleKeyDown);
+  }
+
+  componentWillUnmount(): void {
+    window.removeEventListener('keydown', this.handleKeyDown);
+    window.removeEventListener('mousedown', this.handleClickOutside);
+  }
+
   handleKeyDown = (event: KeyboardEvent): any => {
     switch (event.keyCode) {
       case ESCAPE_KEY:
@@ -68,6 +71,7 @@ class Search extends React.Component<Props, State> {
         break;
     }
   }
+
   handleClickOutside = (event: MouseEvent) => {
     const domNode = ReactDOM.findDOMNode(this);
     if (!(event.target instanceof HTMLElement)) {
@@ -81,7 +85,7 @@ class Search extends React.Component<Props, State> {
 
   render() {
     return (
-      <div ref={this.wrapperRef}>
+      <div>
         <BasicInput
           id={'temp thing'}
           labelText=""
@@ -92,7 +96,13 @@ class Search extends React.Component<Props, State> {
         <div className={styles.container}>
           <div className={styles.results}>
             {this.state.searchResults.map((result) =>
-              <div className={styles.result} key={result.id}>{result.value}</div>
+              <div
+                className={styles.result}
+                key={result.id}
+                onClick={() => this.handleSelect(result.id)}
+              >
+                {result.value}
+              </div>
             )}
           </div>
         </div>
