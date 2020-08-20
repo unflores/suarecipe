@@ -19,6 +19,22 @@ async function buildResults<T>(responseData: Response):
   }
 }
 
+interface Params {
+  [key: string]: any
+}
+
+function buildQueryString(queryParams: Params): string {
+  const params = Object.keys(queryParams)
+  if (params.length === 0) {
+    return ""
+  }
+
+  let esc = encodeURIComponent;
+  return "?" + params
+    .map(k => esc(k) + '=' + esc(queryParams[k]))
+    .join('&');
+}
+
 /**
  * Simple wrapper over http fetch function
  *
@@ -42,10 +58,10 @@ export default {
       console.warn(error)
     }
   },
-  get: async <T>(path: string, body = {}, headers = {}) => {
+  get: async <T>(path: string, query = {}, headers = {}) => {
     let response
     try {
-      response = await fetch(path, {
+      response = await fetch(path + buildQueryString(query), {
         method: 'GET',
         headers: { ...baseHeaders, ...headers },
       })
