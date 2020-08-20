@@ -11,7 +11,7 @@ interface State {
 }
 
 interface Props {
-  onSearch: (search: string) => SearchResults[]
+  onSearch: (search: string) => Promise<SearchResults[]>
   onSelect: (id: string) => void
 }
 
@@ -31,7 +31,7 @@ class Search extends React.Component<Props, State> {
     }
   }
 
-  updateSearch = async (event: React.FormEvent<HTMLInputElement>) => {
+  handleSearch = async (event: React.FormEvent<HTMLInputElement>) => {
     const { value } = event.currentTarget
 
     this.setState({
@@ -91,7 +91,7 @@ class Search extends React.Component<Props, State> {
           labelText=""
           value={this.state.search}
           name="temp"
-          onChange={this.updateSearch}
+          onChange={this.handleSearch}
         />
         <div className={styles.container}>
           <div className={styles.results}>

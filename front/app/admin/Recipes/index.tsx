@@ -14,8 +14,15 @@ interface Props {
   onFetchRecipes: (response: RecipesResponse) => void
 }
 
+const transformToSearchResults = (recipes: Recipe[]) => {
+  return recipes.map((recipe) => ({
+    id: recipe._id,
+    value: recipe.name
+  }))
+}
+
 const buildRecipes = (amount: number) => {
-  return Array.from(Array(amount)).map((_x, i) => ({ value: `Some recipe ${i}`, id: `${i}` })
+  return Array.from(Array(amount)).map((_x, i) => ({ value: `Some recipe ${i}`, _id: `${i}` })
   );
 }
 
@@ -25,6 +32,13 @@ class Recipes extends React.Component<Props, {}> {
     const recipesResponse = await api.get<RecipesResponse>('/api/recipes/')
 
     this.props.onFetchRecipes(recipesResponse.data)
+    return recipesResponse.data
+  }
+
+  searchRecipe = async (searchText: string) => {
+    const recipesResponse = await api.get<RecipesResponse>('/api/recipes/')
+    this.props.onFetchRecipes(recipesResponse.data)
+    return transformToSearchResults(recipesResponse.data.recipes)
   }
 
   render() {
@@ -33,7 +47,7 @@ class Recipes extends React.Component<Props, {}> {
         <h3>Recipes</h3>
 
         <Search
-          onSearch={() => buildRecipes(20)}
+          onSearch={this.searchRecipe}
           onSelect={(id) => { console.log(id) }}
         />
 
