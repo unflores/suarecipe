@@ -1,23 +1,17 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom';
 import BasicInput from 'frontapp/rcl/BasicInput'
-import * as styles from './styles.css'
+import SearchResults from './SearchResults'
 
 const ESCAPE_KEY = 27
 
 interface State {
   search: string
-  searchResults: SearchResults[]
 }
 
 interface Props {
-  onSearch: (search: string) => Promise<SearchResults[]>
-  onSelect: (id: string) => void
-}
-
-interface SearchResults {
-  value: string
-  id: string
+  onSearch: (search: string) => void
+  SearchResults?: React.FunctionComponent
 }
 
 class Search extends React.Component<Props, State> {
@@ -26,8 +20,7 @@ class Search extends React.Component<Props, State> {
     super(props)
 
     this.state = {
-      search: '',
-      searchResults: []
+      search: ''
     }
   }
 
@@ -40,16 +33,11 @@ class Search extends React.Component<Props, State> {
 
     const searchResults = await this.props.onSearch(value)
     console.log({ searchResults, state: this.state })
-    this.setState({ searchResults })
   }
 
-  clearResults = () => {
-    this.setState({ search: '', searchResults: [] })
-  }
-
-  handleSelect = (id: string) => {
-    this.clearResults()
-    this.props.onSelect(id)
+  clearResults = async () => {
+    this.setState({ search: '' })
+    await this.props.onSearch('')
   }
 
   componentDidMount(): void {
@@ -93,19 +81,7 @@ class Search extends React.Component<Props, State> {
           name="temp"
           onChange={this.handleSearch}
         />
-        <div className={styles.container}>
-          <div className={styles.results}>
-            {this.state.searchResults.map((result) =>
-              <div
-                className={styles.result}
-                key={result.id}
-                onClick={() => this.handleSelect(result.id)}
-              >
-                {result.value}
-              </div>
-            )}
-          </div>
-        </div>
+        {this.props.SearchResults}
       </div>
     )
   }
