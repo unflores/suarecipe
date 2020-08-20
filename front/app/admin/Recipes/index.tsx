@@ -21,11 +21,6 @@ const transformToSearchResults = (recipes: Recipe[]) => {
   }))
 }
 
-const buildRecipes = (amount: number) => {
-  return Array.from(Array(amount)).map((_x, i) => ({ value: `Some recipe ${i}`, _id: `${i}` })
-  );
-}
-
 class Recipes extends React.Component<Props, {}> {
 
   async componentDidMount() {
@@ -36,7 +31,9 @@ class Recipes extends React.Component<Props, {}> {
   }
 
   searchRecipe = async (searchText: string) => {
-    const recipesResponse = await api.get<RecipesResponse>('/api/recipes/')
+    const recipesResponse = await api.get<RecipesResponse>('/api/recipes/',
+      { search: searchText }
+    )
     this.props.onFetchRecipes(recipesResponse.data)
     return transformToSearchResults(recipesResponse.data.recipes)
   }
