@@ -34,7 +34,6 @@ class Modal extends React.Component<Props, {}> {
   }
 
   render() {
-
     const { onClose, title, children } = this.props
 
     return (
