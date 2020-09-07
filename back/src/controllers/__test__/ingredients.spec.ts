@@ -24,7 +24,7 @@ describe('ingredients', () => {
         .expect(200)
         .then(response => {
           const data = response.body[0]
-          expect(data.name).to.eql(ingredient.name)
+          expect(data.ingredient.name).to.eql(ingredient.name)
           expect(response.body.length).to.eql(1)
         })
 

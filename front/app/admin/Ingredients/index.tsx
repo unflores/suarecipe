@@ -4,20 +4,20 @@ import { IApplicationState } from 'frontapp/reducers'
 import { connect } from 'react-redux'
 import api from 'frontapp/api'
 import AdminTable from 'frontapp/rcl/AdminTable'
-import { IngredientResponse } from 'frontapp/libs/api/Responses'
+import { Ingredient } from 'frontapp/libs/api/Responses'
 import { ingredientsFetched } from 'frontapp/reducers/ingredients/actionBuilders'
 import { Dispatch } from 'redux'
 
 
 interface Props {
-  onFetchIngredients: (ingredients: IngredientResponse[]) => void
-  ingredients: IngredientResponse[]
+  onFetchIngredients: (ingredients: Ingredient[]) => void
+  ingredients: Ingredient[]
 }
 
 class Ingredients extends React.Component<Props, {}> {
 
   async componentDidMount() {
-    const ingredientsResponse = await api.get<IngredientResponse[]>('/api/ingredients/')
+    const ingredientsResponse = await api.get<Ingredient[]>('/api/ingredients/')
 
     this.props.onFetchIngredients(ingredientsResponse.data)
   }
@@ -48,7 +48,7 @@ const mapState = ({ ingredients }: IApplicationState) => ({
 })
 
 const mapDispatch = (dispatch: Dispatch) => ({
-  onFetchIngredients: (ingredients: IngredientResponse[]) => {
+  onFetchIngredients: (ingredients: Ingredient[]) => {
     dispatch(ingredientsFetched(ingredients))
   }
 })

@@ -6,9 +6,13 @@ interface IEvent {
   address: string
 }
 
-export interface IngredientResponse {
+export interface Ingredient {
   _id: string
   name: string
+}
+
+export interface IngredientsResponse {
+  ingredients: Ingredient[]
 }
 
 export interface RecipesResponse {

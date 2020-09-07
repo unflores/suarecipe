@@ -8,7 +8,7 @@ const schema = Joi.object({
 
 async function list(req: Request, res: Response) {
   const ingredients = await Ingredient.find({})
-  res.send(ingredients)
+  res.send({ ingredients: ingredients })
 }
 
 async function update(req: Request, res: Response) {

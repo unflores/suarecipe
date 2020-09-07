@@ -1,9 +1,9 @@
 import { Actions, ActionReturnTypes } from './actionBuilders'
-import { IngredientResponse } from 'frontapp/libs/api/Responses'
+import { Ingredient } from 'frontapp/libs/api/Responses'
 
 
 interface IngredientHash {
-  [id: string]: IngredientResponse
+  [id: string]: Ingredient
 }
 
 export interface IngredientsState {
@@ -21,9 +21,9 @@ export function reduce(state: IngredientsState = initialState, action: ActionRet
 
   switch (action.type) {
     case Actions.FETCH_INGREDIENTS:
-      const ids = action.payload.ingredients.map((ingredient: IngredientResponse) => ingredient._id)
+      const ids = action.payload.ingredients.map((ingredient: Ingredient) => ingredient._id)
 
-      action.payload.ingredients.forEach((ingredient: IngredientResponse) => byId[ingredient._id] = ingredient)
+      action.payload.ingredients.forEach((ingredient: Ingredient) => byId[ingredient._id] = ingredient)
       return { ...state, ids, byId }
       break
     case Actions.UPDATE_INGREDIENT:

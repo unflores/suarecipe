@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { IngredientResponse } from 'frontapp/libs/api/Responses'
+import { Ingredient } from 'frontapp/libs/api/Responses'
 import { connect } from 'react-redux'
 import { ingredientUpdated } from 'frontapp/reducers/ingredients/actionBuilders'
 import BasicInput from 'frontapp/rcl/BasicInput'
@@ -9,12 +9,12 @@ import { Dispatch } from 'redux'
 
 interface Props {
   onSuccess: () => void
-  ingredient: IngredientResponse
-  onUpdateIngredient: (arg0: IngredientResponse) => {}
+  ingredient: Ingredient
+  onUpdateIngredient: (arg0: Ingredient) => {}
 }
 
 interface State {
-  ingredient: IngredientResponse
+  ingredient: Ingredient
 }
 
 const ENTER_KEY = 13
@@ -42,7 +42,7 @@ class IngredientForm extends React.Component<Props, State> {
   handleSubmit = async () => {
     const ingredient = this.state.ingredient
 
-    const response = await api.put<IngredientResponse>(`/api/ingredients/${ingredient._id}`, {
+    const response = await api.put<Ingredient>(`/api/ingredients/${ingredient._id}`, {
       name: ingredient.name
     })
 
@@ -74,7 +74,7 @@ class IngredientForm extends React.Component<Props, State> {
 }
 
 const mapDispatch = (dispatch: Dispatch) => ({
-  onUpdateIngredient: (ingredient: IngredientResponse) => {
+  onUpdateIngredient: (ingredient: Ingredient) => {
     dispatch(ingredientUpdated(ingredient))
   }
 })

@@ -1,4 +1,4 @@
-import { IngredientResponse } from 'frontapp/libs/api/Responses'
+import { Ingredient } from 'frontapp/libs/api/Responses'
 
 export enum Actions {
   FETCH_INGREDIENTS = 'fetch_ingredients',
@@ -7,12 +7,12 @@ export enum Actions {
 
 interface ingredientsFetchedReturn {
   payload: {
-    ingredients: IngredientResponse[]
+    ingredients: Ingredient[]
   },
   type: typeof Actions.FETCH_INGREDIENTS
 }
 
-export const ingredientsFetched = (ingredients: IngredientResponse[]): ingredientsFetchedReturn => ({
+export const ingredientsFetched = (ingredients: Ingredient[]): ingredientsFetchedReturn => ({
   payload: {
     ingredients
   },
@@ -21,12 +21,12 @@ export const ingredientsFetched = (ingredients: IngredientResponse[]): ingredien
 
 interface ingredientUpdatedReturn {
   payload: {
-    ingredient: IngredientResponse
+    ingredient: Ingredient
   },
   type: typeof Actions.UPDATE_INGREDIENT
 }
 
-export const ingredientUpdated = (ingredient: IngredientResponse): ingredientUpdatedReturn => ({
+export const ingredientUpdated = (ingredient: Ingredient): ingredientUpdatedReturn => ({
   payload: {
     ingredient
   },

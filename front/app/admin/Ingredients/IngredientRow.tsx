@@ -1,10 +1,10 @@
 import * as React from 'react'
-import { IngredientResponse } from 'frontapp/libs/api/Responses'
+import { Ingredient } from 'frontapp/libs/api/Responses'
 import Modal from 'frontapp/rcl/Modal'
 import IngredientForm from 'frontapp/admin/Ingredients/IngredientForm'
 
 interface Props {
-  ingredient: IngredientResponse
+  ingredient: Ingredient
 }
 
 interface State {
