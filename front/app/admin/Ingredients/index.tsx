@@ -4,7 +4,7 @@ import { IApplicationState } from 'frontapp/reducers'
 import { connect } from 'react-redux'
 import api from 'frontapp/api'
 import AdminTable from 'frontapp/rcl/AdminTable'
-import { Ingredient } from 'frontapp/libs/api/Responses'
+import { IngredientsResponse, Ingredient } from 'frontapp/libs/api/Responses'
 import { ingredientsFetched } from 'frontapp/reducers/ingredients/actionBuilders'
 import { Dispatch } from 'redux'
 
@@ -17,9 +17,8 @@ interface Props {
 class Ingredients extends React.Component<Props, {}> {
 
   async componentDidMount() {
-    const ingredientsResponse = await api.get<Ingredient[]>('/api/ingredients/')
-
-    this.props.onFetchIngredients(ingredientsResponse.data)
+    const ingredientsResponse = await api.get<IngredientsResponse>('/api/ingredients/')
+    this.props.onFetchIngredients(ingredientsResponse.data.ingredients)
   }
 
   render() {
