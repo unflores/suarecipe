@@ -27,6 +27,10 @@ router
 
 router
   .route('/api/recipes/:recipe_id')
+  .get(recipesController.show)
+
+router
+  .route('/api/recipes/:recipe_id')
   .patch(recipesController.update)
 
 router

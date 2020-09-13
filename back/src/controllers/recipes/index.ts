@@ -13,6 +13,10 @@ async function create(req: Request, res: Response) {
   res.send({ recipe })
 }
 
+async function show(req: Request, res: Response) {
+  res.send({ recipe: req.paramObjects.recipe })
+}
+
 async function list(req: Request, res: Response) {
   const { search } = req.query
   let recipes: IRecipe[]
@@ -42,5 +46,6 @@ async function update(req: Request, res: Response) {
 export const recipesController = {
   create,
   list,
-  update
+  update,
+  show
 }
