@@ -1,11 +1,3 @@
-interface IEvent {
-  name: string
-  description: string
-  type: string
-  siteLink: string
-  address: string
-}
-
 export interface Ingredient {
   _id: string
   name: string
@@ -22,7 +14,19 @@ export interface RecipeResponse {
   recipe: Recipe
 }
 
+export interface Step {
+
+}
+
+export interface UsedIngredient {
+  ingredientId: string
+  quantity: number
+  measurement: string
+}
+
 export interface Recipe {
   _id: string
   name: string
+  usedIngredients?: UsedIngredient[]
+  steps?: Step[]
 }
