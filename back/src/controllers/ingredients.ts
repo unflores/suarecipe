@@ -1,13 +1,21 @@
 import { Request, Response } from 'express'
 import * as Joi from '@hapi/joi'
-import { Ingredient } from '../models/ingredient'
+import { Ingredient, IIngredient } from '../models/ingredient'
 
 const schema = Joi.object({
   name: Joi.string()
 })
 
 async function list(req: Request, res: Response) {
-  const ingredients = await Ingredient.find({})
+  const { search } = req.query
+  let ingredients: IIngredient[]
+
+  if (search) {
+    ingredients = await Ingredient.find({ name: { $in: new RegExp(`${search}`, 'i') } })
+  } else {
+    ingredients = await Ingredient.find()
+  }
+
   res.send({ ingredients: ingredients })
 }
 
