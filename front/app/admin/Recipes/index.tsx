@@ -6,7 +6,6 @@ import api from 'frontapp/api'
 import { Recipe, RecipesResponse } from 'frontapp/libs/api/Responses'
 import AdminTable from 'frontapp/rcl/AdminTable'
 import Search from 'frontapp/rcl/Search'
-import SearchResults from 'frontapp/rcl/Search/SearchResults'
 import { recipesFetched } from 'frontapp/reducers/recipes/actionBuilders'
 import { Dispatch } from 'redux'
 
