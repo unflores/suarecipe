@@ -1,11 +1,10 @@
 import * as React from 'react'
-import Search from '../index'
+import BasicInput from 'frontapp/rcl/BasicInput'
 import * as styles from '../styles.css'
 
 interface Props {
-  onSearch: (search: string) => void
+  onSearch: (search: string) => Promise<Result[]>
   onSelect: (id: string) => void
-  results: Result[]
 }
 
 export interface Result {
@@ -13,26 +12,56 @@ export interface Result {
   id: string
 }
 
-class DropdownSearch extends React.Component<Props, {}> {
+interface State {
+  search: string
+  results: Result[]
+}
 
+class DropdownSearch extends React.Component<Props, State> {
 
-  handleSearch = (search: string) => {
-    this.props.onSearch(search)
+  constructor(props: Props) {
+    super(props)
+
+    this.state = {
+      search: '',
+      results: []
+    }
+  }
+
+  handleSearch = async (event: React.FormEvent<HTMLInputElement>) => {
+    const { value } = event.currentTarget
+
+    this.setState({
+      search: value
+    })
+
+    const results = await this.props.onSearch(value)
+    this.setState({ results })
+    console.log({ results, state: this.state })
   }
 
   handleSelect = (id: string) => {
     this.props.onSelect(id)
+    this.setState({ search: '', results: [] })
+  }
+
+  onClear = () => {
+    this.setState({ search: '' })
   }
 
   render() {
     return (
       <>
-        <Search
-          onSearch={this.handleSearch}
+        <BasicInput
+          id={'TODO'}
+          labelText=""
+          value={this.state.search}
+          name="temp"
+          onChange={this.handleSearch}
         />
         <div className={styles.container}>
           <div className={styles.results}>
-            {this.props.results.map((result) =>
+            {this.state.results.map((result) =>
               <div
                 className={styles.result}
                 key={result.id}
