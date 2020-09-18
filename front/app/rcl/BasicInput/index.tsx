@@ -1,11 +1,11 @@
 import * as React from 'react'
 
 interface Props {
-  id: string
+  id?: string
   value: string
   name: string
   type: "text" | "number"
-  labelText: string
+  labelText?: string
   onChange: (event: React.FormEvent<HTMLInputElement>) => void
 }
 
@@ -24,7 +24,8 @@ class BasicInput extends React.Component<Props, {}> {
 
     return (
       <div className="form-group">
-        <label htmlFor={id}>{labelText}</label>
+        {labelText ? <label htmlFor={id}>{labelText}</label> : null}
+
         <input
           id={id}
           type={type}
