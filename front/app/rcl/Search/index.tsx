@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom';
-import BasicInput from 'frontapp/rcl/BasicInput'
+import BasicInput from 'frontapp/rcl/Atoms/BasicInput'
 
 const ESCAPE_KEY = 27
 

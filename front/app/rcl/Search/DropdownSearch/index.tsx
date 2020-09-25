@@ -1,5 +1,5 @@
 import * as React from 'react'
-import BasicInput from 'frontapp/rcl/BasicInput'
+import BasicInput from 'frontapp/rcl/Atoms/BasicInput'
 import * as styles from '../styles.css'
 
 interface Props {

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Button from 'frontapp/rcl/Button'
+import Button from 'frontapp/rcl/Atoms/Button'
 
 const ENTER_KEY = 13
 
