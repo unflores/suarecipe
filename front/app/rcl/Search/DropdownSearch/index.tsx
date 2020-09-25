@@ -28,14 +28,12 @@ class DropdownSearch extends React.Component<Props, State> {
     }
   }
 
-  handleSearch = async (event: React.FormEvent<HTMLInputElement>) => {
-    const { value } = event.currentTarget
-
+  handleSearch = async (namevalue: { name: string, value: string }) => {
     this.setState({
-      search: value
+      search: namevalue.value
     })
 
-    const results = await this.props.onSearch(value)
+    const results = await this.props.onSearch(namevalue.value)
     this.setState({ results })
     console.log({ results, state: this.state })
   }

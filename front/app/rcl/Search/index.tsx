@@ -23,14 +23,13 @@ class Search extends React.Component<Props, State> {
     }
   }
 
-  handleSearch = async (event: React.FormEvent<HTMLInputElement>) => {
-    const { value } = event.currentTarget
+  handleSearch = async (namevalue: { name: string, value: string }) => {
 
     this.setState({
-      search: value
+      search: namevalue.value
     })
 
-    const searchResults = await this.props.onSearch(value)
+    const searchResults = await this.props.onSearch(namevalue.value)
     console.log({ searchResults, state: this.state })
   }
 

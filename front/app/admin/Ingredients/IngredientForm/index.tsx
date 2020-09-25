@@ -29,13 +29,9 @@ class IngredientForm extends React.Component<Props, State> {
     }
   }
 
-  updateObject = (event: React.FormEvent<HTMLInputElement>) => {
-    const { value, name } = event.currentTarget
-    const stateChange: { [k: string]: string } = {}
-    stateChange[name] = value
-
+  updateObject = (namevalue: { name: string, value: string }) => {
     this.setState({
-      ingredient: { ...this.state.ingredient, ...stateChange }
+      ingredient: { ...this.state.ingredient, ...namevalue }
     })
   }
 

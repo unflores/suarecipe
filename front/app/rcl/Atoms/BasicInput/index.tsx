@@ -6,7 +6,12 @@ interface Props {
   name: string
   type: "text" | "number"
   labelText?: string
-  onChange: (event: React.FormEvent<HTMLInputElement>) => void
+  onChange: (namevalue: NameValue) => void
+}
+
+interface NameValue {
+  name: string
+  value: string
 }
 
 class BasicInput extends React.Component<Props, {}> {
@@ -17,6 +22,11 @@ class BasicInput extends React.Component<Props, {}> {
 
   constructor(props: Props) {
     super(props)
+  }
+
+  handleChange = (event: React.FormEvent<HTMLInputElement>) => {
+    const { value, name } = event.currentTarget
+    this.props.onChange({ name, value })
   }
 
   render() {
@@ -32,7 +42,7 @@ class BasicInput extends React.Component<Props, {}> {
           value={value}
           className="form-control"
           name={name}
-          onChange={onChange}
+          onChange={this.handleChange}
         />
       </div>
     )
