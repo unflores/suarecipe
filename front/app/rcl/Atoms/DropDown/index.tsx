@@ -7,7 +7,8 @@ interface Option {
 
 interface Props {
   options: Option[]
-  onChange: (value: string) => void
+  name: string
+  onChange: (namevalue: { name: string, value: string }) => void
 }
 
 interface State {
@@ -22,14 +23,16 @@ class Dropdown extends React.Component<Props, State> {
   }
 
   handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    this.setState({ value: event.target.value });
-    this.props.onChange(event.target.value)
+    const { value, name } = event.currentTarget
+    this.setState({ value: value });
+    this.props.onChange({ name, value })
   }
 
   render() {
     return (
       <div className="form-group">
         <select
+          name={this.props.name}
           value={this.state.value}
           className="form-control"
           onChange={this.handleChange}
