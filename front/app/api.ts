@@ -19,11 +19,11 @@ async function buildResults<T>(responseData: Response):
   }
 }
 
-interface Params {
+interface JsonObject {
   [key: string]: any
 }
 
-function buildQueryString(queryParams: Params): string {
+function buildQueryString(queryParams: JsonObject): string {
   const params = Object.keys(queryParams)
   if (params.length === 0) {
     return ""
@@ -33,6 +33,26 @@ function buildQueryString(queryParams: Params): string {
   return "?" + params
     .map(k => esc(k) + '=' + esc(queryParams[k]))
     .join('&');
+}
+
+/**
+ * Ensure that anything coming in actually has the type of what we are asking for
+ *
+ * Usage:
+ * Pass in an object original and something from the API. You never know what the api will send you
+ * So we filter out any attributes we werent expecting by passing in the object to overwrite
+ * and only updating those fields
+ *
+ */
+export function mergeIntersect<T>(original: T, newValues: JsonObject) {
+  const keys = Object.keys(original)
+  const toIntersect = newValues as any
+  const intersection: any = { ...original }
+  keys.forEach(key => {
+    if (toIntersect[key])
+      intersection[key] = toIntersect[key]
+  })
+  return intersection as T
 }
 
 /**
