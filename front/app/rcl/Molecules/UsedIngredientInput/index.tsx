@@ -32,6 +32,8 @@ const MEASUREMENTS: Option[] = [
 interface Props {
   name: string
   _id: string
+  measurement: string
+  quantity: string
   onRemove: (id: string) => void
   onChange: (ingredient: AddedUsedIngredient) => void
 }
@@ -49,8 +51,8 @@ class UsedIngredientInput extends React.Component<Props, State> {
 
     this.state = {
       _id: props._id,
-      measurement: MEASUREMENTS[0].value,
-      quantity: '0',
+      measurement: props.measurement || MEASUREMENTS[0].value,
+      quantity: props.quantity || '0',
     }
   }
 
@@ -80,6 +82,7 @@ class UsedIngredientInput extends React.Component<Props, State> {
           <Dropdown
             name="measurement"
             options={MEASUREMENTS}
+            selected={this.state.measurement}
             onChange={this.handleChange}
           />
         </div>

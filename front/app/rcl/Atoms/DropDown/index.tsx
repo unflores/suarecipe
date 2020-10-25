@@ -8,6 +8,7 @@ interface Option {
 interface Props {
   options: Option[]
   name: string
+  selected?: string
   onChange: (namevalue: { name: string, value: string }) => void
 }
 
@@ -19,7 +20,7 @@ class Dropdown extends React.Component<Props, State> {
 
   constructor(props: Props) {
     super(props)
-    this.state = { value: '' }
+    this.state = { value: props.selected || '' }
   }
 
   handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
