@@ -62,7 +62,7 @@ class UsedIngredientInput extends React.Component<Props, State> {
       name: this.props.name,
       ingredientId: newState.ingredientId,
       measurement: newState.measurement,
-      quantity: /^\d+(\.\d+)?$/.test(newState.quantity) ? parseInt(newState.quantity) : 0,
+      quantity: /^\d+(\.\d+)?$/.test(newState.quantity) ? parseInt(newState.quantity, 10) : 0,
     }
     console.log({ newState, ingredient })
     this.props.onChange(ingredient)
