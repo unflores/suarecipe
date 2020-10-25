@@ -17,7 +17,7 @@ interface NameValue {
 class BasicInput extends React.Component<Props, {}> {
 
   static defaultProps = {
-    type: 'text'
+    type: 'text',
   }
 
   constructor(props: Props) {
@@ -48,6 +48,5 @@ class BasicInput extends React.Component<Props, {}> {
     )
   }
 }
-
 
 export default BasicInput

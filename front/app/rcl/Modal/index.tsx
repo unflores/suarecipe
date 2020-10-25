@@ -12,25 +12,25 @@ interface Props {
 class Modal extends React.Component<Props, {}> {
 
   static defaultProps = {
-    title: ''
+    title: '',
   }
 
   handleKeyDown = (event: KeyboardEvent): any => {
     switch (event.keyCode) {
       case ESCAPE_KEY:
         this.props.onClose()
-        break;
+        break
       default:
-        break;
+        break
     }
   }
 
   componentDidMount(): void {
-    window.addEventListener('keydown', this.handleKeyDown);
+    window.addEventListener('keydown', this.handleKeyDown)
   }
 
   componentWillUnmount(): void {
-    window.removeEventListener('keydown', this.handleKeyDown);
+    window.removeEventListener('keydown', this.handleKeyDown)
   }
 
   render() {

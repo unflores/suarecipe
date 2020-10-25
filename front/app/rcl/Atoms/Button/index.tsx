@@ -8,7 +8,7 @@ interface Props {
 class Button extends React.Component<Props, {}> {
 
   static defaultProps = {
-    text: 'Submit'
+    text: 'Submit',
   }
 
   constructor(props: Props) {
@@ -23,7 +23,8 @@ class Button extends React.Component<Props, {}> {
         <button
           onClick={onClick}
           type="button"
-          className="btn btn-success">
+          className="btn btn-success"
+        >
           {text}
         </button>
       </div>
@@ -31,8 +32,4 @@ class Button extends React.Component<Props, {}> {
   }
 }
 
-
 export default Button
-
-
-

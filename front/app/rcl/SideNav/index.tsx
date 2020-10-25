@@ -1,6 +1,6 @@
 import * as React from 'react'
+import { Link } from "react-router-dom"
 import * as styles from './styles.css'
-import { Link } from "react-router-dom";
 
 export default function SideNav() {
 

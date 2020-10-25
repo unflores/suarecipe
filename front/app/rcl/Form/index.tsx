@@ -1,5 +1,5 @@
-import * as React from 'react'
 import Button from 'frontapp/rcl/Atoms/Button'
+import * as React from 'react'
 
 const ENTER_KEY = 13
 
@@ -15,11 +15,11 @@ class Form extends React.Component<Props, {}> {
   }
 
   componentDidMount(): void {
-    window.addEventListener('keydown', this.handleKeyDown);
+    window.addEventListener('keydown', this.handleKeyDown)
   }
 
   componentWillUnmount(): void {
-    window.removeEventListener('keydown', this.handleKeyDown);
+    window.removeEventListener('keydown', this.handleKeyDown)
   }
 
   handleKeyDown = (event: KeyboardEvent): any => {
@@ -27,9 +27,9 @@ class Form extends React.Component<Props, {}> {
       case ENTER_KEY:
         this.handleSubmit()
         event.preventDefault()
-        break;
+        break
       default:
-        break;
+        break
     }
   }
 

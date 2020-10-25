@@ -1,5 +1,5 @@
-import * as React from 'react'
 import BasicInput from 'frontapp/rcl/Atoms/BasicInput'
+import * as React from 'react'
 import * as styles from '../styles.css'
 
 interface Props {
@@ -24,13 +24,13 @@ class DropdownSearch extends React.Component<Props, State> {
 
     this.state = {
       search: '',
-      results: []
+      results: [],
     }
   }
 
   handleSearch = async (namevalue: { name: string, value: string }) => {
     this.setState({
-      search: namevalue.value
+      search: namevalue.value,
     })
 
     const results = await this.props.onSearch(namevalue.value)
@@ -66,7 +66,7 @@ class DropdownSearch extends React.Component<Props, State> {
                 onClick={() => this.handleSelect(result.id)}
               >
                 {result.value}
-              </div>
+              </div>,
             )}
           </div>
         </div>

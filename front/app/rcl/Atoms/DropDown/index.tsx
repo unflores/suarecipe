@@ -24,7 +24,7 @@ class Dropdown extends React.Component<Props, State> {
 
   handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const { value, name } = event.currentTarget
-    this.setState({ value: value });
+    this.setState({ value })
     this.props.onChange({ name, value })
   }
 
@@ -43,13 +43,12 @@ class Dropdown extends React.Component<Props, State> {
               value={option.value}
             >
               {option.label}
-            </option>
+            </option>,
           )}
         </select>
       </div>
     )
   }
 }
-
 
 export default Dropdown

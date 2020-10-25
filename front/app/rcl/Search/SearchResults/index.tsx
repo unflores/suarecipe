@@ -31,7 +31,7 @@ class SearchResults extends React.Component<Props, State> {
               onClick={() => this.handleSelect(result.id)}
             >
               {result.value}
-            </div>
+            </div>,
           )}
         </div>
       </div>

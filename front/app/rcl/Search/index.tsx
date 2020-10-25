@@ -1,6 +1,6 @@
-import * as React from 'react'
-import * as ReactDOM from 'react-dom';
 import BasicInput from 'frontapp/rcl/Atoms/BasicInput'
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
 
 const ESCAPE_KEY = 27
 
@@ -19,14 +19,14 @@ class Search extends React.Component<Props, State> {
     super(props)
 
     this.state = {
-      search: ''
+      search: '',
     }
   }
 
   handleSearch = async (namevalue: { name: string, value: string }) => {
 
     this.setState({
-      search: namevalue.value
+      search: namevalue.value,
     })
 
     const searchResults = await this.props.onSearch(namevalue.value)
@@ -39,27 +39,27 @@ class Search extends React.Component<Props, State> {
   }
 
   componentDidMount(): void {
-    window.addEventListener('mousedown', this.handleClickOutside);
-    window.addEventListener('keydown', this.handleKeyDown);
+    window.addEventListener('mousedown', this.handleClickOutside)
+    window.addEventListener('keydown', this.handleKeyDown)
   }
 
   componentWillUnmount(): void {
-    window.removeEventListener('keydown', this.handleKeyDown);
-    window.removeEventListener('mousedown', this.handleClickOutside);
+    window.removeEventListener('keydown', this.handleKeyDown)
+    window.removeEventListener('mousedown', this.handleClickOutside)
   }
 
   handleKeyDown = (event: KeyboardEvent): any => {
     switch (event.keyCode) {
       case ESCAPE_KEY:
         this.clearResults()
-        break;
+        break
       default:
-        break;
+        break
     }
   }
 
   handleClickOutside = (event: MouseEvent) => {
-    const domNode = ReactDOM.findDOMNode(this);
+    const domNode = ReactDOM.findDOMNode(this)
     if (!(event.target instanceof HTMLElement)) {
       return
     }
