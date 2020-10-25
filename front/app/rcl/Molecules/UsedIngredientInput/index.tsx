@@ -1,6 +1,6 @@
-import * as React from 'react'
-import Dropdown from 'frontapp/rcl/Atoms/DropDown'
 import BasicInput from 'frontapp/rcl/Atoms/BasicInput'
+import Dropdown from 'frontapp/rcl/Atoms/DropDown'
+import * as React from 'react'
 
 export interface AddedUsedIngredient {
   ingredientId: string
@@ -50,7 +50,7 @@ class UsedIngredientInput extends React.Component<Props, State> {
     this.state = {
       ingredientId: props._id,
       measurement: MEASUREMENTS[0].value,
-      quantity: '0'
+      quantity: '0',
     }
   }
 
@@ -58,12 +58,11 @@ class UsedIngredientInput extends React.Component<Props, State> {
     const newState = { ...this.state, [namevalue.name]: namevalue.value }
     this.setState(newState)
 
-
     const ingredient = {
       name: this.props.name,
       ingredientId: newState.ingredientId,
       measurement: newState.measurement,
-      quantity: /^\d+(\.\d+)?$/.test(newState.quantity) ? parseInt(newState.quantity) : 0
+      quantity: /^\d+(\.\d+)?$/.test(newState.quantity) ? parseInt(newState.quantity) : 0,
     }
     console.log({ newState, ingredient })
     this.props.onChange(ingredient)
