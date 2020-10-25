@@ -1,6 +1,5 @@
-import { Actions, ActionReturnTypes } from './actionBuilders'
 import { Recipe } from 'frontapp/libs/api/Responses'
-
+import { ActionReturnTypes, Actions } from './actionBuilders'
 
 interface RecipeHash {
   [id: string]: Recipe
@@ -13,7 +12,7 @@ export interface RecipesState {
 
 export const initialState: RecipesState = {
   byId: {},
-  ids: []
+  ids: [],
 }
 
 export function reduce(state: RecipesState = initialState, action: ActionReturnTypes): RecipesState {

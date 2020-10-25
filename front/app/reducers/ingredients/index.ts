@@ -1,6 +1,5 @@
-import { Actions, ActionReturnTypes } from './actionBuilders'
 import { Ingredient } from 'frontapp/libs/api/Responses'
-
+import { ActionReturnTypes, Actions } from './actionBuilders'
 
 interface IngredientHash {
   [id: string]: Ingredient
@@ -13,7 +12,7 @@ export interface IngredientsState {
 
 export const initialState: IngredientsState = {
   byId: {},
-  ids: []
+  ids: [],
 }
 
 export function reduce(state: IngredientsState = initialState, action: ActionReturnTypes): IngredientsState {

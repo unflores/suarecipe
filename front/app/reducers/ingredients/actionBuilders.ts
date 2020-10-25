@@ -2,36 +2,35 @@ import { Ingredient } from 'frontapp/libs/api/Responses'
 
 export enum Actions {
   FETCH_INGREDIENTS = 'fetch_ingredients',
-  UPDATE_INGREDIENT = 'update_ingredient'
+  UPDATE_INGREDIENT = 'update_ingredient',
 }
 
-interface ingredientsFetchedReturn {
+interface IngredientsFetchedReturn {
   payload: {
-    ingredients: Ingredient[]
+    ingredients: Ingredient[],
   },
   type: typeof Actions.FETCH_INGREDIENTS
 }
 
-export const ingredientsFetched = (ingredients: Ingredient[]): ingredientsFetchedReturn => ({
+export const ingredientsFetched = (ingredients: Ingredient[]): IngredientsFetchedReturn => ({
   payload: {
-    ingredients
+    ingredients,
   },
-  type: Actions.FETCH_INGREDIENTS
+  type: Actions.FETCH_INGREDIENTS,
 })
 
-interface ingredientUpdatedReturn {
+interface IngredientUpdatedReturn {
   payload: {
-    ingredient: Ingredient
+    ingredient: Ingredient,
   },
   type: typeof Actions.UPDATE_INGREDIENT
 }
 
-export const ingredientUpdated = (ingredient: Ingredient): ingredientUpdatedReturn => ({
+export const ingredientUpdated = (ingredient: Ingredient): IngredientUpdatedReturn => ({
   payload: {
-    ingredient
+    ingredient,
   },
-  type: Actions.UPDATE_INGREDIENT
+  type: Actions.UPDATE_INGREDIENT,
 })
 
-
-export type ActionReturnTypes = ingredientUpdatedReturn | ingredientsFetchedReturn
+export type ActionReturnTypes = IngredientUpdatedReturn | IngredientsFetchedReturn

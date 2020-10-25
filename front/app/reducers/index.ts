@@ -9,7 +9,7 @@ export interface IApplicationState {
 
 const rootReducer = combineReducers<IApplicationState>({
   ingredients,
-  recipes
+  recipes,
 })
 
 export default rootReducer
