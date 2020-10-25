@@ -7,6 +7,7 @@
     "quotemark": [false],
     "object-literal-sort-keys": false,
     "interface-name": [true, "never-prefix"],
-    "member-access": [true, "no-public"]
+    "member-access": [true, "no-public"],
+    "jsx-no-multiline-js": false
   }
 }
