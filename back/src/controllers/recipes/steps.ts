@@ -1,15 +1,15 @@
 import { Request, Response } from 'express'
 
-const create = async function (req: Request, res: Response) {
+const create = async (req: Request, res: Response) => {
   const formValues = req.body
   const recipe = req.paramObjects.recipe
 
-  recipe.steps.push({ body: <string>formValues.step.body })
+  recipe.steps.push({ body: formValues.step.body as string })
   await recipe.save()
   res.send({ step: recipe.steps[recipe.steps.length - 1] })
 }
 
-const updateAll = async function (req: Request, res: Response) {
+const updateAll = async (req: Request, res: Response) => {
   const formValues = req.body
   const steps = formValues.steps
   const recipe = req.paramObjects.recipe
@@ -19,9 +19,9 @@ const updateAll = async function (req: Request, res: Response) {
   res.send({ steps: recipe.steps })
 }
 
-const destroy = async function (req: Request, res: Response) {
+const destroy = async (req: Request, res: Response) => {
   const recipe = req.paramObjects.recipe
-  await recipe.steps.id(req.params['step_id']).remove()
+  await recipe.steps.id(req.params.step_id).remove()
 
   res.send({ steps: recipe.steps })
 }
@@ -29,5 +29,5 @@ const destroy = async function (req: Request, res: Response) {
 export const stepsController = {
   create,
   updateAll,
-  destroy
+  destroy,
 }

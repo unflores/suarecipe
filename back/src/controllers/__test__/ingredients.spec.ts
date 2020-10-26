@@ -1,7 +1,7 @@
-import app from '../../server'
-import * as request from 'supertest'
-import { Ingredient, IIngredientModel } from '../../models/ingredient'
 import { expect } from 'chai'
+import * as request from 'supertest'
+import { IIngredientModel, Ingredient } from '../../models/ingredient'
+import app from '../../server'
 
 const server = request(app)
 
@@ -22,7 +22,7 @@ describe('ingredients', () => {
       await server
         .get('/api/ingredients/')
         .expect(200)
-        .then(response => {
+        .then((response) => {
           const data = response.body[0]
           expect(data.ingredient.name).to.eql(ingredient.name)
           expect(response.body.length).to.eql(1)

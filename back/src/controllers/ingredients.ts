@@ -1,9 +1,9 @@
-import { Request, Response } from 'express'
 import * as Joi from '@hapi/joi'
-import { Ingredient, IIngredient } from '../models/ingredient'
+import { Request, Response } from 'express'
+import { IIngredient, Ingredient } from '../models/ingredient'
 
 const schema = Joi.object({
-  name: Joi.string()
+  name: Joi.string(),
 })
 
 async function list(req: Request, res: Response) {
@@ -16,16 +16,15 @@ async function list(req: Request, res: Response) {
     ingredients = await Ingredient.find()
   }
 
-  res.send({ ingredients: ingredients })
+  res.send({ ingredients })
 }
 
 async function update(req: Request, res: Response) {
   const { ingredient } = req.paramObjects
   const body = schema.validate(req.body)
   if (body.error) {
-    return res.status(400).json({ error: body.error });
+    return res.status(400).json({ error: body.error })
   }
-
 
   ingredient.set(body.value).save().then(
     _ => res.send(ingredient)
@@ -36,5 +35,5 @@ async function update(req: Request, res: Response) {
 
 export const ingredientsController = {
   list,
-  update
+  update,
 }
