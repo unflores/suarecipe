@@ -1,4 +1,3 @@
-// tslint.json
 {
   "extends": ["tslint:recommended", "tslint-config-airbnb"],
   "rules": {
@@ -6,6 +5,16 @@
     "quotemark": [false],
     "object-literal-sort-keys": false,
     "import-name": false,
-    "prefer-array-literal": [true, { "allow-type-parameters": true }]
+    "prefer-array-literal": [true, { "allow-type-parameters": true }],
+    "trailing-comma": [true, {
+      "singleline": {
+        "functions": "never",
+        "arrays": "always"
+      },
+      "multiline": {
+        "functions": "never",
+        "arrays": "always"
+      }
+    }]
   }
 }
