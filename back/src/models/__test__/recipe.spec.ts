@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { Recipe } from '../recipe'
+import { IRecipe, Recipe } from '../recipe'
 
 describe('Recipe', () => {
 
@@ -13,7 +13,7 @@ describe('Recipe', () => {
   })
 
   describe('usedIngredients', () => {
-    let subject
+    let subject: IRecipe
 
     beforeEach(() => {
       subject = new Recipe({ usedIngredients: [{}] })

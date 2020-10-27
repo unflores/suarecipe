@@ -1,12 +1,11 @@
-import { dbClose, dbSetup } from '../../config/mongoose'
-import database from '../../config/mongoose'
+import database, { dbClose, dbSetup } from '../../config/mongoose'
 
 before(async () => dbSetup())
 
 after(async () => dbClose())
 
 beforeEach(async () => {
-  for (let i in database.connection.collections) {
-    await database.connection.collections[i].deleteMany({})
-  }
+  Object.keys(database.connection.collections).forEach((collectionId) => {
+    database.connection.collections[collectionId].deleteMany({})
+  })
 })
