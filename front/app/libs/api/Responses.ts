@@ -19,7 +19,7 @@ export interface Step {
 }
 
 export interface UsedIngredient {
-  _id: string
+  ingredient: string
   quantity: number
   measurement: string
 }

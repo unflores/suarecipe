@@ -3,7 +3,7 @@ import Dropdown from 'frontapp/rcl/Atoms/DropDown'
 import * as React from 'react'
 
 export interface AddedUsedIngredient {
-  _id: string
+  ingredient: string
   name: string
   measurement: string
   quantity: number
@@ -31,7 +31,7 @@ const MEASUREMENTS: Option[] = [
 
 interface Props {
   name: string
-  _id: string
+  ingredient: string
   measurement: string
   quantity: string
   onRemove: (id: string) => void
@@ -39,7 +39,7 @@ interface Props {
 }
 
 interface State {
-  _id: string
+  ingredient: string
   measurement: string
   quantity: string
 }
@@ -50,7 +50,7 @@ class UsedIngredientInput extends React.Component<Props, State> {
     super(props)
 
     this.state = {
-      _id: props._id,
+      ingredient: props.ingredient,
       measurement: props.measurement || MEASUREMENTS[0].value,
       quantity: props.quantity || '0',
     }
@@ -62,7 +62,7 @@ class UsedIngredientInput extends React.Component<Props, State> {
 
     const ingredient = {
       name: this.props.name,
-      _id: newState._id,
+      ingredient: newState.ingredient,
       measurement: newState.measurement,
       quantity: /^\d+(\.\d+)?$/.test(newState.quantity) ? parseInt(newState.quantity, 10) : 0,
     }
@@ -71,7 +71,7 @@ class UsedIngredientInput extends React.Component<Props, State> {
   }
 
   handleRemove = () => {
-    this.props.onRemove(this.state._id)
+    this.props.onRemove(this.state.ingredient)
   }
 
   render() {

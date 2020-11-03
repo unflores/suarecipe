@@ -71,7 +71,7 @@ class EditRecipe extends React.Component<Props, State> {
 
   handleSelectSearchItem = (id: string) => {
     const name = this.findUsedIngredientName(id)
-    const usedIngredient = { _id: id, quantity: 0, measurement: '' }
+    const usedIngredient = { ingredient: id, quantity: 0, measurement: '' }
     this.setState({
       recipeAtts: {
         ...this.state.recipeAtts,
@@ -86,7 +86,7 @@ class EditRecipe extends React.Component<Props, State> {
     this.setState({
       recipeAtts: {
         ...this.state.recipeAtts,
-        usedIngredients: usedIngredients.filter((usedIngredient) => id !== usedIngredient._id),
+        usedIngredients: usedIngredients.filter((usedIngredient) => id !== usedIngredient.ingredient),
       },
     })
   }
@@ -110,7 +110,7 @@ class EditRecipe extends React.Component<Props, State> {
     const { usedIngredients } = this.state.recipeAtts
 
     const index = usedIngredients.findIndex(
-      (usedIngredient) => usedIngredient._id === ingredient._id,
+      (usedIngredient) => usedIngredient.ingredient === ingredient.ingredient
     )
     const newUsedIngredients = [
       ...usedIngredients.slice(0, index),
@@ -146,14 +146,14 @@ class EditRecipe extends React.Component<Props, State> {
           <div>
             {recipeAtts.usedIngredients.map((usedIngredient: UsedIngredient) =>
               <UsedIngredientInput
-                name={usedIngredientNames[usedIngredient._id]}
-                _id={usedIngredient._id}
+                name={usedIngredientNames[usedIngredient.ingredient]}
+                ingredient={usedIngredient.ingredient}
                 quantity={usedIngredient.quantity.toString()}
                 measurement={usedIngredient.measurement}
-                key={usedIngredient._id}
+                key={usedIngredient.ingredient}
                 onRemove={this.handleRemoveIngredient}
                 onChange={this.updateUsedIngredient}
-              />,
+              />
             )}
           </div>
         </Form >
