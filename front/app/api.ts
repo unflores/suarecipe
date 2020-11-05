@@ -29,10 +29,10 @@ function buildQueryString(queryParams: JsonObject): string {
     return ""
   }
 
-  let esc = encodeURIComponent;
+  const esc = encodeURIComponent
   return "?" + params
-    .map(k => esc(k) + '=' + esc(queryParams[k]))
-    .join('&');
+    .map((k) => esc(k) + '=' + esc(queryParams[k]))
+    .join('&')
 }
 
 /**
@@ -45,14 +45,9 @@ function buildQueryString(queryParams: JsonObject): string {
  *
  */
 export function mergeIntersect<T>(original: T, newValues: JsonObject) {
-  const keys = Object.keys(original)
-  const toIntersect = newValues as any
-  const intersection: any = { ...original }
-  keys.forEach(key => {
-    if (toIntersect[key])
-      intersection[key] = toIntersect[key]
-  })
-  return intersection as T
+  return Object.keys(original).reduce(
+    (object, key) => ({ ...object, [key]: newValues[key] }), original
+  ) as T
 }
 
 /**
