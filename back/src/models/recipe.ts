@@ -46,8 +46,15 @@ const recipeSchema = new Schema({
     required: true,
     index: { unique: true },
   },
-  steps: [stepSchema,],
-  usedIngredients: [usedIngredientSchema,]
+  steps: [stepSchema],
+  usedIngredients: [usedIngredientSchema]
+}, {
+  toObject: {
+    transform(doc, ret) {
+      ret._id = ret._id.toString()
+      delete ret.__v
+    }
+  }
 })
 
 recipeSchema.plugin(uniqueValidator)
