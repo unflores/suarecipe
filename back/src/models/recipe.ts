@@ -48,6 +48,7 @@ const recipeSchema = new Schema({
   },
   steps: [stepSchema],
   usedIngredients: [usedIngredientSchema]
+  // tslint:disable-next-line: align
 }, {
   toObject: {
     transform(doc, ret) {
