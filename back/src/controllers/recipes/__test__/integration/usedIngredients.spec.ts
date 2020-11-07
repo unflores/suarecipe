@@ -1,7 +1,7 @@
 import * as mongoose from 'mongoose'
 // import app from '../../../server'
 // import * as request from 'supertest'
-import { Recipe, IRecipe } from '../../../models/recipe'
+import { IRecipe, Recipe } from '../../../../models/recipe'
 // import { expect } from 'chai'
 
 // const server = request(app)
@@ -11,10 +11,10 @@ const createRecipe = async () => {
     name: 'Potato dipping sauce',
     steps: [
       { body: 'Put in garlic, lemon and yogurt' },
-      { body: 'Stir in some thyme' }
+      { body: 'Stir in some thyme' },
     ],
     usedIngredients: [
-      { ingredient: new mongoose.Types.ObjectId(), quantity: 2, measurement: 'piece' }
+      { ingredient: new mongoose.Types.ObjectId(), quantity: 2, measurement: 'piece' },
     ]
   })
 }

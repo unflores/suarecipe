@@ -1,8 +1,8 @@
-import * as mongoose from 'mongoose'
-import app from '../../../server'
-import * as request from 'supertest'
-import { Recipe, IRecipe } from '../../../models/recipe'
 import { expect } from 'chai'
+import * as mongoose from 'mongoose'
+import * as request from 'supertest'
+import { IRecipe, Recipe } from '../../../../models/recipe'
+import app from '../../../../server'
 
 const server = request(app)
 
@@ -11,10 +11,10 @@ const createRecipe = async () => {
     name: 'Potato dipping sauce',
     steps: [
       { body: 'Put in garlic, lemon and yogurt' },
-      { body: 'Stir in some thyme' }
+      { body: 'Stir in some thyme' },
     ],
     usedIngredients: [
-      { ingredient: new mongoose.Types.ObjectId(), quantity: 2, measurement: 'piece' }
+      { ingredient: new mongoose.Types.ObjectId(), quantity: 2, measurement: 'piece' },
     ]
   })
 }
@@ -47,7 +47,7 @@ describe('recipes/:recipe_id/steps', () => {
 
       await server
         .patch(`/api/recipes/${recipe.id}/steps`)
-        .send({ steps: steps })
+        .send({ steps })
         .expect(200)
         .then(response => {
           const data = response.body
