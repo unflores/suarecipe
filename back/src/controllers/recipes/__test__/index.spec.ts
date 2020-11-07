@@ -4,7 +4,7 @@ import * as sinon from 'sinon'
 import { recipesController } from '../index'
 
 describe('create', () => {
-  it.only('creates a new recipe', async () => {
+  it('creates a new recipe', async () => {
     const req = { body: { recipe: { name: 'thing' } } }
     const res = {
       send: sinon.spy()
