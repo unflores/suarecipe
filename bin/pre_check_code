@@ -1,0 +1,19 @@
+#!/bin/bash
+# Checks are done with husky lib
+
+GREEN="\e[0;32"
+END_COLOR="\e[0m\n"
+RED="\e[31m"
+
+MERGE_FOUND=$(git diff --staged -- ':(exclude)bin/pre_check_code' | grep "^\+" | grep "<<<<<" | wc -l)
+
+if [ $MERGE_FOUND != '0' ]; then
+  printf "${RED}You committed merge conflicts. Remove it before pushing.${END_COLOR}"
+  exit 1
+fi
+
+ONLY_FOUND=$(git diff --staged -- ':(exclude)bin/pre_check_code' | grep "^\+" | grep "it.only" | wc -l)
+if [ $ONLY_FOUND != '0' ]; then
+  printf "${RED}You committed a focus in your tests conflicts. Remove it before pushing.${END_COLOR}"
+  exit 1
+fi

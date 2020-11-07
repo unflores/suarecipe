@@ -12,8 +12,14 @@
     "dev": "cd ./back ; yarn run dev",
     "build:watch": "cd ./back ; yarn run build:watch & cd ../front ; yarn run build:watch"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "bin/pre_check_code"
+    }
+  },
   "license": "ISC",
   "devDependencies": {
+    "husky": "^4.3.0",
     "typings-for-css-modules-loader": "^1.7.0"
   }
 }
