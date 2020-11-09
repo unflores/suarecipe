@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import * as request from 'supertest'
-import { IIngredientModel, Ingredient } from '../../models/ingredient'
-import app from '../../server'
+import { IIngredientModel, Ingredient } from '../../../models/ingredient'
+import app from '../../../server'
 
 const server = request(app)
 
@@ -23,9 +23,9 @@ describe('ingredients', () => {
         .get('/api/ingredients/')
         .expect(200)
         .then((response) => {
-          const data = response.body[0]
-          expect(data.ingredient.name).to.eql(ingredient.name)
-          expect(response.body.length).to.eql(1)
+          const data = response.body
+          expect(data.ingredients[0].name).to.eql(ingredient.name)
+          expect(response.body.ingredients.length).to.eql(1)
         })
 
     })
