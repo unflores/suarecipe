@@ -3,10 +3,11 @@ dotenv.config()
 
 import * as cookieParser from 'cookie-parser'
 import * as express from 'express'
+// tslint:disable no-var-requires
 require('express-async-errors')
 import * as path from 'path'
-import { router } from './router'
 import { errorHandler } from './errorHandler'
+import { router } from './router'
 
 import * as bodyParser from 'body-parser'
 // Simulate DELETE and PUT
@@ -20,7 +21,10 @@ const baseDir =
     : path.resolve(__dirname, "../../")
 
 // Middleware Setup
-app.use('/assets/', express.static(path.resolve(baseDir, 'assets'))) // Set ingredient of static data
+app.use(
+  '/assets/',
+  express.static(path.resolve(baseDir, 'assets'))
+) // Set ingredient of static data
 // If we didn't find it in assets, send a 404
 app.use('/assets/', (req, res) => {
   res.status(404).send('Not Found')
@@ -32,8 +36,6 @@ app.use(cookieParser()) // Read cookies for auth
 app.use(bodyParser.json()) // Parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })) // Parse incoming data as json
 app.use(methodOverride())
-
-
 
 app.use(router)
 
