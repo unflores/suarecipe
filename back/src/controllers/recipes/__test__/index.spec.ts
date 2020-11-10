@@ -1,10 +1,11 @@
 import { expect } from 'chai'
 import { Request } from 'express'
 import * as sinon from 'sinon'
-import { Recipe } from '../../../models/recipe'
+import { Ingredient } from '../../../models/ingredient'
+import { IRecipe, Recipe } from '../../../models/recipe'
 import { recipesController } from '../index'
 
-describe.only('recipesController', () => {
+describe('recipesController', () => {
   let res
 
   beforeEach(() => {
@@ -25,6 +26,36 @@ describe.only('recipesController', () => {
       expect(returned.recipe.steps).to.be.an('array')
       expect(returned.recipe.usedIngredients).to.be.an('array')
       expect(Object.keys(returned.recipe)).to.eql(['_id', 'name', 'steps', 'usedIngredients'])
+    })
+  })
+
+  describe('show', () => {
+    let recipe: IRecipe
+
+    beforeEach(async () => {
+      const ingredient = await Ingredient.create({ name: 'basil' })
+
+      recipe = await Recipe.create({
+        name: 'Recipe1',
+        usedIngredients: [
+          { ingredient, measurement: 'something', quantity: 5 },
+        ]
+      })
+    })
+
+    it('shows a recipe', async () => {
+      const req = { body: { recipe } }
+
+      await recipesController.create(req as Request, res as any)
+
+      const returned = res.send.firstCall.args[0]
+      expect(returned.recipe._id).to.be.a('string')
+      expect(returned.recipe.name).to.eql('Recipe1')
+      expect(returned.recipe.steps).to.be.an('array')
+      expect(returned.recipe.usedIngredients[0].ingredient.name).to.eql('basil')
+      expect(
+        Object.keys(returned.recipe)
+      ).to.contain.members(['_id', 'name', 'steps', 'usedIngredients'])
     })
   })
 
