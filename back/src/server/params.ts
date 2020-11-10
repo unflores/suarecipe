@@ -1,14 +1,14 @@
 import { NextFunction, Request, Response } from 'express'
-import { Recipe } from '../models/recipe'
 import { Ingredient } from '../models/ingredient'
+import { Recipe } from '../models/recipe'
 import { ResourceNotFoundError } from './errorHandler'
 
-export const findIngredient = async function (
+export const findIngredient = async (
   req: Request,
   _res: Response,
   next: NextFunction,
   id: string
-) {
+) => {
   const ingredient = await Ingredient.findOne({ _id: id })
   if (ingredient) {
     req.paramObjects = {}
@@ -19,13 +19,13 @@ export const findIngredient = async function (
   }
 }
 
-export const findRecipe = async function (
+export const findRecipe = async (
   req: Request,
   _res: Response,
   next: NextFunction,
   id: string
-) {
-  const recipe = await Recipe.findOne({ _id: id })
+) => {
+  const recipe = await Recipe.findOne({ _id: id }).populate('usedIngredients.ingredient')
   if (recipe) {
     req.paramObjects = {}
     req.paramObjects.recipe = recipe
