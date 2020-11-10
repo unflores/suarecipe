@@ -2,8 +2,8 @@ import { ingredientsController } from '../controllers/ingredients'
 import { recipesController } from '../controllers/recipes/'
 import { stepsController } from '../controllers/recipes/steps'
 
-import { findRecipe, findIngredient } from './params'
 import { Router } from 'express'
+import { findIngredient, findRecipe } from './params'
 
 const router = Router()
 
@@ -18,7 +18,6 @@ router
 router
   .route('/api/ingredients/:ingredient_id')
   .patch(ingredientsController.update)
-
 
 router
   .route('/api/recipes/')
