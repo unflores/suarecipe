@@ -1,5 +1,5 @@
 import api, { mergeIntersect } from 'frontapp/api'
-import { Recipe, RecipeResponse } from 'frontapp/libs/api/Responses'
+import { FullRecipe, Recipe, RecipeResponse } from 'frontapp/libs/api/Responses'
 import { Ingredient, IngredientsResponse, UsedIngredient } from 'frontapp/libs/api/Responses'
 import BasicInput from 'frontapp/rcl/Atoms/BasicInput'
 import Form from 'frontapp/rcl/Form'
@@ -29,7 +29,7 @@ interface Props {
 }
 
 interface State {
-  recipeAtts: Recipe
+  recipeAtts: FullRecipe
   usedIngredientNames: UsedIngredientNames
   searchResults: SearchResult[]
 }
@@ -62,7 +62,7 @@ class EditRecipe extends React.Component<Props, State> {
 
   handleSubmit = async () => {
     const { _id, ...atts } = this.state.recipeAtts
-    const response = await api.put<Recipe>(`/api/recipes/${_id}`, atts)
+    const response = await api.put<Recipe>(`/api/recipes/${_id}`, { recipe: atts })
 
     if (response.code >= 400) {
       console.log("There was an error setting your information")
@@ -71,7 +71,11 @@ class EditRecipe extends React.Component<Props, State> {
 
   handleSelectSearchItem = (id: string) => {
     const name = this.findUsedIngredientName(id)
-    const usedIngredient = { ingredient: id, quantity: 0, measurement: '' }
+    const usedIngredient = {
+      ingredient: { _id: id, name: name.value },
+      quantity: 0,
+      measurement: ''
+    }
     this.setState({
       recipeAtts: {
         ...this.state.recipeAtts,
@@ -86,14 +90,14 @@ class EditRecipe extends React.Component<Props, State> {
     this.setState({
       recipeAtts: {
         ...this.state.recipeAtts,
-        usedIngredients: usedIngredients.filter((usedIngredient) => id !== usedIngredient.ingredient),
+        usedIngredients: usedIngredients.filter((usedIngredient) => id !== usedIngredient.ingredient._id),
       },
     })
   }
 
   searchRecipe = async (searchText: string) => {
     const response = await api.get<IngredientsResponse>('/api/ingredients/',
-      { search: searchText },
+      { search: searchText }
     )
     const searchResults = transformIngredientsToSearchResults(response.data.ingredients)
     this.setState({ searchResults })
@@ -110,11 +114,17 @@ class EditRecipe extends React.Component<Props, State> {
     const { usedIngredients } = this.state.recipeAtts
 
     const index = usedIngredients.findIndex(
-      (usedIngredient) => usedIngredient.ingredient === ingredient.ingredient
+      (usedIngredient) => usedIngredient.ingredient._id === ingredient.ingredient
     )
+    const updatedIngredient = {
+      ingredient: usedIngredients[index].ingredient,
+      measurement: ingredient.measurement,
+      quantity: ingredient.quantity
+    }
+
     const newUsedIngredients = [
       ...usedIngredients.slice(0, index),
-      ingredient,
+      updatedIngredient,
       ...usedIngredients.slice(index + 1, usedIngredients.length),
     ]
 
@@ -144,13 +154,13 @@ class EditRecipe extends React.Component<Props, State> {
           />
 
           <div>
-            {recipeAtts.usedIngredients.map((usedIngredient: UsedIngredient) =>
+            {recipeAtts.usedIngredients.map((usedIngredient) =>
               <UsedIngredientInput
-                name={usedIngredientNames[usedIngredient.ingredient]}
-                ingredient={usedIngredient.ingredient}
+                name={usedIngredient.ingredient.name}
+                ingredient={usedIngredient.ingredient._id}
                 quantity={usedIngredient.quantity.toString()}
                 measurement={usedIngredient.measurement}
-                key={usedIngredient.ingredient}
+                key={usedIngredient.ingredient._id}
                 onRemove={this.handleRemoveIngredient}
                 onChange={this.updateUsedIngredient}
               />

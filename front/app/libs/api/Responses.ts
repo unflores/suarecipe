@@ -30,3 +30,17 @@ export interface Recipe {
   usedIngredients?: UsedIngredient[]
   steps?: Step[]
 }
+
+export interface FullUsedIngredient {
+  ingredient: { name: string, _id: string }
+  quantity: number
+  measurement: string
+}
+
+export interface FullRecipe {
+  _id: string
+  name: string
+  usedIngredients?: FullUsedIngredient[]
+  steps?: Step[]
+}
+
