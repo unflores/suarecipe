@@ -3,9 +3,11 @@ import { Request, Response } from 'express'
 import { IRecipe, Recipe } from '../../models/recipe'
 
 const schema = Joi.object({
-  name: Joi.string(),
-  steps: Joi.array(),
-  usedIngredients: Joi.array(),
+  recipe: Joi.object({
+    name: Joi.string(),
+    steps: Joi.array(),
+    usedIngredients: Joi.array(),
+  })
 })
 
 async function create(req: Request, res: Response) {
@@ -34,19 +36,20 @@ async function list(req: Request, res: Response) {
 }
 
 async function update(req: Request, res: Response) {
-  const body = schema.validate(req.body.recipe)
+
+  const body = schema.validate(req.body)
 
   if (body.error) {
     return res.status(400).send({ error: body.error })
   }
   let { recipe } = req.paramObjects
 
-  await recipe.set(body.value).save().then(async () => {
+  await recipe.set(body.value.recipe).save().then(async () => {
     recipe = await recipe.populate('usedIngredients.ingredient').execPopulate()
     res.send({ recipe: recipe.toObject() })
-  }).catch(
-    result => res.status(400).send({ error: result })
-  )
+  }).catch((result) => {
+    res.status(400).send({ error: result })
+  })
 }
 
 export const recipesController = {

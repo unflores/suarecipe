@@ -1,12 +1,14 @@
 import { expect } from 'chai'
-import * as mongoose from 'mongoose'
+
 import * as request from 'supertest'
+import { Ingredient } from '../../../../models/ingredient'
 import { IRecipe, Recipe } from '../../../../models/recipe'
 import app from '../../../../server'
 
 const server = request(app)
 
 const createRecipe = async () => {
+  const ingredient = await Ingredient.create({ name: 'basil' })
   return await Recipe.create({
     name: 'Potato dipping sauce',
     steps: [
@@ -14,7 +16,7 @@ const createRecipe = async () => {
       { body: 'Stir in some thyme' },
     ],
     usedIngredients: [
-      { ingredient: new mongoose.Types.ObjectId(), quantity: 2, measurement: 'piece' },
+      { ingredient: ingredient._id, quantity: 2, measurement: 'piece' },
     ]
   })
 }
@@ -24,7 +26,6 @@ describe('recipes', () => {
 
   beforeEach(async () => {
     recipe = await createRecipe()
-    recipe._id
   })
 
   describe('/recipes/', () => {
@@ -62,7 +63,9 @@ describe('recipes', () => {
       await server
         .patch(`/api/recipes/${recipe._id}`)
         .send({
-          name: 'Cheese dip',
+          recipe: {
+            name: 'Cheese dip',
+          }
         })
         .expect(200)
         .then(response => {
