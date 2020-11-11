@@ -3,6 +3,7 @@ import { Request } from 'express'
 import * as sinon from 'sinon'
 import { Ingredient } from '../../../models/ingredient'
 import { IRecipe, Recipe } from '../../../models/recipe'
+import { log } from '../../../utils/logging'
 import { recipesController } from '../index'
 
 const expectRecipeShape = (value, { name }: { name: string }) => {
@@ -39,11 +40,12 @@ describe.only('recipesController', () => {
   describe('update', () => {
 
     let ingredient
+    let recipe
 
     beforeEach(async () => {
       ingredient = await Ingredient.create({ name: 'basil' })
 
-      await Recipe.create({
+      recipe = await Recipe.create({
         name: 'Recipe1',
         usedIngredients: [
           { ingredient, measurement: 'cup', quantity: 5 },
@@ -53,6 +55,7 @@ describe.only('recipesController', () => {
 
     it('updates a recipe', async () => {
       const req = {
+        paramObjects: recipe,
         body: {
           recipe: {
             name: 'Garlic',
@@ -64,6 +67,7 @@ describe.only('recipesController', () => {
       await recipesController.update(req as Request, res as any)
 
       const returned = resSpy.firstCall.args[0]
+      log({ spec: returned })
       expectRecipeShape(returned, { name: 'Garlic' })
       expect(returned.recipe.usedIngredients[0]._id).to.eql(ingredient.id)
 
@@ -92,7 +96,7 @@ describe.only('recipesController', () => {
     })
 
     it('shows a recipe', async () => {
-      const req = { query: { recipe } }
+      const req = { paramObjects: { recipe } }
 
       await recipesController.show(req as Request, res as any)
 

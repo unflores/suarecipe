@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv'
 import * as repl from 'repl'
-import * as util from 'util'
+import { log } from '../utils/logging'
 
 dotenv.config()
 import { dbSetup } from '../../config/mongoose'
@@ -10,9 +10,7 @@ const replServer = repl.start('> ')
 import { Ingredient } from '../models/ingredient'
 import { Recipe } from '../models/recipe'
 
-replServer.context.show = (thing) => {
-  console.log(util.inspect(thing, false, null, true))
-}
+replServer.context.log = log
 replServer.context.Ingredient = Ingredient
 replServer.context.Recipe = Recipe
 /* tslint:disable: no-console*/
