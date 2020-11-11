@@ -15,11 +15,14 @@ const expectRecipeShape = (value, { name }: { name: string }) => {
 
 describe.only('recipesController', () => {
   let res
+  let resSpy
 
   beforeEach(() => {
     res = {
-      send: sinon.spy()
+      send: () => res,
+      status: () => res
     }
+    resSpy = sinon.spy(res, 'send')
   })
 
   describe('create', () => {
@@ -28,9 +31,50 @@ describe.only('recipesController', () => {
 
       await recipesController.create(req as Request, res as any)
 
-      const returned = res.send.firstCall.args[0]
+      const returned = resSpy.firstCall.args[0]
       expectRecipeShape(returned, { name: 'Garlic' })
     })
+  })
+
+  describe('update', () => {
+
+    let ingredient
+
+    beforeEach(async () => {
+      ingredient = await Ingredient.create({ name: 'basil' })
+
+      await Recipe.create({
+        name: 'Recipe1',
+        usedIngredients: [
+          { ingredient, measurement: 'cup', quantity: 5 },
+        ]
+      })
+    })
+
+    it('updates a recipe', async () => {
+      const req = {
+        body: {
+          recipe: {
+            name: 'Garlic',
+            usedIngredients: [{ ingredient: ingredient._id, measurement: 'spoonful', quantity: 1 }]
+          }
+        }
+      }
+
+      await recipesController.update(req as Request, res as any)
+
+      const returned = resSpy.firstCall.args[0]
+      expectRecipeShape(returned, { name: 'Garlic' })
+      expect(returned.recipe.usedIngredients[0]._id).to.eql(ingredient.id)
+
+    })
+
+    // context('bad parameter passed', () => {
+    //   it('returns a 400', () => { })
+    //   it('does NOT update a recipe', () => {
+
+    //   })
+    // })
   })
 
   describe('show', () => {
@@ -48,11 +92,11 @@ describe.only('recipesController', () => {
     })
 
     it('shows a recipe', async () => {
-      const req = { body: { recipe } }
+      const req = { query: { recipe } }
 
-      await recipesController.create(req as Request, res as any)
+      await recipesController.show(req as Request, res as any)
 
-      const returned = res.send.firstCall.args[0]
+      const returned = resSpy.firstCall.args[0]
       expectRecipeShape(returned, { name: 'Recipe1' })
 
     })
@@ -66,7 +110,7 @@ describe.only('recipesController', () => {
     it('shows all recipes', async () => {
       const req = { query: {} }
       await recipesController.list(req as Request, res as any)
-      const returned = res.send.firstCall.args[0]
+      const returned = resSpy.firstCall.args[0]
 
       expect(returned.recipes.length).to.eql(2)
     })
@@ -75,7 +119,7 @@ describe.only('recipesController', () => {
       it('removes non-matching recipes', async () => {
         const req = { query: { search: 'Recipe1' } }
         await recipesController.list(req as Request, res as any)
-        const returned = res.send.firstCall.args[0]
+        const returned = resSpy.firstCall.args[0]
         const recipeNames = returned.recipes.map((recipe) => recipe.name)
         expect(recipeNames).to.not.contain('Recipe2')
       })
