@@ -17,6 +17,14 @@ const ingredientSchema = new mongoose.Schema({
   type: {
     type: String
   }
+  // tslint:disable-next-line: align
+}, {
+  toObject: {
+    transform(doc, ret) {
+      ret._id = ret._id.toString()
+      delete ret.__v
+    }
+  }
 })
 
 ingredientSchema.plugin(uniqueValidator)

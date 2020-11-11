@@ -3,7 +3,6 @@ import { Request } from 'express'
 import * as sinon from 'sinon'
 import { Ingredient } from '../../../models/ingredient'
 import { IRecipe, Recipe } from '../../../models/recipe'
-import { log } from '../../../utils/logging'
 import { recipesController } from '../index'
 
 const expectRecipeShape = (value, { name }: { name: string }) => {
@@ -13,8 +12,19 @@ const expectRecipeShape = (value, { name }: { name: string }) => {
   expect(value.recipe.usedIngredients).to.be.an('array')
   expect(Object.keys(value.recipe)).to.contain.members(['_id', 'name', 'steps', 'usedIngredients'])
 }
+const expectIngredientShape = (
+  value,
+  { name, measurement, quantity }: { name: string, measurement: string, quantity: number }) => {
 
-describe.only('recipesController', () => {
+  expect(value._id).to.be.a('string')
+  expect(value.ingredient._id).to.be.a('string')
+  expect(value.ingredient.name).to.eql(name)
+  expect(value.measurement).to.eql(measurement)
+  expect(value.quantity).to.eql(quantity)
+
+}
+
+describe('recipesController', () => {
   let res
   let resSpy
 
@@ -55,7 +65,7 @@ describe.only('recipesController', () => {
 
     it('updates a recipe', async () => {
       const req = {
-        paramObjects: recipe,
+        paramObjects: { recipe },
         body: {
           recipe: {
             name: 'Garlic',
@@ -67,10 +77,12 @@ describe.only('recipesController', () => {
       await recipesController.update(req as Request, res as any)
 
       const returned = resSpy.firstCall.args[0]
-      log({ spec: returned })
-      expectRecipeShape(returned, { name: 'Garlic' })
-      expect(returned.recipe.usedIngredients[0]._id).to.eql(ingredient.id)
 
+      expectRecipeShape(returned, { name: 'Garlic' })
+      expectIngredientShape(
+        returned.recipe.usedIngredients[0],
+        { name: 'basil', measurement: 'spoonful', quantity: 1 }
+      )
     })
 
     // context('bad parameter passed', () => {

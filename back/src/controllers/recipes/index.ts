@@ -1,7 +1,6 @@
 import * as Joi from '@hapi/joi'
 import { Request, Response } from 'express'
 import { IRecipe, Recipe } from '../../models/recipe'
-import { log } from '../../utils/logging'
 
 const schema = Joi.object({
   name: Joi.string(),
@@ -16,7 +15,7 @@ async function create(req: Request, res: Response) {
 }
 
 async function show(req: Request, res: Response) {
-  res.send({ recipe: req.paramObjects.recipe })
+  res.send({ recipe: req.paramObjects.recipe.toObject() })
 }
 
 async function list(req: Request, res: Response) {
@@ -35,18 +34,17 @@ async function list(req: Request, res: Response) {
 }
 
 async function update(req: Request, res: Response) {
-  const body = schema.validate(req.body)
-  log(body)
+  const body = schema.validate(req.body.recipe)
 
   if (body.error) {
-    return res.status(400).json({ error: body.error })
+    return res.status(400).send({ error: body.error })
   }
-  const { recipe } = req.paramObjects
-  log({ paramRecipe: recipe })
+  let { recipe } = req.paramObjects
 
-  recipe.set(body.value).save().then(
-    _ => res.send({ recipe })
-  ).catch(
+  await recipe.set(body.value).save().then(async () => {
+    recipe = await recipe.populate('usedIngredients.ingredient').execPopulate()
+    res.send({ recipe: recipe.toObject() })
+  }).catch(
     result => res.status(400).send({ error: result })
   )
 }
