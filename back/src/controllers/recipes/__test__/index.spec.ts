@@ -5,7 +5,15 @@ import { Ingredient } from '../../../models/ingredient'
 import { IRecipe, Recipe } from '../../../models/recipe'
 import { recipesController } from '../index'
 
-describe('recipesController', () => {
+const expectRecipeShape = (value, { name }: { name: string }) => {
+  expect(value.recipe._id).to.be.a('string')
+  expect(value.recipe.name).to.eql(name)
+  expect(value.recipe.steps).to.be.an('array')
+  expect(value.recipe.usedIngredients).to.be.an('array')
+  expect(Object.keys(value.recipe)).to.contain.members(['_id', 'name', 'steps', 'usedIngredients'])
+}
+
+describe.only('recipesController', () => {
   let res
 
   beforeEach(() => {
@@ -16,16 +24,12 @@ describe('recipesController', () => {
 
   describe('create', () => {
     it('creates a new recipe', async () => {
-      const req = { body: { recipe: { name: 'thing' } } }
+      const req = { body: { recipe: { name: 'Garlic' } } }
 
       await recipesController.create(req as Request, res as any)
 
       const returned = res.send.firstCall.args[0]
-      expect(returned.recipe._id).to.be.a('string')
-      expect(returned.recipe.name).to.eql('thing')
-      expect(returned.recipe.steps).to.be.an('array')
-      expect(returned.recipe.usedIngredients).to.be.an('array')
-      expect(Object.keys(returned.recipe)).to.eql(['_id', 'name', 'steps', 'usedIngredients'])
+      expectRecipeShape(returned, { name: 'Garlic' })
     })
   })
 
@@ -49,18 +53,12 @@ describe('recipesController', () => {
       await recipesController.create(req as Request, res as any)
 
       const returned = res.send.firstCall.args[0]
-      expect(returned.recipe._id).to.be.a('string')
-      expect(returned.recipe.name).to.eql('Recipe1')
-      expect(returned.recipe.steps).to.be.an('array')
-      expect(returned.recipe.usedIngredients[0].ingredient.name).to.eql('basil')
-      expect(
-        Object.keys(returned.recipe)
-      ).to.contain.members(['_id', 'name', 'steps', 'usedIngredients'])
+      expectRecipeShape(returned, { name: 'Recipe1' })
+
     })
   })
 
   describe('list', () => {
-
     beforeEach(async () => {
       await Recipe.create([{ name: 'Recipe1' }, { name: 'Recipe2' }])
     })
