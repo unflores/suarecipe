@@ -11,15 +11,21 @@ interface State {
 interface Props {
   onSearch: (search: string) => void
   SearchResults?: React.FunctionComponent
+  clickClearsSearch: boolean
 }
 
 class Search extends React.Component<Props, State> {
+
+  static defaultProps = {
+    clickClearsSearch: false
+  }
 
   constructor(props: Props) {
     super(props)
 
     this.state = {
-      search: '',
+      search: ''
+
     }
   }
 
@@ -39,13 +45,18 @@ class Search extends React.Component<Props, State> {
   }
 
   componentDidMount(): void {
-    window.addEventListener('mousedown', this.handleClickOutside)
+    if (this.props.clickClearsSearch) {
+      window.addEventListener('mousedown', this.handleClickOutside)
+    }
+
     window.addEventListener('keydown', this.handleKeyDown)
   }
 
   componentWillUnmount(): void {
     window.removeEventListener('keydown', this.handleKeyDown)
-    window.removeEventListener('mousedown', this.handleClickOutside)
+    if (this.props.clickClearsSearch) {
+      window.removeEventListener('mousedown', this.handleClickOutside)
+    }
   }
 
   handleKeyDown = (event: KeyboardEvent): any => {

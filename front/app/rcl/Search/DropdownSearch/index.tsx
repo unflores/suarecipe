@@ -1,5 +1,6 @@
 import BasicInput from 'frontapp/rcl/Atoms/BasicInput'
 import * as React from 'react'
+import ReactDOM = require('react-dom')
 import * as styles from '../styles.css'
 
 interface Props {
@@ -26,6 +27,29 @@ class DropdownSearch extends React.Component<Props, State> {
       search: '',
       results: [],
     }
+  }
+
+  componentDidMount(): void {
+    window.addEventListener('mousedown', this.handleClickOutside)
+  }
+
+  componentWillUnmount(): void {
+    window.removeEventListener('mousedown', this.handleClickOutside)
+  }
+
+  handleClickOutside = (event: MouseEvent) => {
+    const domNode = ReactDOM.findDOMNode(this)
+    if (!(event.target instanceof HTMLElement)) {
+      return
+    }
+
+    if (!domNode || !domNode.contains(event.target)) {
+      this.clearResults()
+    }
+  }
+
+  clearResults = async () => {
+    this.setState({ search: '', results: [] })
   }
 
   handleSearch = async (namevalue: { name: string, value: string }) => {
@@ -66,7 +90,7 @@ class DropdownSearch extends React.Component<Props, State> {
                 onClick={() => this.handleSelect(result.id)}
               >
                 {result.value}
-              </div>,
+              </div>
             )}
           </div>
         </div>
