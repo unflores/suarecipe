@@ -39,6 +39,7 @@ class DropdownSearch extends React.Component<Props, State> {
 
   handleClickOutside = (event: MouseEvent) => {
     const domNode = ReactDOM.findDOMNode(this)
+    console.log(domNode)
     if (!(event.target instanceof HTMLElement)) {
       return
     }
@@ -73,7 +74,7 @@ class DropdownSearch extends React.Component<Props, State> {
 
   render() {
     return (
-      <>
+      <div>
         <BasicInput
           id={'TODO'}
           labelText=""
@@ -94,7 +95,7 @@ class DropdownSearch extends React.Component<Props, State> {
             )}
           </div>
         </div>
-      </>
+      </div>
     )
   }
 }
