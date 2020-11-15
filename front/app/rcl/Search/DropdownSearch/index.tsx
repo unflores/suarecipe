@@ -39,7 +39,6 @@ class DropdownSearch extends React.Component<Props, State> {
 
   handleClickOutside = (event: MouseEvent) => {
     const domNode = ReactDOM.findDOMNode(this)
-    console.log(domNode)
     if (!(event.target instanceof HTMLElement)) {
       return
     }
@@ -60,7 +59,6 @@ class DropdownSearch extends React.Component<Props, State> {
 
     const results = await this.props.onSearch(namevalue.value)
     this.setState({ results })
-    console.log({ results, state: this.state })
   }
 
   handleSelect = (id: string) => {
