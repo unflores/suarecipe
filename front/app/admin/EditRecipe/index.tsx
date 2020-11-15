@@ -95,7 +95,7 @@ class EditRecipe extends React.Component<Props, State> {
     })
   }
 
-  searchRecipe = async (searchText: string) => {
+  searchIngredient = async (searchText: string) => {
     const response = await api.get<IngredientsResponse>('/api/ingredients/',
       { search: searchText }
     )
@@ -150,7 +150,7 @@ class EditRecipe extends React.Component<Props, State> {
           />
           <DropdownSearch
             labelText="Ingredients list: "
-            onSearch={this.searchRecipe}
+            onSearch={this.searchIngredient}
             onSelect={this.handleSelectSearchItem}
           />
 
