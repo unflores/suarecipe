@@ -14,7 +14,7 @@ interface Option {
   label: string
 }
 
-const MEASUREMENTS: Option[] = [
+export const MEASUREMENTS: Option[] = [
   { value: 'pounds', label: 'Pounds' },
   { value: 'ounces', label: 'Ounces' },
   { value: 'grams', label: 'Grams' },

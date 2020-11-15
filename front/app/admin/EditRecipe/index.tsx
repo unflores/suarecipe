@@ -6,7 +6,7 @@ import Form from 'frontapp/rcl/Form'
 import DropdownSearch from 'frontapp/rcl/Search/DropdownSearch'
 import * as React from 'react'
 
-import UsedIngredientInput from 'frontapp/rcl/Molecules/UsedIngredientInput'
+import UsedIngredientInput, { MEASUREMENTS } from 'frontapp/rcl/Molecules/UsedIngredientInput'
 
 interface SearchResult {
   id: string
@@ -74,7 +74,7 @@ class EditRecipe extends React.Component<Props, State> {
     const usedIngredient = {
       ingredient: { _id: id, name: name.value },
       quantity: 0,
-      measurement: ''
+      measurement: MEASUREMENTS[0].value
     }
     this.setState({
       recipeAtts: {
@@ -135,7 +135,7 @@ class EditRecipe extends React.Component<Props, State> {
   }
 
   render() {
-    const { recipeAtts, usedIngredientNames } = this.state
+    const { recipeAtts } = this.state
     return (
       <>
         <Form
