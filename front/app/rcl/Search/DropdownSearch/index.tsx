@@ -4,6 +4,7 @@ import ReactDOM = require('react-dom')
 import * as styles from '../styles.css'
 
 interface Props {
+  labelText: string
   onSearch: (search: string) => Promise<Result[]>
   onSelect: (id: string) => void
 }
@@ -19,6 +20,10 @@ interface State {
 }
 
 class DropdownSearch extends React.Component<Props, State> {
+
+  static defaultProps = {
+    labelText: ''
+  }
 
   constructor(props: Props) {
     super(props)
@@ -75,7 +80,7 @@ class DropdownSearch extends React.Component<Props, State> {
       <div>
         <BasicInput
           id={'TODO'}
-          labelText=""
+          labelText={this.props.labelText}
           value={this.state.search}
           name="temp"
           onChange={this.handleSearch}

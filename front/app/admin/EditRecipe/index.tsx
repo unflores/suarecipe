@@ -149,6 +149,7 @@ class EditRecipe extends React.Component<Props, State> {
             onChange={this.updateObject}
           />
           <DropdownSearch
+            labelText="Ingredients list: "
             onSearch={this.searchRecipe}
             onSelect={this.handleSelectSearchItem}
           />
