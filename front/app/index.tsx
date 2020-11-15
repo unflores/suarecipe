@@ -2,19 +2,20 @@ import Main from 'frontapp/templates/Main'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
+import { BrowserRouter as Router, Route, RouteComponentProps, Switch } from "react-router-dom"
 import { createStore } from 'redux'
-import { BrowserRouter as Router, Switch, Route, RouteComponentProps } from "react-router-dom"
 import reducer from './reducers/index'
 
 const store = createStore(
   reducer,
   (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
-  (window as any).__REDUX_DEVTOOLS_EXTENSION__(),
+  (window as any).__REDUX_DEVTOOLS_EXTENSION__()
 )
 
+import EditRecipe from './admin/EditRecipe'
 import Ingredients from './admin/Ingredients'
 import Recipes from './admin/Recipes'
-import EditRecipe from './admin/EditRecipe'
+import ErrorBoundary from './ErrorBoundary'
 
 interface EditRecipeProps extends RouteComponentProps<{ recipeId: string }> { }
 
@@ -25,14 +26,23 @@ const App = () => (
         <Main>
           <Switch>
             <Route path="/admin/ingredients">
-              <Ingredients />
+              <ErrorBoundary key="/admin/ingredients">
+                <Ingredients />
+              </ErrorBoundary>
             </Route>
             <Route exact={true} path="/admin/recipes">
-              <Recipes />
+              <ErrorBoundary key="/admin/recipes">
+                <Recipes />
+              </ErrorBoundary>
+
             </Route>
             <Route
               path="/admin/recipes/:recipeId/edit"
-              render={(props: EditRecipeProps) => <EditRecipe recipeId={props.match.params.recipeId} />}
+              render={(props: EditRecipeProps) =>
+                <ErrorBoundary key={props.match.url}>
+                  <EditRecipe recipeId={props.match.params.recipeId} />
+                </ErrorBoundary>
+              }
             />
             <Route>
               <Ingredients />
