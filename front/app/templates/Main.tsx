@@ -1,12 +1,12 @@
-import * as React from 'react'
 import SideNav from 'frontapp/rcl/SideNav'
+import * as React from 'react'
 import * as styles from './styles.css'
 
-interface IProps {
+interface Props {
   children: any
 }
 
-const Main: React.SFC<IProps> = ({ children }) => (
+const Main: React.SFC<Props> = ({ children }) => (
   <div>
     <header>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -15,7 +15,6 @@ const Main: React.SFC<IProps> = ({ children }) => (
     </header>
     <div className={styles.wrapper}>
       <SideNav />
-
       <div className="container">{children}</div>
     </div>
   </div>
