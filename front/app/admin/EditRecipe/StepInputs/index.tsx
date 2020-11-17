@@ -1,5 +1,6 @@
 import { Step } from 'frontapp/libs/api/Responses'
 import * as React from 'react'
+import NoSteps from './NoSteps'
 
 interface Props {
   steps: Step[]
@@ -14,19 +15,7 @@ class StepsInput extends React.Component<Props, State> {
     console.log(this.props.steps)
     if (this.props.steps.length === 0) {
       return (
-        <>
-          <div className="row">
-            <div className="col-5">
-              <label>Steps: </label>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-5">
-              No steps... Add some.
-          </div>
-            <div className="col-5"><button>Add Step</button></div>
-          </div>
-        </>
+        <NoSteps />
       )
     } else {
       return (
