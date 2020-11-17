@@ -7,6 +7,7 @@ import DropdownSearch from 'frontapp/rcl/Search/DropdownSearch'
 import * as React from 'react'
 
 import UsedIngredientInput, { MEASUREMENTS } from 'frontapp/rcl/Molecules/UsedIngredientInput'
+import StepInputs from './StepInputs'
 
 interface SearchResult {
   id: string
@@ -44,6 +45,7 @@ class EditRecipe extends React.Component<Props, State> {
         _id: '',
         name: '',
         usedIngredients: [],
+        steps: []
       },
       searchResults: [],
     }
@@ -167,6 +169,7 @@ class EditRecipe extends React.Component<Props, State> {
               />
             )}
           </div>
+          <StepInputs steps={recipeAtts.steps} />
         </Form >
       </>
     )
