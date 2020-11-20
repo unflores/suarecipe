@@ -15,7 +15,7 @@ export interface RecipeResponse {
 }
 
 export interface Step {
-
+  body: string
 }
 
 export interface UsedIngredient {
