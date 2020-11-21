@@ -7,6 +7,7 @@ import NoSteps from './NoSteps'
 interface Props {
   steps: Step[]
   onChange: (steps: Step[]) => void
+  onRemove: (steps: Step[]) => void
 }
 
 interface State {
@@ -32,12 +33,12 @@ const getListStyle = (isDraggingOver: boolean) => ({
 
 const grid = 8
 
-const reorder = (list: Step[], startIndex: number, endIndex: number) => {
-  const result = Array.from(list)
-  const [removed] = result.splice(startIndex, 1)
-  result.splice(endIndex, 0, removed)
+const reorder = (steps: Step[], startIndex: number, endIndex: number) => {
+  const changedSteps = Array.from(steps)
+  const [removed] = changedSteps.splice(startIndex, 1)
+  changedSteps.splice(endIndex, 0, removed)
 
-  return result
+  return changedSteps
 }
 
 class StepsInput extends React.Component<Props, State> {
@@ -57,6 +58,12 @@ class StepsInput extends React.Component<Props, State> {
 
     this.props.onChange(steps)
 
+  }
+
+  handleRemoveIngredient = (removeIndex: number) => {
+    const steps = Array.from(this.props.steps)
+    steps.splice(removeIndex, 1)
+    this.props.onRemove(steps)
   }
 
   render() {
@@ -93,7 +100,7 @@ class StepsInput extends React.Component<Props, State> {
                           <Button
                             text="X"
                             type="danger"
-                            onClick={() => { }}
+                            onClick={() => (this.handleRemoveIngredient(index))}
                           />
                         </div>
                       )}

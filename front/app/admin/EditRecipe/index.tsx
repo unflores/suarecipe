@@ -178,6 +178,7 @@ class EditRecipe extends React.Component<Props, State> {
           <StepInputs
             steps={recipeAtts.steps}
             onChange={this.updateSteps}
+            onRemove={this.updateSteps}
           />
         </Form >
       </>
