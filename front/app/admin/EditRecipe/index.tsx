@@ -1,5 +1,5 @@
 import api, { mergeIntersect } from 'frontapp/api'
-import { FullRecipe, Recipe, RecipeResponse } from 'frontapp/libs/api/Responses'
+import { FullRecipe, Recipe, RecipeResponse, Step } from 'frontapp/libs/api/Responses'
 import { Ingredient, IngredientsResponse, UsedIngredient } from 'frontapp/libs/api/Responses'
 import BasicInput from 'frontapp/rcl/Atoms/BasicInput'
 import Form from 'frontapp/rcl/Form'
@@ -136,6 +136,12 @@ class EditRecipe extends React.Component<Props, State> {
     console.log({ recipeAtts: { ...this.state.recipeAtts, usedIngredients: newUsedIngredients } })
   }
 
+  updateSteps = (steps: Step[]) => {
+    this.setState({
+      recipeAtts: { ...this.state.recipeAtts, steps }
+    })
+  }
+
   render() {
     const { recipeAtts } = this.state
     return (
@@ -169,7 +175,10 @@ class EditRecipe extends React.Component<Props, State> {
               />
             )}
           </div>
-          <StepInputs steps={recipeAtts.steps} />
+          <StepInputs
+            steps={recipeAtts.steps}
+            onChange={this.updateSteps}
+          />
         </Form >
       </>
     )

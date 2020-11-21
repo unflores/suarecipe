@@ -2,6 +2,7 @@ import * as React from 'react'
 
 interface Props {
   text: string
+  type: string
   onClick: () => void
 }
 
@@ -9,6 +10,7 @@ class Button extends React.Component<Props, {}> {
 
   static defaultProps = {
     text: 'Submit',
+    type: 'success'
   }
 
   constructor(props: Props) {
@@ -23,11 +25,11 @@ class Button extends React.Component<Props, {}> {
         <button
           onClick={onClick}
           type="button"
-          className="btn btn-success"
+          className={`btn btn-${this.props.type}`}
         >
           {text}
         </button>
-      </div>
+      </div >
     )
   }
 }
