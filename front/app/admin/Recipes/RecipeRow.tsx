@@ -1,30 +1,15 @@
 import * as React from 'react'
 import { Recipe } from 'frontapp/libs/api/Responses'
-// import Modal from 'frontapp/rcl/Modal'
+import { Link } from "react-router-dom";
+
 
 interface Props {
   recipe: Recipe
 }
 
-interface State {
-  isModalVisible: boolean
-}
-
-class RecipeRow extends React.Component<Props, State> {
+class RecipeRow extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props)
-
-    this.state = {
-      isModalVisible: false
-    }
-  }
-
-  handleOpenModal = () => {
-    this.setState({ isModalVisible: true })
-  }
-
-  handleCloseModal = () => {
-    this.setState({ isModalVisible: false })
   }
 
   render() {
@@ -34,15 +19,7 @@ class RecipeRow extends React.Component<Props, State> {
       <tr>
         <td>{recipe.name}</td>
         <td>
-          {/* {this.state.isModalVisible &&
-            <Modal
-              title="Modify Ingredient"
-              onClose={this.handleCloseModal}
-            >
-              <IngredientForm onSuccess={this.handleCloseModal} recipe={recipe} />
-            </Modal>
-          } */}
-          <button onClick={this.handleOpenModal}>Modify</button>
+          <Link to={`/admin/recipes/${recipe._id}/edit`}>Modify</Link>
         </td>
       </tr>
     )
