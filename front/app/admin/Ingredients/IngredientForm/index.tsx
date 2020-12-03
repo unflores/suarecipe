@@ -31,7 +31,7 @@ class IngredientForm extends React.Component<Props, State> {
 
   updateObject = (namevalue: { name: string, value: string }) => {
     this.setState({
-      ingredient: { ...this.state.ingredient, ...namevalue }
+      ingredient: { ...this.state.ingredient, [namevalue.name]: namevalue.value }
     })
   }
 
