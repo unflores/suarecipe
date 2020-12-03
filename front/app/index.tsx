@@ -12,8 +12,8 @@ const store = createStore(
   (window as any).__REDUX_DEVTOOLS_EXTENSION__()
 )
 
-import RecipeForm from './admin/EditRecipe'
 import Ingredients from './admin/Ingredients'
+import RecipeForm from './admin/RecipeForm'
 import Recipes from './admin/Recipes'
 import ErrorBoundary from './ErrorBoundary'
 
