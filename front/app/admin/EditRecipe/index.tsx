@@ -35,7 +35,7 @@ interface State {
   searchResults: SearchResult[]
 }
 
-class EditRecipe extends React.Component<Props, State> {
+class RecipeForm extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props)
 
@@ -186,4 +186,4 @@ class EditRecipe extends React.Component<Props, State> {
   }
 }
 
-export default EditRecipe
+export default RecipeForm

@@ -12,12 +12,12 @@ const store = createStore(
   (window as any).__REDUX_DEVTOOLS_EXTENSION__()
 )
 
-import EditRecipe from './admin/EditRecipe'
+import RecipeForm from './admin/EditRecipe'
 import Ingredients from './admin/Ingredients'
 import Recipes from './admin/Recipes'
 import ErrorBoundary from './ErrorBoundary'
 
-interface EditRecipeProps extends RouteComponentProps<{ recipeId: string }> { }
+interface RecipeFormProps extends RouteComponentProps<{ recipeId: string }> { }
 
 const App = () => (
   <Provider store={store}>
@@ -38,9 +38,9 @@ const App = () => (
             </Route>
             <Route
               path="/admin/recipes/:recipeId/edit"
-              render={(props: EditRecipeProps) =>
+              render={(props: RecipeFormProps) =>
                 <ErrorBoundary key={props.match.url}>
-                  <EditRecipe recipeId={props.match.params.recipeId} />
+                  <RecipeForm recipeId={props.match.params.recipeId} />
                 </ErrorBoundary>
               }
             />
