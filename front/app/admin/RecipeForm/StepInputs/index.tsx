@@ -3,6 +3,7 @@ import Button from 'frontapp/rcl/Atoms/Button'
 import * as React from 'react'
 import { DragDropContext, Draggable, Droppable, DropResult } from "react-beautiful-dnd"
 import NoSteps from './NoSteps'
+import * as styles from './styles.css'
 
 interface Props {
   steps: Step[]
@@ -15,12 +16,10 @@ interface State {
 }
 
 const getItemStyle = (isDragging: boolean, draggableStyle: object) => ({
+  display: 'flex',
   padding: grid * 2,
   margin: `0 0 ${grid}px 0`,
-
-  // change background colour if dragging
-  background: isDragging ? "lightgreen" : "grey",
-
+  background: isDragging ? "lightgreen" : "#fff",
   // styles we need to apply on draggables
   ...draggableStyle
 })
@@ -28,7 +27,7 @@ const getItemStyle = (isDragging: boolean, draggableStyle: object) => ({
 const getListStyle = (isDraggingOver: boolean) => ({
   background: isDraggingOver ? "lightblue" : "lightgrey",
   padding: grid,
-  width: 250
+  width: `40rem`
 })
 
 const grid = 8
@@ -41,12 +40,15 @@ const reorder = (steps: Step[], startIndex: number, endIndex: number) => {
   return changedSteps
 }
 
+const draggedOutsideDroppable = ({ destination }: DropResult) => {
+  return !destination
+}
+
 class StepsInput extends React.Component<Props, State> {
 
   onDragEnd = (result: DropResult) => {
 
-    // dropped outside the list
-    if (!result.destination) {
+    if (draggedOutsideDroppable(result)) {
       return
     }
 
@@ -96,7 +98,9 @@ class StepsInput extends React.Component<Props, State> {
                             dragProvided.draggableProps.style
                           )}
                         >
-                          {step.body}
+                          <div className={styles.body}>
+                            {step.body}
+                          </div>
                           <Button
                             text="X"
                             type="danger"
