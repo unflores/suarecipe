@@ -41,7 +41,7 @@ class StepInputs extends React.Component<Props, State> {
             keyField="body"
           >
             {(step) => (
-              <div>
+              <div className={styles.step}>
                 <div className={styles.body}>
                   {step.body}
                 </div>

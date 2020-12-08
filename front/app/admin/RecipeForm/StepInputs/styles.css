@@ -1,3 +1,6 @@
-.body{
+.step {
+  display: flex;
+}
+.body {
   flex-grow: 2;
 }

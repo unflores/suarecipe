@@ -2,7 +2,6 @@ import * as React from 'react'
 import { DragDropContext, Draggable, Droppable, DropResult } from "react-beautiful-dnd"
 
 const getItemStyle = (isDragging: boolean, draggableStyle: object) => ({
-  display: 'flex',
   padding: grid * 2,
   margin: `0 0 ${grid}px 0`,
   background: isDragging ? "lightgreen" : "#fff",
