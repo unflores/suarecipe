@@ -3,7 +3,6 @@ import BasicInput from 'frontapp/rcl/Atoms/BasicInput'
 import Button from 'frontapp/rcl/Atoms/Button'
 import DragAndDrop from 'frontapp/rcl/Atoms/DragAndDrop'
 import * as React from 'react'
-import { DragDropContext, Draggable, Droppable, DropResult } from "react-beautiful-dnd"
 import NoSteps from './NoSteps'
 import * as styles from './styles.css'
 
