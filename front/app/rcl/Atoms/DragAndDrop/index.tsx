@@ -32,7 +32,7 @@ const draggedOutsideDroppable = ({ destination }: DropResult) => {
 interface Props<T, U> {
   onChange: (items: T[]) => void
   items: T[]
-  children: (item: T) => JSX.Element
+  children: (item: T, index: number) => JSX.Element
   keyField: U
 }
 
@@ -83,7 +83,7 @@ class DragAndDrop<T extends {}, U extends keyof T> extends React.Component<Props
                           dragProvided.draggableProps.style
                         )}
                       >
-                        {this.props.children(item)}
+                        {this.props.children(item, index)}
                       </div>
                     )}
                   </Draggable>
