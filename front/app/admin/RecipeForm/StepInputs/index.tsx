@@ -1,5 +1,6 @@
 import { Step } from 'frontapp/libs/api/Responses'
 import Button from 'frontapp/rcl/Atoms/Button'
+import DragAndDrop from 'frontapp/rcl/Atoms/DragAndDrop'
 import * as React from 'react'
 import { DragDropContext, Draggable, Droppable, DropResult } from "react-beautiful-dnd"
 import NoSteps from './NoSteps'
@@ -44,7 +45,7 @@ const draggedOutsideDroppable = ({ destination }: DropResult) => {
   return !destination
 }
 
-class StepsInput extends React.Component<Props, State> {
+class StepInputs extends React.Component<Props, State> {
 
   onDragEnd = (result: DropResult) => {
 
@@ -62,9 +63,10 @@ class StepsInput extends React.Component<Props, State> {
 
   }
 
-  handleRemoveIngredient = (removeIndex: number) => {
+  handleRemoveIngredient = (step: Step) => {
     const steps = Array.from(this.props.steps)
-    steps.splice(removeIndex, 1)
+    const index = steps.findIndex((currentStep) => currentStep.body === step.body)
+    steps.splice(index, 1)
     this.props.onRemove(steps)
   }
 
@@ -78,47 +80,28 @@ class StepsInput extends React.Component<Props, State> {
       <>
         <label>Steps: </label>
         <div>
-          <DragDropContext onDragEnd={this.onDragEnd}>
-            <Droppable droppableId="droppable">
-              {(dropProvided, dropSnapshot) => (
-                <div
-                  {...dropProvided.droppableProps}
-                  ref={dropProvided.innerRef}
-                  style={getListStyle(dropSnapshot.isDraggingOver)}
-                >
-                  {steps.map((step, index) => (
-                    <Draggable key={step.body} draggableId={step.body} index={index}>
-                      {(dragProvided, dragSnapshot) => (
-                        <div
-                          ref={dragProvided.innerRef}
-                          {...dragProvided.draggableProps}
-                          {...dragProvided.dragHandleProps}
-                          style={getItemStyle(
-                            dragSnapshot.isDragging,
-                            dragProvided.draggableProps.style
-                          )}
-                        >
-                          <div className={styles.body}>
-                            {step.body}
-                          </div>
-                          <Button
-                            text="X"
-                            type="danger"
-                            onClick={() => (this.handleRemoveIngredient(index))}
-                          />
-                        </div>
-                      )}
-                    </Draggable>
-                  ))}
-                  {dropProvided.placeholder}
+          <DragAndDrop
+            onChange={this.props.onChange}
+            items={steps}
+            keyField="body"
+          >
+            {(step) => (
+              <div>
+                <div className={styles.body}>
+                  {step.body}
                 </div>
-              )}
-            </Droppable>
-          </DragDropContext>
+                <Button
+                  text="X"
+                  type="danger"
+                  onClick={() => (this.handleRemoveIngredient(step))}
+                />
+              </div>
+            )}
+          </DragAndDrop>
         </div>
       </>
     )
   }
 }
 
-export default StepsInput
+export default StepInputs
