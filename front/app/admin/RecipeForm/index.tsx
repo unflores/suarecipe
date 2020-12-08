@@ -156,11 +156,15 @@ class RecipeForm extends React.Component<Props, State> {
             value={recipeAtts.name}
             onChange={this.updateObject}
           />
-          <DropdownSearch
-            labelText="Ingredients list: "
-            onSearch={this.searchIngredient}
-            onSelect={this.handleSelectSearchItem}
-          />
+          <div className="row">
+            <div className="col-3">
+              <DropdownSearch
+                labelText="Ingredients list: "
+                onSearch={this.searchIngredient}
+                onSelect={this.handleSelectSearchItem}
+              />
+            </div>
+          </div>
 
           <div>
             {recipeAtts.usedIngredients.map((usedIngredient) =>
