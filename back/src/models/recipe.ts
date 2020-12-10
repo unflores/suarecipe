@@ -22,6 +22,14 @@ const stepSchema = new Schema({
     type: String,
     required: true
   }
+  // tslint:disable-next-line: align
+}, {
+  toObject: {
+    transform(doc, ret) {
+      ret._id = ret._id.toString()
+      delete ret.__v
+    }
+  }
 })
 
 const usedIngredientSchema = new Schema({

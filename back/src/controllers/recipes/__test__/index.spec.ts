@@ -10,7 +10,7 @@ const expectRecipeShape = (value, { name }: { name: string }) => {
   expect(value.recipe.name).to.eql(name)
   expect(value.recipe.steps).to.be.an('array')
   expect(value.recipe.usedIngredients).to.be.an('array')
-  expect(Object.keys(value.recipe)).to.contain.members(['_id', 'name', 'steps', 'usedIngredients'])
+  expect(Object.keys(value.recipe)).to.have.members(['_id', 'name', 'steps', 'usedIngredients'])
 }
 const expectIngredientShape = (
   value,
@@ -103,6 +103,9 @@ describe('recipesController', () => {
         name: 'Recipe1',
         usedIngredients: [
           { ingredient, measurement: 'something', quantity: 5 },
+        ],
+        steps: [
+          { body: 'stuff' }
         ]
       })
     })
@@ -113,8 +116,9 @@ describe('recipesController', () => {
       await recipesController.show(req as Request, res as any)
 
       const returned = resSpy.firstCall.args[0]
-      expectRecipeShape(returned, { name: 'Recipe1' })
 
+      expectRecipeShape(returned, { name: 'Recipe1' })
+      expect(Object.keys(returned.recipe.steps[0])).to.have.members(['_id', 'body'])
     })
   })
 
