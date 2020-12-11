@@ -4,7 +4,7 @@ import RecipeRow from './RecipeRow'
 import { connect } from 'react-redux'
 import api from 'frontapp/api'
 import { Recipe, RecipesResponse } from 'frontapp/libs/api/Responses'
-import AdminTable from 'frontapp/rcl/AdminTable'
+import Table from 'frontapp/rcl/Table'
 import Search from 'frontapp/rcl/Search'
 import { recipesFetched } from 'frontapp/reducers/recipes/actionBuilders'
 import { Dispatch } from 'redux'
@@ -48,7 +48,7 @@ class Recipes extends React.Component<Props, {}> {
           onSearch={this.searchRecipe}
         />
 
-        <AdminTable
+        <Table
           headers={['Name', '']}
         >
           {
@@ -59,7 +59,7 @@ class Recipes extends React.Component<Props, {}> {
               />
             )
           }
-        </AdminTable>
+        </Table>
       </>
     )
   }

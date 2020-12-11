@@ -3,7 +3,7 @@ import IngredientRow from './IngredientRow'
 import { IApplicationState } from 'frontapp/reducers'
 import { connect } from 'react-redux'
 import api from 'frontapp/api'
-import AdminTable from 'frontapp/rcl/AdminTable'
+import Table from 'frontapp/rcl/Table'
 import { IngredientsResponse, Ingredient } from 'frontapp/libs/api/Responses'
 import { ingredientsFetched } from 'frontapp/reducers/ingredients/actionBuilders'
 import { Dispatch } from 'redux'
@@ -25,7 +25,7 @@ class Ingredients extends React.Component<Props, {}> {
     return (
       <>
         <h3>Ingredients</h3>
-        <AdminTable
+        <Table
           headers={['Name', '']}
         >
           {
@@ -36,7 +36,7 @@ class Ingredients extends React.Component<Props, {}> {
               />
             )
           }
-        </AdminTable>
+        </Table>
       </>
     )
   }

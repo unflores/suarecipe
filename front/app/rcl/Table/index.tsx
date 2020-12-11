@@ -5,7 +5,7 @@ interface Props {
   children: React.ReactNode
 }
 
-class AdminTable extends React.Component<Props, {}> {
+class Table extends React.Component<Props, {}> {
   render() {
     return (
       <table className="table table-striped">
@@ -25,4 +25,4 @@ class AdminTable extends React.Component<Props, {}> {
     )
   }
 }
-export default AdminTable
+export default Table
