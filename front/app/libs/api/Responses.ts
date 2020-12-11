@@ -15,6 +15,7 @@ export interface RecipeResponse {
 }
 
 export interface Step {
+  _id: string
   body: string
 }
 

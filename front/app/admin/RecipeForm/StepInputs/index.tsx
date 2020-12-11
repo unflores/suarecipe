@@ -20,7 +20,7 @@ class StepInputs extends React.Component<Props, State> {
 
   handleRemoveIngredient = (step: Step) => {
     const steps = Array.from(this.props.steps)
-    const index = steps.findIndex((currentStep) => currentStep.body === step.body)
+    const index = steps.findIndex((currentStep) => currentStep._id === step._id)
     steps.splice(index, 1)
     this.props.onRemove(steps)
   }
@@ -28,7 +28,7 @@ class StepInputs extends React.Component<Props, State> {
   handleUpdateStep = ({ name, value }: { name: string, value: string }) => {
     const steps = Array.from(this.props.steps)
 
-    const index = parseInt(name.split("body-").slice(-1).pop(), 10)
+    const index = steps.findIndex((currentStep) => currentStep._id === name)
 
     steps[index].body = value
 
@@ -48,13 +48,13 @@ class StepInputs extends React.Component<Props, State> {
           <DragAndDrop
             onChange={this.props.onChange}
             items={steps}
-            keyField="body"
+            keyField="_id"
           >
             {(step, index) => (
               <div className={styles.step}>
                 <div className={styles.body}>
                   <BasicInput
-                    name={`body-${index}`}
+                    name={step._id}
                     value={step.body}
                     onChange={this.handleUpdateStep}
                   />
