@@ -180,6 +180,7 @@ class RecipeForm extends React.Component<Props, State> {
             )}
           </div>
           <StepInputs
+            recipeId={this.state.recipeAtts._id}
             steps={recipeAtts.steps}
             onChange={this.updateSteps}
             onRemove={this.updateSteps}

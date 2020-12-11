@@ -14,6 +14,10 @@ export interface RecipeResponse {
   recipe: Recipe
 }
 
+export interface StepsResponse {
+  steps: Step[]
+}
+
 export interface Step {
   _id: string
   body: string

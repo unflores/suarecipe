@@ -6,7 +6,7 @@ const create = async (req: Request, res: Response) => {
 
   recipe.steps.push({ body: formValues.step.body as string })
   await recipe.save()
-  res.send({ step: recipe.steps[recipe.steps.length - 1] })
+  res.send({ steps: recipe.steps })
 }
 
 const updateAll = async (req: Request, res: Response) => {
