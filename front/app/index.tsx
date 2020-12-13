@@ -1,4 +1,3 @@
-import Main from 'frontapp/templates/Main'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
@@ -12,11 +11,11 @@ const store = createStore(
   (window as any).__REDUX_DEVTOOLS_EXTENSION__()
 )
 
+import AdminLayout from 'frontapp/templates/Admin'
 import Ingredients from './admin/Ingredients'
 import RecipeForm from './admin/RecipeForm'
 import Recipes from './admin/Recipes'
 import ErrorBoundary from './ErrorBoundary'
-
 import MainRecipes from './main/Recipes'
 
 interface RecipeFormProps extends RouteComponentProps<{ recipeId: string }> { }
@@ -34,7 +33,7 @@ const App = () => (
           </Route>
 
           <Route path="/admin">
-            <Main>
+            <AdminLayout>
               <Route path="/admin/ingredients">
                 <ErrorBoundary key="/admin/ingredients">
                   <Ingredients />
@@ -57,7 +56,7 @@ const App = () => (
               <Route>
                 <Ingredients />
               </Route>
-            </Main>
+            </AdminLayout>
           </Route>
 
         </Switch>
