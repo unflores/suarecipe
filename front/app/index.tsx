@@ -17,38 +17,51 @@ import RecipeForm from './admin/RecipeForm'
 import Recipes from './admin/Recipes'
 import ErrorBoundary from './ErrorBoundary'
 
+import MainRecipes from './main/Recipes'
+
 interface RecipeFormProps extends RouteComponentProps<{ recipeId: string }> { }
 
 const App = () => (
   <Provider store={store}>
     <Router>
       <div>
-        <Main>
-          <Switch>
-            <Route path="/admin/ingredients">
-              <ErrorBoundary key="/admin/ingredients">
-                <Ingredients />
-              </ErrorBoundary>
-            </Route>
-            <Route exact={true} path="/admin/recipes">
-              <ErrorBoundary key="/admin/recipes">
-                <Recipes />
-              </ErrorBoundary>
 
-            </Route>
-            <Route
-              path="/admin/recipes/:recipeId/edit"
-              render={(props: RecipeFormProps) =>
-                <ErrorBoundary key={props.match.url}>
-                  <RecipeForm recipeId={props.match.params.recipeId} />
+        <Switch>
+          <Route exact={true} path="/recipes">
+            <ErrorBoundary key="/recipes">
+              <MainRecipes />
+            </ErrorBoundary>
+          </Route>
+
+          <Route path="/admin">
+            <Main>
+              <Route path="/admin/ingredients">
+                <ErrorBoundary key="/admin/ingredients">
+                  <Ingredients />
                 </ErrorBoundary>
-              }
-            />
-            <Route>
-              <Ingredients />
-            </Route>
-          </Switch>
-        </Main>
+              </Route>
+              <Route exact={true} path="/admin/recipes">
+                <ErrorBoundary key="/admin/recipes">
+                  <Recipes />
+                </ErrorBoundary>
+
+              </Route>
+              <Route
+                path="/admin/recipes/:recipeId/edit"
+                render={(props: RecipeFormProps) =>
+                  <ErrorBoundary key={props.match.url}>
+                    <RecipeForm recipeId={props.match.params.recipeId} />
+                  </ErrorBoundary>
+                }
+              />
+              <Route>
+                <Ingredients />
+              </Route>
+            </Main>
+          </Route>
+
+        </Switch>
+
       </div>
     </Router>
   </Provider>
