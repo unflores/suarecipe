@@ -12,6 +12,7 @@ const store = createStore(
 )
 
 import AdminLayout from 'frontapp/templates/Admin'
+import MainLayout from 'frontapp/templates/Main'
 import Ingredients from './admin/Ingredients'
 import RecipeForm from './admin/RecipeForm'
 import Recipes from './admin/Recipes'
@@ -25,21 +26,25 @@ const App = () => (
     <Router>
       <div>
 
-        <Switch>
-          <Route exact={true} path="/recipes">
-            <ErrorBoundary key="/recipes">
-              <MainRecipes />
-            </ErrorBoundary>
-          </Route>
+        <Route path="/book">
+          <MainLayout>
+            <Route path="/book/recipes">
+              <ErrorBoundary key="/recipes">
+                <MainRecipes />
+              </ErrorBoundary>
+            </Route>
+          </MainLayout>
+        </Route>
 
-          <Route path="/admin">
+        <Route path="/admin">
+          <Switch>
             <AdminLayout>
-              <Route path="/admin/ingredients">
+              <Route path="/ingredients">
                 <ErrorBoundary key="/admin/ingredients">
                   <Ingredients />
                 </ErrorBoundary>
               </Route>
-              <Route exact={true} path="/admin/recipes">
+              <Route path="/admin/recipes">
                 <ErrorBoundary key="/admin/recipes">
                   <Recipes />
                 </ErrorBoundary>
@@ -57,13 +62,12 @@ const App = () => (
                 <Ingredients />
               </Route>
             </AdminLayout>
-          </Route>
-
-        </Switch>
+          </Switch>
+        </Route>
 
       </div>
-    </Router>
-  </Provider>
+    </Router >
+  </Provider >
 )
 
 ReactDOM.render(<App />, document.getElementById('app'))
