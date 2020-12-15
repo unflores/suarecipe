@@ -37,8 +37,9 @@ const App = () => (
         </Route>
 
         <Route path="/admin">
-          <Switch>
-            <AdminLayout>
+
+          <AdminLayout>
+            <Switch>
               <Route path="/ingredients">
                 <ErrorBoundary key="/admin/ingredients">
                   <Ingredients />
@@ -61,8 +62,9 @@ const App = () => (
               <Route>
                 <Ingredients />
               </Route>
-            </AdminLayout>
-          </Switch>
+            </Switch>
+          </AdminLayout>
+
         </Route>
 
       </div>
