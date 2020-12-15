@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom"
 import { createStore } from 'redux'
 import reducer from './reducers/index'
 
@@ -18,13 +18,15 @@ const App = () => (
   <Provider store={store}>
     <Router>
       <div>
-        <Route path="/book">
-          <BookSite />
-        </Route>
-
-        <Route path="/admin">
-          <AdminSite />
-        </Route>
+        <Switch>
+          <Route path="/book">
+            <BookSite />
+          </Route>
+          <Route path="/admin">
+            <AdminSite />
+          </Route>
+          <Redirect to="/book/recipe" />
+        </Switch>
       </div>
     </Router >
   </Provider >
