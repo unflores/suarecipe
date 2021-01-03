@@ -1,12 +1,14 @@
 import * as parse from 'csv-parse'
-import { dbSetup } from 'config/mongoose'
+import { dbSetup } from '../../config/mongoose'
+
 dbSetup()
+
 import * as Bluebird from 'bluebird'
 import { createReadStream } from 'fs'
 import { Document } from 'mongoose'
 import * as path from 'path'
-import { logger } from 'config/logger'
-import { Ingredient } from 'src/models/ingredient'
+import { logger } from '../../config/logger'
+import { Ingredient } from '../models/ingredient'
 
 interface IImportedIngredient {
   Name: string
@@ -38,7 +40,7 @@ class MasterListHandler {
           error_listing: imported.Name,
           message: err.message,
         })
-      }),
+      })
     )
   }
 
@@ -50,7 +52,7 @@ class MasterListHandler {
     Bluebird.all(this.tasks)
       .then((data) => {
         this.errors.forEach((error) => {
-          logger.info({ error: error })
+          logger.info({ error })
         })
         logger.info({
           total_rows: this.tasks.length,
