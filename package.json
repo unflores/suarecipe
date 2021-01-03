@@ -2,8 +2,8 @@
   "name": "suarecipe",
   "version": "0.1.0",
   "engines": {
-    "node": "10.12.0",
-    "yarn": "1.19.1"
+    "node": "14.15.3",
+    "yarn": "1.22.5"
   },
   "scripts": {
     "start": "node ./back/dist/index.js",
