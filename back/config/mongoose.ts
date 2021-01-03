@@ -11,10 +11,10 @@ const config: IConfig = {}
 
 switch (env) {
   case 'development':
-    config.url = 'mongodb://127.0.0.1:27017/suarecipe_development'
+    config.url = 'mongodb://dev:dev@mongo:27017/suarecipe_development'
     break
   case 'test':
-    config.url = 'mongodb://127.0.0.1:27017/suarecipe_test'
+    config.url = 'mongodb://dev:dev@mongo:27017/suarecipe_test'
     break
   case 'production':
     config.url = process.env.MONGODB_URI
@@ -50,7 +50,7 @@ export const dbSetup = async () => {
     return
   }
 
-  connection = await mongoose.connection.openUri(config.url)
+  connection = await mongoose.connect(config.url, { useNewUrlParser: true })
 }
 
 export const dbClose = async () => {
