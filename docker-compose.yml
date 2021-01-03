@@ -1,0 +1,18 @@
+---
+version: '3'
+volumes:
+  db-data:
+    external: false
+services:
+  dev:
+    build:
+      context: '.'
+      dockerfile: './docker/Dockerfile'
+    entrypoint: './docker/entrypoint.sh'
+    environment:
+      SSH_AUTH_SOCK: /ssh-agent
+      NODE_OPTIONS: --max_old_space_size=8192
+      NODE_ENV: development
+    volumes:
+      - '.:/var/www:cached'
+      - $SSH_AUTH_SOCK:/ssh-agent # Linux
