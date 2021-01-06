@@ -9,6 +9,8 @@ services:
       context: '.'
       dockerfile: './docker/Dockerfile'
     entrypoint: './docker/entrypoint.sh'
+    ports:
+      - 9090:9090
     environment:
       SSH_AUTH_SOCK: /ssh-agent
       NODE_OPTIONS: --max_old_space_size=8192
