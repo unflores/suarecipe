@@ -1,14 +1,7 @@
-import * as parse from 'csv-parse'
-import { dbSetup } from '../../config/mongoose'
-
-dbSetup()
-
 import * as Bluebird from 'bluebird'
-import { createReadStream } from 'fs'
 import { Document } from 'mongoose'
-import * as path from 'path'
-import { logger } from '../../config/logger'
-import { Ingredient } from '../models/ingredient'
+import { logger } from '../../../config/logger'
+import { Ingredient } from '../../models/ingredient'
 
 interface IImportedIngredient {
   Name: string
@@ -20,7 +13,7 @@ interface IErrorListing {
   message: string
 }
 
-class MasterListHandler {
+export class MasterListHandler {
   public tasks: Array<Bluebird<void | Document>>
   public errors: IErrorListing[]
 
@@ -67,18 +60,3 @@ class MasterListHandler {
       })
   }
 }
-
-const fileName = path.resolve(__dirname, './masterList.csv')
-const parser = parse({
-  delimiter: ',',
-  columns: true,
-  relax_column_count: true,
-})
-const fileStream = createReadStream(fileName)
-
-const handler = new MasterListHandler()
-
-fileStream
-  .pipe(parser)
-  .on('data', handler.handleData)
-  .on('end', handler.handleEnd)

@@ -1,5 +1,5 @@
 import api from 'frontapp/api'
-import { Recipe, RecipesResponse } from 'frontapp/libs/api/Responses'
+import { Recipe, RecipesResponse, RecipeResponse } from 'frontapp/libs/api/Responses'
 import Search from 'frontapp/rcl/Search'
 import Table from 'frontapp/rcl/Table'
 import { IApplicationState } from 'frontapp/reducers'
@@ -8,10 +8,16 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 import RecipeRow from './RecipeRow'
+import Button from 'frontapp/rcl/Atoms/Button'
+import { Redirect } from 'react-router-dom'
 
 interface Props {
   recipes: Recipe[]
   onFetchRecipes: (response: RecipesResponse) => void
+}
+
+interface State {
+  redirectId: string
 }
 
 const transformToSearchResults = (recipes: Recipe[]) => {
@@ -21,7 +27,15 @@ const transformToSearchResults = (recipes: Recipe[]) => {
   }))
 }
 
-class Recipes extends React.Component<Props, {}> {
+class Recipes extends React.Component<Props, State> {
+
+  constructor(props: Props) {
+    super(props)
+
+    this.state = {
+      redirectId: undefined
+    }
+  }
 
   async componentDidMount() {
     const recipesResponse = await api.get<RecipesResponse>('/api/recipes/')
@@ -38,11 +52,28 @@ class Recipes extends React.Component<Props, {}> {
     return transformToSearchResults(recipesResponse.data.recipes)
   }
 
+  handleCreateRecipe = async () => {
+    const recipeResponse = await api.post<RecipeResponse>('/api/recipes/',
+      { recipe: { name: 'New Recipe' } }
+    )
+    this.setState({ redirectId: recipeResponse.data.recipe._id })
+  }
+
   render() {
+
+    if (this.state.redirectId) {
+      return <Redirect to={`/admin/recipes/${this.state.redirectId}/edit`} />
+    }
 
     return (
       <>
-        <h3>Recipes</h3>
+        <h3>
+          Recipes
+          <Button
+            text="New Recipe"
+            onClick={this.handleCreateRecipe}
+          />
+        </h3>
 
         <Search
           onSearch={this.searchRecipe}
