@@ -12,6 +12,7 @@ const schema = Joi.object({
 
 async function create(req: Request, res: Response) {
   const recipeAtts = req.body.recipe
+  console.log({ recipeAtts })
   const recipe = await Recipe.create(recipeAtts)
   res.send({ recipe: recipe.toObject() })
 }
