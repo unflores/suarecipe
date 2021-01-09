@@ -1,5 +1,5 @@
-import { StepsResponse, Step } from 'frontapp/libs/api/Responses'
-import api, { mergeIntersect } from 'frontapp/api'
+import { Step, StepResponse } from 'frontapp/libs/api/Responses'
+import api from 'frontapp/api'
 import BasicInput from 'frontapp/rcl/Atoms/BasicInput'
 import Button from 'frontapp/rcl/Atoms/Button'
 import DragAndDrop from 'frontapp/rcl/Atoms/DragAndDrop'
@@ -39,13 +39,16 @@ class StepInputs extends React.Component<Props, State> {
 
   createStep = async () => {
     const steps = Array.from(this.props.steps)
-    const response = await api.post<StepsResponse>(`/api/recipes/${this.props.recipeId}/steps`, { step: { body: "New Step" } })
+    const response = await api.post<StepResponse>(
+      `/api/recipes/${this.props.recipeId}/steps`,
+      { step: { body: "New Step" } }
+    )
 
     if (response.code >= 400) {
       console.log("There was an error setting your information")
     }
 
-    this.props.onChange(response.data.steps)
+    this.props.onChange([response.data.step].concat(steps))
   }
 
   render() {
