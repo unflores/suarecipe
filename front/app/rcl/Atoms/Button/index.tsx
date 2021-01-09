@@ -17,14 +17,18 @@ class Button extends React.Component<Props, {}> {
     super(props)
   }
 
+  handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault()
+    this.props.onClick()
+  }
+
   render() {
-    const { text, onClick } = this.props
+    const { text } = this.props
 
     return (
       <div className="form-group">
         <button
-          onClick={onClick}
-          type="button"
+          onClick={this.handleClick}
           className={`btn btn-${this.props.type}`}
         >
           {text}
