@@ -50,7 +50,7 @@ class StepInputs extends React.Component<Props, State> {
 
   render() {
     if (this.props.steps.length === 0) {
-      return <NoSteps />
+      return <NoSteps onClickCreate={this.createStep} />
     }
     const { steps } = this.props
 
@@ -60,7 +60,6 @@ class StepInputs extends React.Component<Props, State> {
         <div>
           <Button
             text="Add Step"
-            type="success"
             onClick={this.createStep}
           />
           <DragAndDrop

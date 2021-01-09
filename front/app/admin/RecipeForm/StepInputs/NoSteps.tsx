@@ -1,7 +1,9 @@
 
 import * as React from 'react'
+import Button from 'frontapp/rcl/Atoms/Button'
 
 interface Props {
+  onClickCreate: () => void
 }
 
 interface State {
@@ -20,8 +22,12 @@ class NoSteps extends React.Component<Props, State> {
         <div className="row">
           <div className="col-5">
             No steps... Add some.
-      </div>
-          <div className="col-5"><button>Add Step</button></div>
+          </div>
+          <div className="col-5">
+            <Button
+              text="Add Step"
+              onClick={this.props.onClickCreate}
+            /></div>
         </div>
       </>
     )
