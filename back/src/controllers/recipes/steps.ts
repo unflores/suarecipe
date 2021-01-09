@@ -4,9 +4,9 @@ const create = async (req: Request, res: Response) => {
   const formValues = req.body
   const recipe = req.paramObjects.recipe
 
-  recipe.steps.push({ body: formValues.step.body as string })
+  recipe.steps.unshift({ body: formValues.step.body as string })
   await recipe.save()
-  res.send({ steps: recipe.steps })
+  res.send({ step: recipe.steps[0] })
 }
 
 const updateAll = async (req: Request, res: Response) => {
