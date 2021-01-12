@@ -1,5 +1,4 @@
 import { Document, model, Schema, Types } from 'mongoose'
-import * as uniqueValidator from 'mongoose-unique-validator'
 
 export interface IRecipe extends Document {
   name?: string
@@ -59,8 +58,7 @@ const usedIngredientSchema = new Schema({
 const recipeSchema = new Schema({
   name: {
     type: String,
-    required: true,
-    index: { unique: true },
+    required: true
   },
   steps: [stepSchema],
   usedIngredients: [usedIngredientSchema]
@@ -73,7 +71,5 @@ const recipeSchema = new Schema({
     }
   }
 })
-
-recipeSchema.plugin(uniqueValidator)
 
 export const Recipe = model<IRecipe>('Recipe', recipeSchema)
