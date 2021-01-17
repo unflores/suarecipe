@@ -27,6 +27,7 @@ export const MEASUREMENTS: Option[] = [
   { value: 'liters', label: 'Liters' },
   { value: 'gallons', label: 'Gallons' },
   { value: 'pieces', label: 'Pieces' },
+  { value: 'handful', label: 'Handful' }
 ]
 
 interface Props {
@@ -66,7 +67,6 @@ class UsedIngredientInput extends React.Component<Props, State> {
       measurement: newState.measurement,
       quantity: /^\d+(\.\d+)?$/.test(newState.quantity) ? parseInt(newState.quantity, 10) : 0,
     }
-    console.log({ newState, ingredient })
     this.props.onChange(ingredient)
   }
 
