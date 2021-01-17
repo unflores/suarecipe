@@ -1,4 +1,3 @@
-
 import * as React from 'react'
 import Button from 'frontapp/rcl/Atoms/Button'
 
@@ -6,11 +5,7 @@ interface Props {
   onClickCreate: () => void
 }
 
-interface State {
-
-}
-
-class NoSteps extends React.Component<Props, State> {
+class NoSteps extends React.Component<Props, {}> {
   render() {
     return (
       <>

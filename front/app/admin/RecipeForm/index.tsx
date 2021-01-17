@@ -67,7 +67,7 @@ class RecipeForm extends React.Component<Props, State> {
     const response = await api.put<Recipe>(`/api/recipes/${_id}`, { recipe: atts })
 
     if (response.code >= 400) {
-      console.log("There was an error setting your information")
+      console.error("There was an error setting your information")
     }
   }
 
@@ -81,7 +81,7 @@ class RecipeForm extends React.Component<Props, State> {
     this.setState({
       recipeAtts: {
         ...this.state.recipeAtts,
-        usedIngredients: [...this.state.recipeAtts.usedIngredients, usedIngredient],
+        usedIngredients: [...this.state.recipeAtts.usedIngredients, usedIngredient,],
       },
       usedIngredientNames: { ...this.state.usedIngredientNames, [name.id]: name.value },
     })
@@ -133,7 +133,6 @@ class RecipeForm extends React.Component<Props, State> {
     this.setState({
       recipeAtts: { ...this.state.recipeAtts, usedIngredients: newUsedIngredients },
     })
-    console.log({ recipeAtts: { ...this.state.recipeAtts, usedIngredients: newUsedIngredients } })
   }
 
   updateSteps = (steps: Step[]) => {

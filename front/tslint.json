@@ -7,7 +7,6 @@
     "interface-name": [true, "never-prefix"],
     "member-access": [true, "no-public"],
     "jsx-no-multiline-js": false,
-    "//": "problems can arise: https://github.com/wmonk/create-react-app-typescript/issues/370",
     "jsx-no-lambda": false,
     "trailing-comma": [true, {
       "singleline": {
