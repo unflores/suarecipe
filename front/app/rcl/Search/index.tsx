@@ -36,7 +36,6 @@ class Search extends React.Component<Props, State> {
     })
 
     const searchResults = await this.props.onSearch(namevalue.value)
-    console.log({ searchResults, state: this.state })
   }
 
   clearResults = async () => {

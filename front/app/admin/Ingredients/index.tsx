@@ -1,13 +1,12 @@
-import * as React from 'react'
-import IngredientRow from './IngredientRow'
-import { IApplicationState } from 'frontapp/reducers'
-import { connect } from 'react-redux'
 import api from 'frontapp/api'
+import { Ingredient, IngredientsResponse } from 'frontapp/libs/api/Responses'
 import Table from 'frontapp/rcl/Table'
-import { IngredientsResponse, Ingredient } from 'frontapp/libs/api/Responses'
+import { IApplicationState } from 'frontapp/reducers'
 import { ingredientsFetched } from 'frontapp/reducers/ingredients/actionBuilders'
+import * as React from 'react'
+import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
-
+import IngredientRow from './IngredientRow'
 
 interface Props {
   onFetchIngredients: (ingredients: Ingredient[]) => void
@@ -26,7 +25,7 @@ class Ingredients extends React.Component<Props, {}> {
       <>
         <h3>Ingredients</h3>
         <Table
-          headers={['Name', '']}
+          headers={['Name', '',]}
         >
           {
             this.props.ingredients.map((ingredient) =>
@@ -54,5 +53,5 @@ const mapDispatch = (dispatch: Dispatch) => ({
 
 export default connect(
   mapState,
-  mapDispatch,
+  mapDispatch
 )(Ingredients)

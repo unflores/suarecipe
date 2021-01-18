@@ -1,5 +1,6 @@
-import { Step, StepResponse } from 'frontapp/libs/api/Responses'
 import api from 'frontapp/api'
+import { Step, StepResponse } from 'frontapp/libs/api/Responses'
+import { log } from 'frontapp/libs/logger'
 import BasicInput from 'frontapp/rcl/Atoms/BasicInput'
 import Button from 'frontapp/rcl/Atoms/Button'
 import DragAndDrop from 'frontapp/rcl/Atoms/DragAndDrop'
@@ -45,10 +46,10 @@ class StepInputs extends React.Component<Props, State> {
     )
 
     if (response.code >= 400) {
-      console.log("There was an error setting your information")
+      log('error', "There was an error setting your information")
     }
 
-    this.props.onChange([response.data.step].concat(steps))
+    this.props.onChange([response.data.step,].concat(steps))
   }
 
   render() {
