@@ -13,7 +13,7 @@ class Table extends React.Component<Props, {}> {
           <tr>
             {
               this.props.headers.map((header) =>
-                <th key={header} scope="col">{header}</th>,
+                <th key={header} scope="col">{header}</th>
               )
             }
           </tr>

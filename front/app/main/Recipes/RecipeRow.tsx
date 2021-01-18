@@ -16,9 +16,7 @@ class RecipeRow extends React.Component<Props, {}> {
     return (
       <tr>
         <td>{recipe.name}</td>
-        <td>
-
-        </td>
+        <td>&nbsp;</td>
       </tr>
     )
   }

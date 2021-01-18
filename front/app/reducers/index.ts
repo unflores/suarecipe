@@ -2,12 +2,12 @@ import { combineReducers } from 'redux'
 import { IngredientsState, reduce as ingredients } from './ingredients'
 import { RecipesState, reduce as recipes } from './recipes'
 
-export interface IApplicationState {
+export interface ApplicationState {
   ingredients: IngredientsState
   recipes: RecipesState
 }
 
-const rootReducer = combineReducers<IApplicationState>({
+const rootReducer = combineReducers<ApplicationState>({
   ingredients,
   recipes,
 })

@@ -1,5 +1,6 @@
-import * as React from 'react'
 import { FullRecipe } from 'frontapp/libs/api/Responses'
+import UsedIngredientInput from 'frontapp/rcl/Molecules/UsedIngredientInput'
+import * as React from 'react'
 
 const recipe: FullRecipe = {
   _id: 'alkjlkj',
@@ -23,13 +24,13 @@ const Recipe = (props: Props) => (
     <h2>Ingredients</h2>
     <ul>
       {recipe.usedIngredients.map((used) =>
-        <li>{used.ingredient.name}</li>
+        <li key={used.ingredient._id}>{used.ingredient.name}</li>
       )}
     </ul>
     <h2>Steps</h2>
     <ul>
       {recipe.steps.map((step) =>
-        <li>{step.body}</li>
+        <li key={step._id}>{step.body}</li>
       )}
     </ul>
   </div>

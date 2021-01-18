@@ -11,7 +11,7 @@
     "trailing-comma": [true, {
       "singleline": {
         "functions": "never",
-        "arrays": "always"
+        "arrays": "never"
       },
       "multiline": {
         "functions": "never",

@@ -1,15 +1,15 @@
 import api from 'frontapp/api'
-import { Recipe, RecipesResponse, RecipeResponse } from 'frontapp/libs/api/Responses'
+import { Recipe, RecipeResponse, RecipesResponse } from 'frontapp/libs/api/Responses'
+import Button from 'frontapp/rcl/Atoms/Button'
 import Search from 'frontapp/rcl/Search'
 import Table from 'frontapp/rcl/Table'
-import { IApplicationState } from 'frontapp/reducers'
+import { ApplicationState } from 'frontapp/reducers'
 import { recipesFetched } from 'frontapp/reducers/recipes/actionBuilders'
 import * as React from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import { Dispatch } from 'redux'
 import RecipeRow from './RecipeRow'
-import Button from 'frontapp/rcl/Atoms/Button'
-import { Redirect } from 'react-router-dom'
 
 interface Props {
   recipes: Recipe[]
@@ -96,7 +96,7 @@ class Recipes extends React.Component<Props, State> {
   }
 }
 
-const mapState = ({ recipes }: IApplicationState) => ({
+const mapState = ({ recipes }: ApplicationState) => ({
   recipes: Object.values(recipes.byId)
 })
 

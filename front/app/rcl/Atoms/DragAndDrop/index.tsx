@@ -36,9 +36,7 @@ interface Props<T, U> {
   keyField: U
 }
 
-interface State { }
-
-class DragAndDrop<T extends {}, U extends keyof T> extends React.Component<Props<T, U>, State> {
+class DragAndDrop<T extends {}, U extends keyof T> extends React.Component<Props<T, U>, {}> {
 
   onDragEnd = (result: DropResult) => {
 
