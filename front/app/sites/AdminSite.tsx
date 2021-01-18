@@ -16,7 +16,7 @@ const Admin = () => (
           <Ingredients />
         </ErrorBoundary>
       </Route>
-      <Route exact path="/admin/recipes">
+      <Route exact={true} path="/admin/recipes">
         <ErrorBoundary key="/admin/recipes">
           <Recipes />
         </ErrorBoundary>

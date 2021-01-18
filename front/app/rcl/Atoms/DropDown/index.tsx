@@ -44,7 +44,7 @@ class Dropdown extends React.Component<Props, State> {
               value={option.value}
             >
               {option.label}
-            </option>,
+            </option>
           )}
         </select>
       </div>

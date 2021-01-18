@@ -15,11 +15,7 @@ interface Props {
   onRemove: (steps: Step[]) => void
 }
 
-interface State {
-
-}
-
-class StepInputs extends React.Component<Props, State> {
+class StepInputs extends React.Component<Props, {}> {
 
   handleRemoveIngredient = (step: Step) => {
     const steps = Array.from(this.props.steps)
@@ -49,7 +45,7 @@ class StepInputs extends React.Component<Props, State> {
       log('error', "There was an error setting your information")
     }
 
-    this.props.onChange([response.data.step,].concat(steps))
+    this.props.onChange([response.data.step].concat(steps))
   }
 
   render() {

@@ -2,7 +2,7 @@ import api from 'frontapp/api'
 import { Recipe, RecipesResponse } from 'frontapp/libs/api/Responses'
 import Search from 'frontapp/rcl/Search'
 import Table from 'frontapp/rcl/Table'
-import { IApplicationState } from 'frontapp/reducers'
+import { ApplicationState } from 'frontapp/reducers'
 import { recipesFetched } from 'frontapp/reducers/recipes/actionBuilders'
 import * as React from 'react'
 import { connect } from 'react-redux'
@@ -65,7 +65,7 @@ class Recipes extends React.Component<Props, {}> {
   }
 }
 
-const mapState = ({ recipes }: IApplicationState) => ({
+const mapState = ({ recipes }: ApplicationState) => ({
   recipes: Object.values(recipes.byId)
 })
 

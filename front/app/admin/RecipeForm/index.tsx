@@ -82,7 +82,7 @@ class RecipeForm extends React.Component<Props, State> {
     this.setState({
       recipeAtts: {
         ...this.state.recipeAtts,
-        usedIngredients: [...this.state.recipeAtts.usedIngredients, usedIngredient,],
+        usedIngredients: [...this.state.recipeAtts.usedIngredients, usedIngredient],
       },
       usedIngredientNames: { ...this.state.usedIngredientNames, [name.id]: name.value },
     })

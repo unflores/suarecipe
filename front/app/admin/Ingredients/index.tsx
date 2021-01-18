@@ -1,7 +1,7 @@
 import api from 'frontapp/api'
 import { Ingredient, IngredientsResponse } from 'frontapp/libs/api/Responses'
 import Table from 'frontapp/rcl/Table'
-import { IApplicationState } from 'frontapp/reducers'
+import { ApplicationState } from 'frontapp/reducers'
 import { ingredientsFetched } from 'frontapp/reducers/ingredients/actionBuilders'
 import * as React from 'react'
 import { connect } from 'react-redux'
@@ -25,7 +25,7 @@ class Ingredients extends React.Component<Props, {}> {
       <>
         <h3>Ingredients</h3>
         <Table
-          headers={['Name', '',]}
+          headers={['Name', '']}
         >
           {
             this.props.ingredients.map((ingredient) =>
@@ -41,7 +41,7 @@ class Ingredients extends React.Component<Props, {}> {
   }
 }
 
-const mapState = ({ ingredients }: IApplicationState) => ({
+const mapState = ({ ingredients }: ApplicationState) => ({
   ingredients: Object.values(ingredients.byId)
 })
 

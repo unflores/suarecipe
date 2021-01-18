@@ -27,7 +27,7 @@ export const MEASUREMENTS: Option[] = [
   { value: 'liters', label: 'Liters' },
   { value: 'gallons', label: 'Gallons' },
   { value: 'pieces', label: 'Pieces' },
-  { value: 'handful', label: 'Handful' }
+  { value: 'handful', label: 'Handful' },
 ]
 
 interface Props {

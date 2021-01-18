@@ -1,7 +1,6 @@
-import * as React from 'react'
 import { Recipe } from 'frontapp/libs/api/Responses'
-import { Link } from "react-router-dom";
-
+import * as React from 'react'
+import { Link } from "react-router-dom"
 
 interface Props {
   recipe: Recipe
@@ -26,4 +25,4 @@ class RecipeRow extends React.Component<Props, {}> {
   }
 }
 
-export default RecipeRow;
+export default RecipeRow

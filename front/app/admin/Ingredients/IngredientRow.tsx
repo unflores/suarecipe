@@ -1,7 +1,7 @@
-import * as React from 'react'
+import IngredientForm from 'frontapp/admin/Ingredients/IngredientForm'
 import { Ingredient } from 'frontapp/libs/api/Responses'
 import Modal from 'frontapp/rcl/Modal'
-import IngredientForm from 'frontapp/admin/Ingredients/IngredientForm'
+import * as React from 'react'
 
 interface Props {
   ingredient: Ingredient
@@ -50,4 +50,4 @@ class IngredientRow extends React.Component<Props, State> {
   }
 }
 
-export default IngredientRow;
+export default IngredientRow

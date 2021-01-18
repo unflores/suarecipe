@@ -1,16 +1,16 @@
 import MainLayout from 'frontapp/templates/Main'
 import * as React from 'react'
-import { Route, Switch, RouteComponentProps } from "react-router-dom"
+import { Route, RouteComponentProps, Switch } from "react-router-dom"
 import ErrorBoundary from '../ErrorBoundary'
-import MainRecipes from '../main/Recipes'
 import Recipe from '../main/Recipe'
+import MainRecipes from '../main/Recipes'
 
 interface RecipeProps extends RouteComponentProps<{ recipeId: string }> { }
 
 const Book = () => (
   <MainLayout>
     <Switch>
-      <Route exact path="/book/recipes">
+      <Route exact={true} path="/book/recipes">
         <ErrorBoundary key="/recipes">
           <MainRecipes />
         </ErrorBoundary>
