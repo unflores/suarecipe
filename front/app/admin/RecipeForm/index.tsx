@@ -1,6 +1,7 @@
 import api, { mergeIntersect } from 'frontapp/api'
 import { FullRecipe, Recipe, RecipeResponse, Step } from 'frontapp/libs/api/Responses'
 import { Ingredient, IngredientsResponse, UsedIngredient } from 'frontapp/libs/api/Responses'
+import { log } from 'frontapp/libs/logger'
 import BasicInput from 'frontapp/rcl/Atoms/BasicInput'
 import Form from 'frontapp/rcl/Form'
 import DropdownSearch from 'frontapp/rcl/Search/DropdownSearch'
@@ -67,7 +68,7 @@ class RecipeForm extends React.Component<Props, State> {
     const response = await api.put<Recipe>(`/api/recipes/${_id}`, { recipe: atts })
 
     if (response.code >= 400) {
-      console.error("There was an error setting your information")
+      log('error', 'There was an error setting your information')
     }
   }
 

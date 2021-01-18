@@ -17,7 +17,6 @@ export const initialState: RecipesState = {
 
 export function reduce(state: RecipesState = initialState, action: ActionReturnTypes): RecipesState {
   let byId: RecipeHash = {}
-  console.log({ action })
   switch (action.type) {
     case Actions.FETCH_RECIPES:
       const ids = action.payload.recipes.map((recipe: Recipe) => recipe._id)

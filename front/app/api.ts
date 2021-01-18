@@ -1,3 +1,5 @@
+import { log } from 'frontapp/libs/logger'
+
 const baseHeaders = {
   "Accept": 'application/json',
   'Content-Type': 'application/json',
@@ -11,7 +13,7 @@ async function buildResults<T>(responseData: Response):
       data: await responseData.json(),
     }
   } catch (error) {
-    console.warn(error)
+    log('error', error)
     return {
       code: responseData.status,
       data: undefined
@@ -70,7 +72,7 @@ export default {
       })
       return await buildResults<T>(response)
     } catch (error) {
-      console.warn(error)
+      log('error', error)
     }
   },
   get: async <T>(path: string, query = {}, headers = {}) => {
@@ -82,7 +84,7 @@ export default {
       })
       return await buildResults<T>(response)
     } catch (error) {
-      console.warn(error)
+      log('error', error)
     }
   },
   put: async <T>(path: string, body = {}, headers = {}) => {
@@ -97,7 +99,7 @@ export default {
       })
       return await buildResults<T>(response)
     } catch (error) {
-      console.warn(error)
+      log('error', error)
     }
   },
   post: async <T>(path: string, body = {}, headers = {}) => {
@@ -112,7 +114,7 @@ export default {
       })
       return await buildResults<T>(response)
     } catch (error) {
-      console.warn(error)
+      log('error', error)
     }
   },
 }

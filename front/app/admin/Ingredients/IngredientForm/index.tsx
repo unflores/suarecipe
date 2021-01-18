@@ -1,10 +1,11 @@
-import * as React from 'react'
+import api from 'frontapp/api'
 import { Ingredient } from 'frontapp/libs/api/Responses'
-import { connect } from 'react-redux'
-import { ingredientUpdated } from 'frontapp/reducers/ingredients/actionBuilders'
+import { log } from 'frontapp/libs/logger'
 import BasicInput from 'frontapp/rcl/Atoms/BasicInput'
 import Form from 'frontapp/rcl/Form'
-import api from 'frontapp/api'
+import { ingredientUpdated } from 'frontapp/reducers/ingredients/actionBuilders'
+import * as React from 'react'
+import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 
 interface Props {
@@ -43,7 +44,7 @@ class IngredientForm extends React.Component<Props, State> {
     })
 
     if (response.code >= 400) {
-      console.log("There was an error setting your information")
+      log('log', "There was an error setting your information")
     } else {
       this.props.onUpdateIngredient(response.data)
       this.props.onSuccess()
@@ -77,5 +78,5 @@ const mapDispatch = (dispatch: Dispatch) => ({
 
 export default connect(
   () => ({}),
-  mapDispatch,
+  mapDispatch
 )(IngredientForm)

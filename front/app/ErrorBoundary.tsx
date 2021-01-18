@@ -1,3 +1,4 @@
+import { log } from 'frontapp/libs/logger'
 import * as React from 'react'
 import { ErrorInfo } from 'react'
 
@@ -14,7 +15,7 @@ class ErrorBoundary extends React.Component<{}, State> {
   componentDidCatch(error: Error, info: ErrorInfo) {
     this.setState({ hasError: true })
     // TODO: Add logging
-    console.log({ error, info })
+    log('error', { error, info })
   }
 
   render() {
