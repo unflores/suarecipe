@@ -25,7 +25,7 @@ const App = () => (
           <Route path="/admin">
             <AdminSite />
           </Route>
-          <Redirect to="/book/recipe" />
+          <Redirect to="/book/recipes" />
         </Switch>
       </div>
     </Router >
