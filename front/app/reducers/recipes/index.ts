@@ -1,3 +1,4 @@
+import { mergeIntersect } from 'frontapp/api'
 import { Recipe } from 'frontapp/libs/api/Responses'
 import { ActionReturnTypes, Actions } from './actionBuilders'
 
@@ -25,8 +26,8 @@ export function reduce(state: RecipesState = initialState, action: ActionReturnT
       return { ...state, ids, byId }
       break
     case Actions.UPDATE_RECIPE:
-      byId = Object.assign({}, state.byId)
-      byId[action.payload.recipe._id] = action.payload.recipe
+      byId = { ...state.byId }
+      byId[action.payload.recipe._id] = mergeIntersect(byId[action.payload.recipe._id], action.payload.recipe)
 
       return { ...state, byId }
       break

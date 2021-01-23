@@ -11,7 +11,7 @@ export interface RecipesResponse {
   recipes: Recipe[]
 }
 export interface RecipeResponse {
-  recipe: Recipe
+  recipe: FullRecipe
 }
 
 export interface StepsResponse {
