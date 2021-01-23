@@ -1,4 +1,4 @@
-import { Recipe, RecipeResponse, RecipesResponse } from 'frontapp/libs/api/Responses'
+import { FullRecipe, Recipe, RecipeResponse, RecipesResponse } from 'frontapp/libs/api/Responses'
 
 export enum Actions {
   FETCH_RECIPES = 'fetch_recipes',
@@ -21,7 +21,7 @@ export const recipesFetched = (response: RecipesResponse): RecipesFetchedReturn 
 
 interface RecipeUpdatedReturn {
   payload: {
-    recipe: Recipe,
+    recipe: FullRecipe,
   },
   type: typeof Actions.UPDATE_RECIPE
 }
