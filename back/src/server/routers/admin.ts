@@ -1,9 +1,9 @@
-import { ingredientsController } from '../controllers/ingredients'
-import { recipesController } from '../controllers/recipes/'
-import { stepsController } from '../controllers/recipes/steps'
+import { ingredientsController } from '../../controllers/ingredients'
+import { recipesController } from '../../controllers/recipes'
+import { stepsController } from '../../controllers/recipes/steps'
 
 import { Router } from 'express'
-import { findIngredient, findRecipe } from './params'
+import { findIngredient, findRecipe } from '../params'
 
 const router = Router()
 

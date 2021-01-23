@@ -7,7 +7,7 @@ import * as express from 'express'
 require('express-async-errors')
 import * as path from 'path'
 import { errorHandler } from './errorHandler'
-import { router } from './router'
+import { router } from './routers/admin'
 
 import * as bodyParser from 'body-parser'
 // Simulate DELETE and PUT
