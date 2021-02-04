@@ -26,7 +26,7 @@ async function list(req: Request, res: Response) {
   let recipes: IRecipe[]
 
   if (search) {
-    recipes = await Recipe.find(
+    recipes = await Recipe.where(
       { name: { $in: new RegExp(`${search}`, 'i') } }
     ).populate('usedIngredients.ingredient')
   } else {
