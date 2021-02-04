@@ -11,9 +11,9 @@ async function list(req: Request, res: Response) {
   let ingredients: IIngredient[]
 
   if (search) {
-    ingredients = await Ingredient.find({ name: { $in: new RegExp(`${search}`, 'i') } })
+    ingredients = await Ingredient.where({ name: { $in: new RegExp(`${search}`, 'i') } })
   } else {
-    ingredients = await Ingredient.find()
+    ingredients = await Ingredient.where()
   }
 
   res.send({ ingredients })
