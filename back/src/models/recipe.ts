@@ -65,7 +65,7 @@ const recipeSchema = new Schema({
   // tslint:disable-next-line: align
 }, {
   toObject: {
-    transform(doc, ret) {
+    transform(_doc, ret) {
       ret._id = ret._id.toString()
       delete ret.__v
     }
