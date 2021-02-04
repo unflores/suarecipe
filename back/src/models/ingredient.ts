@@ -1,14 +1,12 @@
-import * as mongoose from 'mongoose'
-import * as uniqueValidator from 'mongoose-unique-validator'
-
+import { Document, model, Schema } from 'mongoose'
 export interface IIngredient {
   name?: string
   type?: string
 }
 
-export interface IIngredientModel extends IIngredient, mongoose.Document { }
+export interface IIngredientModel extends IIngredient, Document { }
 
-const ingredientSchema = new mongoose.Schema({
+const ingredientSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -20,13 +18,11 @@ const ingredientSchema = new mongoose.Schema({
   // tslint:disable-next-line: align
 }, {
   toObject: {
-    transform(doc, ret) {
+    transform(_doc, ret) {
       ret._id = ret._id.toString()
       delete ret.__v
     }
   }
 })
 
-ingredientSchema.plugin(uniqueValidator)
-
-export const Ingredient = mongoose.model<IIngredientModel>('Ingredient', ingredientSchema)
+export const Ingredient = model<IIngredientModel>('Ingredient', ingredientSchema)
