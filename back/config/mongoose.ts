@@ -54,11 +54,8 @@ export const dbSetup = async () => {
 }
 
 export const dbClose = async () => {
-  if (!connection) {
-    return
-  }
 
-  await connection.close()
+  await mongoose.connection.close()
 }
 
 export default mongoose
