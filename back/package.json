@@ -12,7 +12,7 @@
     "postbuild": "npm run copyStatic",
     "copyStatic": "node copyStatic.js ./ src ./dist",
     "tslint": "npx tslint --project ./tsconfig.json --config ./tslint.json -t verbose ",
-    "test": "NODE_ENV=test mocha -r ts-node/register --file ./src/specs/setup.ts src/**/*.spec.ts",
+    "test": "NODE_ENV=test nodemon --exec \"mocha -r ts-node/register --file ./src/specs/setup.ts src/**/*.spec.ts\"",
     "test:watch": "yarn test --watch",
     "console:development": "NODE_OPTIONS=--experimental-repl-await NODE_ENV=test ts-node --project ./tsconfig.json ./dist/src/scripts/repl.js",
     "seed": "NODE_ENV=development ts-node --project ./tsconfig.json ./src/scripts/seed",
