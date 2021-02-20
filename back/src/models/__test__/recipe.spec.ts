@@ -3,7 +3,7 @@ import { IRecipe, Recipe } from '../recipe'
 
 describe('Recipe', () => {
 
-  it('requires name', (done) => {
+  it('requires name', () => {
     const subject = new Recipe({})
 
     subject.validateSync()
