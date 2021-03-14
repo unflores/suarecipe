@@ -3,21 +3,17 @@ import mongoose = require('mongoose')
 import { logger } from './logger'
 const env = process.env.NODE_ENV
 
-interface IConfig {
-  url?: string
-}
-
-const config: IConfig = {}
+let url: string
 
 switch (env) {
   case 'development':
-    config.url = 'mongodb://dev:dev@mongo:27017/suarecipe_development'
+    url = 'mongodb://dev:dev@mongo:27017/suarecipe_development'
     break
   case 'test':
-    config.url = 'mongodb://dev:dev@mongo:27017/suarecipe_test'
+    url = 'mongodb://dev:dev@mongo:27017/suarecipe_test'
     break
   case 'production':
-    config.url = process.env.MONGODB_URI
+    url = process.env.MONGODB_URI
     break
   default:
     logger.fatal(`Missing env for '${env}'!`)
@@ -30,7 +26,7 @@ if (env !== 'test') {
 mongoose.Promise = bluebird
 
 mongoose.connection.on('connected', () => {
-  logger.info(`Mongoose default connection open to ${config.url}`)
+  logger.info(`Mongoose default connection open to ${url}`)
 })
 
 // If the connection throws an error
@@ -50,7 +46,7 @@ export const dbSetup = async () => {
     return
   }
 
-  connection = await mongoose.connect(config.url, { useNewUrlParser: true })
+  connection = await mongoose.connect(url, { useNewUrlParser: true })
 }
 
 export const dbClose = async () => {
