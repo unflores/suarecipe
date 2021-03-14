@@ -39,13 +39,22 @@ app.use(cookieParser()) // Read cookies for auth
 app.use(bodyParser.json()) // Parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })) // Parse incoming data as json
 app.use(methodOverride())
+
+// Only auth on admin routes
+app.use((req, res, next) => {
+  // \/* ensures that api//admin also gets checked
+  if (req.path.match(/\api\/*admin\/.*/)) {
+    basicAuth({
+      users: { admin: 'supersecret' },
+      challenge: true
+    })(req, res, next)
+  } else {
+    next()
+
+  }
+})
+
 app.use('/api/book', bookRouter)
-
-app.use(basicAuth({
-  users: { admin: 'supersecret' },
-  challenge: true
-}))
-
 app.use('/api/admin', adminRouter)
 
 app.get('*', (req, res) => {
