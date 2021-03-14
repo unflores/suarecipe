@@ -45,7 +45,7 @@ app.use((req, res, next) => {
   // \/* ensures that api//admin also gets checked
   if (req.path.match(/\api\/*admin\/.*/)) {
     basicAuth({
-      users: { admin: 'supersecret' },
+      users: { admin: process.env.ADMIN_PASSWORD },
       challenge: true
     })(req, res, next)
   } else {
