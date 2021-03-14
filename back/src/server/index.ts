@@ -1,10 +1,7 @@
 import * as dotenv from 'dotenv'
 dotenv.config()
-// import * as basicAuth from 'express-basic-auth'
-// app.use(basicAuth({
-//   users: { 'admin': 'supersecret' },
-//   challenge: true
-// }))
+import * as basicAuth from 'express-basic-auth'
+
 import * as cookieParser from 'cookie-parser'
 import * as express from 'express'
 // tslint:disable no-var-requires
@@ -12,7 +9,7 @@ require('express-async-errors')
 import * as path from 'path'
 import { errorHandler } from './errorHandler'
 import { router as adminRouter } from './routers/admin'
-import { router as frontRouter } from './routers/front'
+import { router as bookRouter } from './routers/book'
 
 import * as bodyParser from 'body-parser'
 // Simulate DELETE and PUT
@@ -42,9 +39,14 @@ app.use(cookieParser()) // Read cookies for auth
 app.use(bodyParser.json()) // Parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })) // Parse incoming data as json
 app.use(methodOverride())
+app.use('/api/book', bookRouter)
 
-app.use('/api', adminRouter)
-app.use('/api', frontRouter)
+// app.use(basicAuth({
+//   users: { admin: 'supersecret' },
+//   challenge: true
+// }))
+
+app.use('/api/admin', adminRouter)
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(baseDir, 'index.html'))
