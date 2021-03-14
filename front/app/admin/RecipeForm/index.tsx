@@ -58,14 +58,14 @@ class RecipeForm extends React.Component<Props, State> {
   }
 
   async componentDidMount() {
-    const recipesResponse = await api.get<RecipeResponse>(`/api/recipes/${this.props.recipeId}`)
+    const recipesResponse = await api.get<RecipeResponse>(`/api/admin/recipes/${this.props.recipeId}`)
 
     this.setState({ recipeAtts: mergeIntersect(this.state.recipeAtts, recipesResponse.data.recipe) })
   }
 
   handleSubmit = async () => {
     const { _id, ...atts } = this.state.recipeAtts
-    const response = await api.put<Recipe>(`/api/recipes/${_id}`, { recipe: atts })
+    const response = await api.put<Recipe>(`/api/admin/recipes/${_id}`, { recipe: atts })
 
     if (response.code >= 400) {
       log('error', 'There was an error setting your information')
@@ -99,7 +99,7 @@ class RecipeForm extends React.Component<Props, State> {
   }
 
   searchIngredient = async (searchText: string) => {
-    const response = await api.get<IngredientsResponse>('/api/ingredients/',
+    const response = await api.get<IngredientsResponse>('/api/admin/ingredients/',
       { search: searchText }
     )
     const searchResults = transformIngredientsToSearchResults(response.data.ingredients)

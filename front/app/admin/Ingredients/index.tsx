@@ -16,7 +16,7 @@ interface Props {
 class Ingredients extends React.Component<Props, {}> {
 
   async componentDidMount() {
-    const ingredientsResponse = await api.get<IngredientsResponse>('/api/ingredients/')
+    const ingredientsResponse = await api.get<IngredientsResponse>('/api/admin/ingredients/')
     this.props.onFetchIngredients(ingredientsResponse.data.ingredients)
   }
 

@@ -26,7 +26,7 @@ const Recipe = (props: Props) => {
 
   useEffect(() => {
     async function loadRecipe() {
-      const recipeResponse = await api.get<RecipeResponse>(`/api/recipes/${props.recipeId}`)
+      const recipeResponse = await api.get<RecipeResponse>(`/api/book/recipes/${props.recipeId}`)
       if (recipeResponse.code === 400) {
         log('error', 'blah blah something')
       }

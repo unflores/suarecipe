@@ -39,7 +39,7 @@ class IngredientForm extends React.Component<Props, State> {
   handleSubmit = async () => {
     const ingredient = this.state.ingredient
 
-    const response = await api.put<Ingredient>(`/api/ingredients/${ingredient._id}`, {
+    const response = await api.put<Ingredient>(`/api/admin/ingredients/${ingredient._id}`, {
       name: ingredient.name
     })
 

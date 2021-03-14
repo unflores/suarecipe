@@ -32,7 +32,7 @@ describe('recipes', () => {
 
     it('Shows all recipes', async () => {
       await server
-        .get('/api/recipes/')
+        .get('/api/admin/recipes/')
         .expect(200)
         .then(response => {
           const data = response.body
@@ -45,7 +45,7 @@ describe('recipes', () => {
 
     it('Creates a recipe', async () => {
       await server
-        .post('/api/recipes/')
+        .post('/api/admin/recipes/')
         .send({
           recipe: { name: 'Bean dip' }
         })
@@ -61,7 +61,7 @@ describe('recipes', () => {
   describe('/recipes/:recipe_id', () => {
     it('Updates a recipe', async () => {
       await server
-        .patch(`/api/recipes/${recipe._id}`)
+        .patch(`/api/admin/recipes/${recipe._id}`)
         .send({
           recipe: {
             name: 'Cheese dip',

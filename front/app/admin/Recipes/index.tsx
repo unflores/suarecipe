@@ -38,14 +38,14 @@ class Recipes extends React.Component<Props, State> {
   }
 
   async componentDidMount() {
-    const recipesResponse = await api.get<RecipesResponse>('/api/recipes/')
+    const recipesResponse = await api.get<RecipesResponse>('/api//admin/recipes/')
 
     this.props.onFetchRecipes(recipesResponse.data)
     return recipesResponse.data
   }
 
   searchRecipe = async (searchText: string) => {
-    const recipesResponse = await api.get<RecipesResponse>('/api/recipes/',
+    const recipesResponse = await api.get<RecipesResponse>('/api/admin/recipes/',
       { search: searchText }
     )
     this.props.onFetchRecipes(recipesResponse.data)
@@ -53,7 +53,7 @@ class Recipes extends React.Component<Props, State> {
   }
 
   handleCreateRecipe = async () => {
-    const recipeResponse = await api.post<RecipeResponse>('/api/recipes/',
+    const recipeResponse = await api.post<RecipeResponse>('/api/admin/recipes/',
       { recipe: { name: 'New Recipe' } }
     )
     this.setState({ redirectId: recipeResponse.data.recipe._id })

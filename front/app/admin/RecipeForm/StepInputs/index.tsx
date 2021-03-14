@@ -37,7 +37,7 @@ class StepInputs extends React.Component<Props, {}> {
   createStep = async () => {
     const steps = Array.from(this.props.steps)
     const response = await api.post<StepResponse>(
-      `/api/recipes/${this.props.recipeId}/steps`,
+      `/api/admin/recipes/${this.props.recipeId}/steps`,
       { step: { body: "New Step" } }
     )
 

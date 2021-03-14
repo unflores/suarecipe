@@ -24,14 +24,14 @@ const transformToSearchResults = (recipes: Recipe[]) => {
 class Recipes extends React.Component<Props, {}> {
 
   async componentDidMount() {
-    const recipesResponse = await api.get<RecipesResponse>('/api/recipes/')
+    const recipesResponse = await api.get<RecipesResponse>('/api/book/recipes/')
 
     this.props.onFetchRecipes(recipesResponse.data)
     return recipesResponse.data
   }
 
   searchRecipe = async (searchText: string) => {
-    const recipesResponse = await api.get<RecipesResponse>('/api/recipes/',
+    const recipesResponse = await api.get<RecipesResponse>('/api/book/recipes/',
       { search: searchText }
     )
     this.props.onFetchRecipes(recipesResponse.data)

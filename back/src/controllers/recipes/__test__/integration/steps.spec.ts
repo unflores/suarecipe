@@ -34,7 +34,7 @@ describe('recipes/:recipe_id/steps', () => {
 
     it('adds a new step', async () => {
       await server
-        .post(`/api/recipes/${recipe.id}/steps`)
+        .post(`/api/admin/recipes/${recipe.id}/steps`)
         .send({ step: { body: 'Add dat good sauce' } })
         .expect(200)
         .then(response => {
@@ -48,7 +48,7 @@ describe('recipes/:recipe_id/steps', () => {
       steps[0].body = 'Put in best garlic, lemon and some yogurt'
 
       await server
-        .patch(`/api/recipes/${recipe.id}/steps`)
+        .patch(`/api/admin/recipes/${recipe.id}/steps`)
         .send({ steps })
         .expect(200)
         .then(response => {
@@ -63,7 +63,7 @@ describe('recipes/:recipe_id/steps', () => {
       const steps = recipe.steps
 
       await server
-        .delete(`/api/recipes/${recipe.id}/steps/${steps[0]._id}`)
+        .delete(`/api/admin/recipes/${recipe.id}/steps/${steps[0]._id}`)
         .expect(200)
         .then(response => {
           const data = response.body

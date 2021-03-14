@@ -41,10 +41,10 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' })) // Parse incoming
 app.use(methodOverride())
 app.use('/api/book', bookRouter)
 
-// app.use(basicAuth({
-//   users: { admin: 'supersecret' },
-//   challenge: true
-// }))
+app.use(basicAuth({
+  users: { admin: 'supersecret' },
+  challenge: true
+}))
 
 app.use('/api/admin', adminRouter)
 

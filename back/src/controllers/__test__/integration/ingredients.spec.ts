@@ -21,7 +21,7 @@ describe('ingredients', () => {
 
     it('responds with a ingredient array', async () => {
       await server
-        .get('/api/ingredients/')
+        .get('/api/admin/ingredients/')
         .expect(200)
         .then((response) => {
           const data = response.body
