@@ -20,11 +20,10 @@ services:
       - $SSH_AUTH_SOCK:/ssh-agent # Linux
   mongo:
     image: mongo
+    restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: dev
       MONGO_INITDB_ROOT_PASSWORD: dev
-    ports:
-      - 27017:27017
   mongo-express:
     image: mongo-express
     restart: always
