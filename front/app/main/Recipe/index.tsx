@@ -46,17 +46,17 @@ const Recipe = (props: Props) => {
       <div><Link to="/book/recipes">Back to Recipes</Link></div>
       <h1>{recipe.name}</h1>
       <h2>Ingredients</h2>
-      <ul>
+      <ul className="list-group">
         {recipe.usedIngredients.map((used) =>
-          <li key={used.ingredient._id}>
+          <li className="list-group-item" key={used.ingredient._id}>
             {used.quantity} {used.measurement} - {used.ingredient.name}
           </li>
         )}
       </ul>
       <h2>Steps</h2>
-      <ul>
+      <ul className="list-group">
         {recipe.steps.map((step) =>
-          <li key={step._id}>{step.body}</li>
+          <li className="list-group-item" key={step._id}>{step.body}</li>
         )}
       </ul>
     </div>
