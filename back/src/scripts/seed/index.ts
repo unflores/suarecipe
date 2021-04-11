@@ -3,7 +3,6 @@ import database, { dbSetup } from '../../../config/mongoose'
 
 dbSetup()
 
-// import { MasterListHandler } from './masterListHandler'
 import { createReadStream } from 'fs'
 import * as path from 'path'
 import { Ingredient } from '../../models/ingredient'
