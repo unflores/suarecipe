@@ -37,9 +37,11 @@ const seedDb = async () => {
 }
 
 const clearDBCollections = async () => {
-  Object.keys(database.connection.collections).forEach(async (collectionId) => {
-    await database.connection.collections[collectionId].deleteMany({})
-  })
+  await Promise.all(
+    Object.keys(database.connection.collections).map(async (collectionId) => {
+      await database.connection.collections[collectionId].deleteMany({})
+    })
+  )
 }
 
 const addIngredientParamsToExtracted =
@@ -50,9 +52,12 @@ const createIngredients = async (ingredients: Ingredient[]) => {
 }
 
 const createRecipes = async () => {
-  const [chicken, butter, salt] = await Ingredient.where(
+  const ingredients = await Ingredient.where(
     { name: { $in: ['Chicken Thigh', 'Butter', 'Salt'] } }
   )
+  const butter = ingredients.find(ingredient => ingredient.name === 'Butter')
+  const chicken = ingredients.find(ingredient => ingredient.name === 'Chicken Thigh')
+  const salt = ingredients.find(ingredient => ingredient.name == 'Salt')
 
   const recipes = [
     new Recipe({
