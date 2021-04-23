@@ -51,11 +51,13 @@ const copyRecursive = function(srcBase, srcPath, dest) {
           .catch((err) => reject(err))
       } else if (fileStat.isFile()) {
         if (srcPath.search(/\.tsx?$/) === -1) {
-          console.log('copying : ', srcPath)
+          const source = path.resolve(srcBase, srcPath)
+          const destination = path.resolve(dest, srcPath)
+          console.log(`copying : ${source} to ${destination}`)
           try {
             fs.copyFileSync(
-              path.resolve(srcBase, srcPath),
-              path.resolve(dest, srcPath),
+              source,
+              destination,
             )
           } catch (err) {
             console.log(err)
