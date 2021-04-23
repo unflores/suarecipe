@@ -15,7 +15,7 @@
     "test": "NODE_ENV=test nodemon --exec \"mocha -r ts-node/register --file ./src/specs/setup.ts src/**/*.spec.ts\"",
     "test:watch": "yarn test --watch",
     "repl": "NODE_OPTIONS=--experimental-repl-await NODE_ENV=development ts-node --project ./tsconfig.json ./dist/src/scripts/repl.js",
-    "seed": "NODE_ENV=development ts-node --project ./tsconfig.json ./src/scripts/seed",
+    "seed": "node ./dist/src/scripts/seed/index.js",
     "static": "find ./src -name \"*.csv\" -type f -type f -exec cp --parents {} ./dist \\;"
   },
   "engines": {
