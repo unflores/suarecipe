@@ -19,7 +19,7 @@
     "static": "find ./src -name \"*.csv\" -type f -type f -exec cp --parents {} ./dist \\;"
   },
   "engines": {
-    "node": "14.15.3"
+    "node": ">=14.15.3"
   },
   "author": "me@austinflores.com",
   "license": "ISC",
