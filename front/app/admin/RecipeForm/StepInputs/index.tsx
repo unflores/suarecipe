@@ -17,7 +17,7 @@ interface Props {
 
 class StepInputs extends React.Component<Props, {}> {
 
-  handleRemoveIngredient = (step: Step) => {
+  handleRemoveStep = (step: Step) => {
     const steps = Array.from(this.props.steps)
     const index = steps.findIndex((currentStep) => currentStep._id === step._id)
     steps.splice(index, 1)
@@ -79,7 +79,7 @@ class StepInputs extends React.Component<Props, {}> {
                 <Button
                   text="X"
                   type="danger"
-                  onClick={() => (this.handleRemoveIngredient(step))}
+                  onClick={() => (this.handleRemoveStep(step))}
                 />
               </div>
             )}
