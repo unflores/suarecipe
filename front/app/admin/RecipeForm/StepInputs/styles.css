@@ -1,5 +1,6 @@
 .step {
   display: flex;
+  margin-top: 1rem;
 }
 .body {
   flex-grow: 2;
