@@ -4,3 +4,8 @@
 .body {
   flex-grow: 2;
 }
+.moveButton {
+  flex-grow: .1;
+  height: 2.3rem;
+  padding-top: 0.5rem;
+}
