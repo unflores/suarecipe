@@ -9,4 +9,7 @@
   flex-grow: .1;
   height: 2.3rem;
   padding-top: 0.5rem;
+  /* I'm not sure why but the default grab value isn't working */
+  /* cursor: grab; */
+  cursor: url(https://ssl.gstatic.com/ui/v1/icons/mail/images/2/openhand.cur), default !important;
 }
